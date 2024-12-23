@@ -6,10 +6,15 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: [
+          "Signate Grotesk",
           "Bricolage Grotesque Variable",
           "Inter Variable",
           "Inter",
           ...defaultTheme.fontFamily.sans,
+        ],
+        mono: [
+          "DM Mono",
+          "monospace"
         ],
       },
     },

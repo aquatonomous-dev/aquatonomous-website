@@ -1,27 +1,26 @@
 ---
 import Container from "@components/container.astro";
 import Link from "@components/ui/link.astro";
+import { Image } from "astro:assets";
+import aquaLogo from "assets/aqua-logo.png";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
 const menuitems = [
   {
-    title: "Features",
+    title: "Debug",
     path: "#",
     children: [
-      { title: "Action", path: "/" },
-      { title: "Another action", path: "#" },
-      { title: "Dropdown Submenu", path: "#" },
-      { title: "404 Page", path: "/404" },
+      { title: "404 Page", path: "/404" }
     ],
-  },
-  {
-    title: "Pricing",
-    path: "/pricing",
   },
   {
     title: "About",
     path: "/about",
+  },
+  {
+    title: "Our Team",
+    path: "/team",
   },
   {
     title: "Blog",
@@ -30,12 +29,7 @@ const menuitems = [
   {
     title: "Contact",
     path: "/contact",
-  },
-  {
-    title: "Pro Version",
-    badge: true,
-    path: "https://astroship-pro.web3templates.com/",
-  },
+  }
 ];
 ---
 
@@ -43,16 +37,24 @@ const menuitems = [
   <header class="flex flex-col lg:flex-row justify-between items-center my-5">
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
+        <div class ="invert">
+          <Image
+          src={aquaLogo}
+          alt="logo of Aquatonomous"
+          format="avif"
+          width="40"
+          />
+        </div>
         <a href="/" class="text-lg"
-          ><span class="font-bold text-slate-800">Astro</span><span
-            class="text-slate-500">ship</span
+          ><span class="font-bold text-slate-800">aqua</span><span
+            class="text-slate-500">tonomous</span
           >
         </a>
         <div class="block lg:hidden">
           <MenuIcon class="w-4 h-4 text-gray-800" />
         </div>
       </div>
-      <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
+      <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0 font-mono lowercase">
         <ul class="flex flex-col lg:flex-row lg:gap-3">
           {
             menuitems.map((item, index) => (
@@ -71,11 +73,6 @@ const menuitems = [
                       href={item.path}
                       class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
                       <span> {item.title}</span>
-                      {item.badge && (
-                        <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
-                          New
-                        </span>
-                      )}
                     </a>
                   </li>
                 )}
@@ -83,16 +80,15 @@ const menuitems = [
             ))
           }
         </ul>
+        <!-- TO DO: Add search  here-->
         <div class="lg:hidden flex items-center mt-3 gap-4">
-          <Link href="#" style="muted" block size="md">Log in</Link>
-          <Link href="#" size="md" block>Sign up</Link>
+          <Link href="#" size="md" block>Get in Touch</Link>
         </div>
       </MenuItems>
     </Astronav>
     <div>
       <div class="hidden lg:flex items-center gap-4">
-        <a href="#">Log in</a>
-        <Link href="#" size="md">Sign up</Link>
+        <Link href="#" size="md">Get in Touch</Link>
       </div>
     </div>
   </header>
