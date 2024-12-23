@@ -1,0 +1,45 @@
+---
+// @ts-ignore
+import { Image } from 'astro:assets';
+import ams from "assets/ams.png";
+import claigan from "assets/claigan.jpg";
+import seaspan from "assets/seaspan.png";
+import honeywell from "assets/honeywell.png";
+---
+<div class="mt-24">
+ <h2 class="text-center text-slate-500 font-mono lowercase">Special thanks to all our Sponsors :)</h2>
+ <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-20 items-center justify-center mt-16 md:mt-8">
+   <div class="flex items-center justify-center">
+     <Image
+       src={ams}
+       alt="AMS sponsor logo"
+       height={200}
+       class="w-auto h-auto object-contain max-h-[100px] sm:max-h-[200px] md:max-h-[250px]"
+     />
+   </div>
+   <div class="flex items-center justify-center">
+     <Image
+       src={claigan}
+       alt="Claigan sponsor logo"
+       height={200}
+       class="w-auto h-auto object-contain max-h-[100px] sm:max-h-[200px] md:max-h-[250px]"
+     />
+   </div>
+   <div class="flex items-center justify-center">
+     <Image
+       src={seaspan}
+       alt="Seaspan sponsor logo"
+       height={200}
+       class="w-auto h-auto object-contain max-h-[100px] sm:max-h-[200px] md:max-h-[250px]"
+     />
+   </div>
+   <div class="flex items-center justify-center">
+     <Image
+       src={honeywell}
+       alt="Honeywell sponsor logo"
+       height={200}
+       class="w-auto h-auto object-contain max-h-[100px] sm:max-h-[200px] md:max-h-[250px]"
+     />
+   </div>
+ </div>
+</div>

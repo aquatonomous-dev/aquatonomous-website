@@ -1,0 +1,69 @@
+---
+import { getCollection } from "astro:content";
+import { Picture } from "astro:assets";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+
+// Let's try a different path pattern and log what we find
+const images = import.meta.glob('../assets/*.{jpeg,jpg,png,gif}', {
+  eager: true 
+});
+
+// Log available images
+console.log("Available images:", Object.keys(images));
+
+const publishedTeamMembers = await getCollection("team", ({ data }) => {
+  return !data.draft && data.publishDate < new Date();
+});
+
+// Log team member data
+publishedTeamMembers.forEach(member => {
+  console.log("Member image path:", member.data.avatar.src);
+});
+---
+
+<Layout title="Our Team">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Our Team</Fragment>
+      <Fragment slot="desc">Founded in 2023, Aquatonomous has rapidly expanded to a team of over 80 passionate members dedicated to pushing the boundaries of autonomous maritime technology. Our mission is to design, build, and program a cutting-edge solar-powered autonomous surface vessel (ASV), offering students an unparalleled opportunity to gain hands-on experience with advanced autonomous systems and sustainable innovation.</Fragment>
+    </Sectionhead>
+    <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
+      {
+        publishedTeamMembers.map((teamMemberEntry) => {
+          // Construct path relative to the current file
+          const imagePath = `../assets/${teamMemberEntry.data.avatar.src}`;
+          console.log("Looking for image at:", imagePath);
+          const image = images[imagePath];
+          
+          if (!image) {
+            console.error(`Image not found for path: ${imagePath}`);
+            return null;
+          }
+
+          return (
+            <div class="group">
+              <div class="w-full aspect-square">
+                <Picture
+                  src={image.default}
+                  alt={teamMemberEntry.data.avatar.alt}
+                  sizes="(max-width: 800px) 100vw, 400px"
+                  width={400}
+                  height={400}
+                  class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
+                />
+              </div>
+              <div class="mt-4 text-center">
+                <h2 class="text-lg text-gray-800">{teamMemberEntry.data.name}</h2>
+                <h3 class="text-sm text-slate-500">
+                  {teamMemberEntry.data.title}
+                </h3>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </Container>
+</Layout>
