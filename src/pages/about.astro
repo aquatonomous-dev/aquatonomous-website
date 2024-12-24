@@ -1,0 +1,32 @@
+---
+import Contactform from "@components/contactform.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import Layout from "@layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout title="About">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">About “aQua” 🌊</Fragment>
+      <Fragment slot="desc">WHO ARE WE?</Fragment>
+    </Sectionhead>
+
+    <div class="mx-auto max-w-4xl mt-16">
+      <div>
+        <p class="text-lg leading-relaxed text-slate-500 mt-3">
+            “aQuatonomous,” a blend of the words “aqua,” “Queen’s,” and “autonomous,” is Smith Engineering’s newest student-led interdisciplinary design team. 
+        </p>
+        <p class="text-lg leading-relaxed text-slate-500 mt-3">
+            Founded in 2023, our team has rapidly grown to over 35 passionate members, with a focus on continual expansion and innovation. Our mission centers on constructing and programming a state-of-the-art solar-powered autonomous surface vessel (ASV), providing students with a unique, hands-on opportunity to engage with cutting edge autonomous vehicle technology. We aim to be at the forefront of AI-driven autonomy and sustainable design, integrating the expertise of our diverse sub-teams: mechanical, electrical, perception, ecological & water research, business, and core-autonomy. 
+        </p>
+        <p class="text-lg leading-relaxed text-slate-500 mt-3">
+            Our ASV project not only advances autonomous maritime technology but also catalyzes sustainability and ecological restoration efforts. Our team offers the boat to water and environmental researchers as a research vessel and measurement station.  
+        </p>
+        <p class="text-lg leading-relaxed text-slate-500 mt-3">
+            We encourage students from all disciplines to join us, bringing their unique perspectives and skills to advance autonomous maritime technology. Through collaboration and innovation, we aim to make significant strides interdisciplinary water research and autonomous vehicle design.        </p>
+      </div>
+    </div>
+  </Container>
+</Layout>

@@ -34,7 +34,7 @@ const menuitems = [
 ---
 
 <Container>
-  <header class="flex flex-col lg:flex-row justify-between items-center my-5">
+  <header class="flex flex-col lg:flex-row justify-between items-center my-5 z-20 relative ">
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <div class ="invert">
@@ -82,13 +82,13 @@ const menuitems = [
         </ul>
         <!-- TO DO: Add search  here-->
         <div class="lg:hidden flex items-center mt-3 gap-4">
-          <Link href="#" size="md" block>Get in Touch</Link>
+          <Link href="/contact" size="md" block>Get in Touch</Link>
         </div>
       </MenuItems>
     </Astronav>
     <div>
       <div class="hidden lg:flex items-center gap-4">
-        <Link href="#" size="md">Get in Touch</Link>
+        <Link href="/contact" size="md">Get in Touch</Link>
       </div>
     </div>
   </header>
