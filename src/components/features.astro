@@ -41,26 +41,28 @@ const features = [
   },
 ];
 ---
-<div class="mt-16 md:mt-0">
-  <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
-    A movement of Innovation, Sustainability, and Education.
-  </h2>
-  <p class="text-lg mt-4 text-slate-600">
-    Our team pillars itself on innovation, sustainability and education, and in its inaugural year has generated a movement of engineering students from diverse backgrounds, passionate about maritime autonomy, ocean protection, and friendly competition.
-  </p>
-</div>
-<div class="grid border-2 p-8 border-dashed border-slate-300 rounded-xl sm:grid-cols-2 md:grid-cols-3 mt-8 gap-16">
-  {
-    features.map((item) => (
-      <div class="flex gap-2 items-start">
-        <h3 class="font-semibold text-lg">
-          {item.emoji}
-        </h3>
-        <div>
-          <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
-          <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+<div>
+  <div class="mt-16 md:mt-0">
+    <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
+      A movement of Innovation, Sustainability, and Education.
+    </h2>
+    <p class="text-lg mt-4 text-slate-600">
+      Our team pillars itself on innovation, sustainability and education, and in its inaugural year has generated a movement of engineering students from diverse backgrounds, passionate about maritime autonomy, ocean protection, and friendly competition.
+    </p>
+  </div>
+  <div class="grid border-2 p-8 border-dashed border-slate-300 rounded-xl sm:grid-cols-2 md:grid-cols-3 mt-8 gap-16">
+    {
+      features.map((item) => (
+        <div class="flex gap-2 items-start">
+          <h3 class="font-semibold text-lg">
+            {item.emoji}
+          </h3>
+          <div>
+            <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
+            <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+          </div>
         </div>
-      </div>
-    ))
-  }
+      ))
+    }
+  </div>
 </div>

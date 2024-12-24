@@ -17,6 +17,9 @@ module.exports = {
           "monospace"
         ],
       },
+      backgroundImage: {
+        'radial-bottom-white': 'radial-gradient(circle at 50% 70%, var(--tw-gradient-stops))'
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
