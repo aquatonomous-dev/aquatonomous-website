@@ -1,6 +1,6 @@
 /* empty css                                 */
 import { a as createComponent, r as renderTemplate, f as renderComponent, F as Fragment, m as maybeRenderHead } from '../chunks/astro/server_BuK2djVd.mjs';
-import { $ as $$Container, a as $$Layout } from '../chunks/Layout_C1-4lU7j.mjs';
+import { $ as $$Container, a as $$Layout } from '../chunks/Layout_Bm8oAiUa.mjs';
 import { $ as $$Sectionhead } from '../chunks/sectionhead_Be-VgPYc.mjs';
 export { renderers } from '../renderers.mjs';
 
