@@ -1,7 +1,7 @@
 ---
 draft: false
 name: "Aaron Kleiman"
-title: "Business LeaD"
+title: "Business Lead"
 avatar: {
     src: "aaron-kleiman.jpg",
     alt: "Aaron Kleiman"
