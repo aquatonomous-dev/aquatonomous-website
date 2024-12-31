@@ -1,6 +1,6 @@
 import { renderers } from './renderers.mjs';
 import { c as createExports } from './chunks/entrypoint_CM8e7PJr.mjs';
-import { manifest } from './manifest_BR1Y3H5W.mjs';
+import { manifest } from './manifest_CA0YFNAl.mjs';
 
 const _page0 = () => import('./pages/_image.astro.mjs');
 const _page1 = () => import('./pages/404.astro.mjs');
@@ -14,7 +14,7 @@ const _page8 = () => import('./pages/team.astro.mjs');
 const _page9 = () => import('./pages/index.astro.mjs');
 
 const pageMap = new Map([
-    ["node_modules/.pnpm/astro@4.16.18_@types+node@22.10.2_rollup@4.29.1_typescript@5.4.5/node_modules/astro/dist/assets/endpoint/generic.js", _page0],
+    ["node_modules/.pnpm/astro@4.16.18_@types+node@16.18.11_rollup@4.29.1_typescript@4.9.5/node_modules/astro/dist/assets/endpoint/generic.js", _page0],
     ["src/pages/404.astro", _page1],
     ["src/pages/about.astro", _page2],
     ["src/pages/asv.astro", _page3],

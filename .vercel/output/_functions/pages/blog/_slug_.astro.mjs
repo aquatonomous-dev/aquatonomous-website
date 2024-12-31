@@ -1,7 +1,7 @@
 /* empty css                                    */
 import { c as createAstro, a as createComponent, r as renderTemplate, f as renderComponent, m as maybeRenderHead, b as addAttribute } from '../../chunks/astro/server_BuK2djVd.mjs';
-import { g as getCollection } from '../../chunks/_astro_content_BZ3wM_13.mjs';
-import { a as $$Layout, $ as $$Container } from '../../chunks/Layout_C1-4lU7j.mjs';
+import { g as getCollection } from '../../chunks/_astro_content_Cwo28T1o.mjs';
+import { a as $$Layout, $ as $$Container } from '../../chunks/Layout_Bm8oAiUa.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$Astro = createAstro("https://astroship.web3templates.com");
