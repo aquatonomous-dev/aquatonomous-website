@@ -17,6 +17,9 @@ module.exports = {
           "monospace"
         ],
       },
+      colors: {
+        'AquaBlue':'#5A939B',
+      },
       backgroundImage: {
         'radial-bottom-white': 'radial-gradient(circle at 50% 70%, var(--tw-gradient-stops))'
       },
