@@ -2,7 +2,7 @@
 import { _ as __vite_glob_0_2, d as __vite_glob_0_5, e as __vite_glob_0_6, f as __vite_glob_0_9, g as __vite_glob_0_14 } from '../chunks/seaspan_Bke1UGH8.mjs';
 import { _ as __vite_glob_0_4, $ as $$Container, a as $$Layout } from '../chunks/Layout_Bm8oAiUa.mjs';
 import { a as createComponent, r as renderTemplate, f as renderComponent, F as Fragment, m as maybeRenderHead } from '../chunks/astro/server_BuK2djVd.mjs';
-import { g as getCollection } from '../chunks/_astro_content_Cwo28T1o.mjs';
+import { g as getCollection } from '../chunks/_astro_content_CDR2b3NT.mjs';
 import { a as $$Picture } from '../chunks/_astro_assets_DLR1euCR.mjs';
 import { $ as $$Sectionhead } from '../chunks/sectionhead_Be-VgPYc.mjs';
 export { renderers } from '../renderers.mjs';

@@ -483,7 +483,7 @@ createCollectionToGlobResultMap({
 });
 
 let lookupMap = {};
-lookupMap = {"blog":{"type":"content","entries":{"aquatonomous_update_1":"/src/content/blog/aquatonomous_update_1.md","kitchensink":"/src/content/blog/kitchensink.mdx"}},"team":{"type":"content","entries":{"jai-moraes":"/src/content/team/jai-moraes.md","aaron-kleiman":"/src/content/team/aaron-kleiman.md","angus-dickson":"/src/content/team/angus-dickson.md","aedan-loughran":"/src/content/team/aedan-loughran.md","sabrina-button":"/src/content/team/sabrina-button.md","sara-bacher":"/src/content/team/sara-bacher.md","julian-tiqui":"/src/content/team/julian-tiqui.md","spencer-osborn":"/src/content/team/spencer-osborn.md","will-palacek":"/src/content/team/will-palacek.md"}}};
+lookupMap = {"blog":{"type":"content","entries":{"aquatonomous_update_1":"/src/content/blog/aquatonomous_update_1.md","kitchensink":"/src/content/blog/kitchensink.mdx"}},"team":{"type":"content","entries":{"aedan-loughran":"/src/content/team/aedan-loughran.md","jai-moraes":"/src/content/team/jai-moraes.md","sabrina-button":"/src/content/team/sabrina-button.md","julian-tiqui":"/src/content/team/julian-tiqui.md","angus-dickson":"/src/content/team/angus-dickson.md","sara-bacher":"/src/content/team/sara-bacher.md","aaron-kleiman":"/src/content/team/aaron-kleiman.md","spencer-osborn":"/src/content/team/spencer-osborn.md","will-palacek":"/src/content/team/will-palacek.md"}}};
 
 new Set(Object.keys(lookupMap));
 
