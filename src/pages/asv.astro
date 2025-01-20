@@ -8,12 +8,12 @@ import Layout from "@layouts/Layout.astro";
 <Layout title="Our ASV">
   <Container class="relative z-10">
     <section>
-      <div class="mx-auto px-6 max-w-4xl mt-16">
+      <div class="mx-auto px-6 max-w-6xl mt-16">
         <h1 class="text-4xl lg:text-5xl font-bold text-center mb-12">
           Our Boat
         </h1>
 
-        <div id="asv-preview" class="w-full h-[400px] bg-slate-50 rounded-lg shadow-inner mb-8 z-11">
+        <div id="asv-preview" class="w-full h-[500px] bg-slate-50 bg-opacity-35 rounded-lg shadow-inner mb-8 z-11">
         </div>
 
         <p class="text-lg text-center mb-8 text-slate-600">
@@ -31,12 +31,12 @@ import Layout from "@layouts/Layout.astro";
       </div>
     </section>
 
-    <section class="py-16 bg-gray-50">
+    <section class="py-16 bg-gray-50 rounded-lg ">
       <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-8 text-center">Team Structure</h2>
+        <h2 class="text-3xl font-bold mb-8 text-center">Subsystems</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
-            <h3 class="text-2xl font-semibold mb-4">Mechanical</h3>
+            <h3 class="text-2xl font-semibold mb-4">⚙️Mechanical</h3>
             <p class="text-slate-600">
               The mechanical team is responsible for creating a buoyant and stable ASV hull, and designing the propulsion system. The hull must comply with Roboboat competition rules: no more than six feet in length, four feet in width, and no heavier than 75 lbs. They also ensure that all components used by other teams are waterproof, ready for in-water testing.
             </p>
@@ -45,7 +45,7 @@ import Layout from "@layouts/Layout.astro";
             </p>
           </div>
           <div>
-            <h3 class="text-2xl font-semibold mb-4">Electrical</h3>
+            <h3 class="text-2xl font-semibold mb-4">⚡Electrical</h3>
             <p class="text-slate-600">
               The electrical team focuses on designing an efficient sensor suite while minimizing costs, integrating the payload computer with onboard sensors, and implementing a robust e-stop safety system with both physical and remote access.
             </p>
@@ -54,13 +54,13 @@ import Layout from "@layouts/Layout.astro";
             </p>
           </div>
           <div>
-            <h3 class="text-2xl font-semibold mb-4">Autonomy</h3>
+            <h3 class="text-2xl font-semibold mb-4">🧠Autonomy</h3>
             <p class="text-slate-600">
               The autonomy team develops path planning and behavior planning algorithms for the ASV. During the inaugural year, methods like A* for path planning, basic if-else behaviors, and PID control will provide a strong foundation for future advancements.
             </p>
           </div>
           <div>
-            <h3 class="text-2xl font-semibold mb-4">Perception</h3>
+            <h3 class="text-2xl font-semibold mb-4">👀Perception</h3>
             <p class="text-slate-600">
               The perception team handles localization, mapping, and obstacle detection using the sensor suite. They collaborate closely with the electrical team to determine sensor specifications and placement.
             </p>
@@ -72,7 +72,7 @@ import Layout from "@layouts/Layout.astro";
       </div>
     </section>
 
-    <section class="py-16 bg-gray-100">
+    <section class="py-16 bg-gray-100 rounded-lg">
       <div class="max-w-6xl mx-auto px-6">
         <h2 class="text-3xl font-bold mb-8 text-center">Technical Specifications</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
