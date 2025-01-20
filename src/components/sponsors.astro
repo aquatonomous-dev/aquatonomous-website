@@ -1,46 +1,45 @@
 ---
-// @ts-ignore
 import { Image } from 'astro:assets';
 import ams from "assets/ams.png";
 import claigan from "assets/claigan.jpg";
 import seaspan from "assets/seaspan.png";
 import honeywell from "assets/honeywell.png";
-// TO DO: Need to add more sponsers and remove bg from some images
+import smith from "assets/smith.png";
+import sensortech from "assets/sensortech.png";
+import solidworks from "assets/solidworks.png";
+
+// TO DO: Need to add more sponsors and remove bg from some images
+
+const sponsors = [
+  { src: ams, alt: 'AMS sponsor logo', link: 'https://ams-ink.ca' },
+  { src: claigan, alt: 'Claigan sponsor logo', link: 'https://www.claigan.com' },
+  { src: seaspan, alt: 'Seaspan sponsor logo', link: 'https://www.seaspan.com' },
+  { src: honeywell, alt: 'Honeywell sponsor logo', link: 'https://www.honeywell.com/us/en' },
+  { src: smith, alt: 'Smith sponsor logo', link: 'https://smithengineering.queensu.ca' },
+  { src: sensortech, alt: 'Sensortech sponsor logo', link: 'https://sensortechcanada.com' },
+  { src: solidworks, alt: 'Solidworks sponsor logo', link: 'https://www.solidworks.com' },
+];
+
+
+const gridClasses = sponsors.length <= 3 
+  ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center"
+  : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
 ---
+
 <div class="mt-24">
- <h2 class="text-center text-slate-500 font-mono lowercase">Special thanks to all our Sponsors :)</h2>
- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-20 items-center justify-center mt-16 md:mt-8">
-   <div class="flex items-center justify-center">
-     <Image
-       src={ams}
-       alt="AMS sponsor logo"
-       height={200}
-       class="w-auto h-auto object-contain max-h-[100px] sm:max-h-[200px] md:max-h-[250px]"
-     />
-   </div>
-   <div class="flex items-center justify-center">
-     <Image
-       src={claigan}
-       alt="Claigan sponsor logo"
-       height={200}
-       class="w-auto h-auto object-contain max-h-[100px] sm:max-h-[200px] md:max-h-[250px]"
-     />
-   </div>
-   <div class="flex items-center justify-center">
-     <Image
-       src={seaspan}
-       alt="Seaspan sponsor logo"
-       height={200}
-       class="w-auto h-auto object-contain max-h-[100px] sm:max-h-[200px] md:max-h-[250px]"
-     />
-   </div>
-   <div class="flex items-center justify-center">
-     <Image
-       src={honeywell}
-       alt="Honeywell sponsor logo"
-       height={200}
-       class="w-auto h-auto object-contain max-h-[100px] sm:max-h-[200px] md:max-h-[250px]"
-     />
-   </div>
- </div>
+  <h2 class="text-center text-slate-500 font-mono lowercase">Special thanks to all our Sponsors :)</h2>
+  <div class={`grid ${gridClasses} gap-8 md:gap-20 items-center justify-items-center mt-16 md:mt-8 auto-rows-auto`}>
+    {sponsors.map(sponsor => (
+      <div class="flex items-center justify-center">
+        <a href={sponsor.link}>
+          <Image
+            src={sponsor.src}
+            alt={sponsor.alt}
+            height={200}
+            class="w-auto h-auto object-contain max-h-[100px] sm:max-h-[200px] md:max-h-[250px]"
+          />
+        </a>
+      </div>
+    ))}
+  </div>
 </div>

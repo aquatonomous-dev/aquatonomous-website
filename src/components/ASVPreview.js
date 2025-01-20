@@ -5,7 +5,7 @@ export default class ASVPreview {
     constructor(container) {
       this.container = container;
       this.scene = new THREE.Scene();
-      this.scene.background = new THREE.Color(0xf8fafc);
+      this.scene.background = null;
   
       this.setupCamera();
       this.setupRenderer();
@@ -28,10 +28,11 @@ export default class ASVPreview {
     }
   
     setupRenderer() {
-      this.renderer = new THREE.WebGLRenderer({ antialias: true });
+      this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
       this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       this.renderer.shadowMap.enabled = true;
+      this.renderer.setClearColor(0x000000, 0); // Set clear color to transparent (0 for alpha)
       this.container.appendChild(this.renderer.domElement);
     }
   
