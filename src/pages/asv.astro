@@ -2,14 +2,241 @@
 import Container from "@components/container.astro";
 import Layout from "@layouts/Layout.astro";
 ---
+<div id="container" class="fixed top-0 left-0 w-screen h-screen z-5 pointer-events-none"></div>
+<div class="fixed w-screen h-screen bg-radial-bottom-white from-white to-transparent [background-size:100%_100%]"></div>
 
-<Layout title="About the ASV">
-  <Container>
-    <div class="min-h-[calc(100vh-16rem)] flex items-center justify-center">
-      <div class="mt-16 text-center">
-        <h1 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">Under Construction 🛠️</h1>
-        <p class="text-lg mt-4 text-slate-600">Stay tuned!</p>
+<Layout title="Our ASV">
+  <Container class="relative z-10">
+    <section>
+      <div class="mx-auto px-6 max-w-4xl mt-16">
+        <h1 class="text-4xl lg:text-5xl font-bold text-center mb-12">
+          Our Boat
+        </h1>
+
+        <div id="asv-preview" class="w-full h-[400px] bg-slate-50 rounded-lg shadow-inner mb-8 z-11">
+        </div>
+
+        <p class="text-lg text-center mb-8 text-slate-600">
+          Meet <a href="https://open.spotify.com/track/58Gi98Nvrjo7qVI1dHOqFD?si=affb1f8b4b434b8a" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="font-semibold inline-flex items-center gap-1 cursor-pointer hover:text-green-600">Nautical Disaster<svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="w-4 h-4 inline-block">
+            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+          </svg></a>, our Autonomous Surface Vehicle (ASV) designed to compete in the Roboboat competition. Inspired by <span class="font-semibold">The Tragically Hip</span>, our vehicle is a showcase of engineering, innovation, and teamwork.
+        </p>
       </div>
-    </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-center">Team Structure</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div>
+            <h3 class="text-2xl font-semibold mb-4">Mechanical</h3>
+            <p class="text-slate-600">
+              The mechanical team is responsible for creating a buoyant and stable ASV hull, and designing the propulsion system. The hull must comply with Roboboat competition rules: no more than six feet in length, four feet in width, and no heavier than 75 lbs. They also ensure that all components used by other teams are waterproof, ready for in-water testing.
+            </p>
+            <p class="text-slate-600 mt-4">
+              Additionally, they design a simple transport cart for the hull, often in a quick hackathon session of just three hours!
+            </p>
+          </div>
+          <div>
+            <h3 class="text-2xl font-semibold mb-4">Electrical</h3>
+            <p class="text-slate-600">
+              The electrical team focuses on designing an efficient sensor suite while minimizing costs, integrating the payload computer with onboard sensors, and implementing a robust e-stop safety system with both physical and remote access.
+            </p>
+            <p class="text-slate-600 mt-4">
+              They also collaborate with the mechanical team to ensure smooth motor control for propulsion.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-2xl font-semibold mb-4">Autonomy</h3>
+            <p class="text-slate-600">
+              The autonomy team develops path planning and behavior planning algorithms for the ASV. During the inaugural year, methods like A* for path planning, basic if-else behaviors, and PID control will provide a strong foundation for future advancements.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-2xl font-semibold mb-4">Perception</h3>
+            <p class="text-slate-600">
+              The perception team handles localization, mapping, and obstacle detection using the sensor suite. They collaborate closely with the electrical team to determine sensor specifications and placement.
+            </p>
+            <p class="text-slate-600 mt-4">
+              Since the Roboboat competition doesn’t provide a map, the perception team is fully responsible for creating maps and relaying them to the autonomy team.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gray-100">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-center">Technical Specifications</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Dimensions</h3>
+            <p class="text-slate-600">Length: <span class="italic">6 feet</span></p>
+            <p class="text-slate-600">Width: <span class="italic">4 feet</span></p>
+            <p class="text-slate-600">Weight: <span class="italic">75 lbs</span></p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Propulsion</h3>
+            <p class="text-slate-600">Motor: <span class="italic">Placeholder</span></p>
+            <p class="text-slate-600">Power: <span class="italic">Placeholder</span></p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Sensor Suite</h3>
+            <p class="text-slate-600">Lidar: <span class="italic">Placeholder</span></p>
+            <p class="text-slate-600">Camera: <span class="italic">Placeholder</span></p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Control System</h3>
+            <p class="text-slate-600">Algorithm: <span class="italic">PID control</span></p>
+            <p class="text-slate-600">Path Planning: <span class="italic">A*</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
   </Container>
 </Layout>
+<script>
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+  import { SimplexNoise } from 'three/examples/jsm/math/SimplexNoise.js';
+
+  export default class Sketch {
+    constructor(options){
+      this.container = options.domElement;
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
+
+      this.camera = new THREE.PerspectiveCamera(70, this.width / this.height, 0.01, 10);
+      this.camera.position.z = 1.5;
+
+      this.scene = new THREE.Scene();
+
+      this.renderer = new THREE.WebGLRenderer({ 
+        antialias: true,
+        alpha: true 
+      });
+      this.renderer.setClearColor(0x000000, 0);
+      this.renderer.setPixelRatio(window.devicePixelRatio);
+
+      this.container.appendChild(this.renderer.domElement);
+      this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+
+      this.time = 0;
+      this.noise = new SimplexNoise();
+
+      this.resize();
+      this.addObjects();
+      this.render();
+
+      this.setupResize();
+    }
+
+    resize(){
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
+      this.renderer.setSize(this.width, this.height);
+      this.camera.aspect = this.width / this.height;
+      this.camera.updateProjectionMatrix();
+    }
+
+    setupResize(){
+      window.addEventListener('resize', this.resize.bind(this));
+    }
+
+    addObjects(){
+      // Create a plane geometry
+      this.geometry = new THREE.PlaneGeometry(5, 5, 400, 400);
+
+      // Modify geometry vertices using SimplexNoise
+      const vertices = this.geometry.attributes.position;
+      for (let i = 0; i < vertices.count; i++) {
+        const x = vertices.getX(i);
+        const y = vertices.getY(i);
+        const z = this.noise.noise(x * 1.5, y * 1.5) * 0.2;
+        vertices.setZ(i, z);
+      }
+
+      // Remap UV coordinates for altitude mapping
+      const uvs = this.geometry.attributes.uv;
+      for (let i = 0; i < vertices.count; i++) {
+        const z = vertices.getZ(i);
+        uvs.setXY(i, 0, z);
+      }
+
+      this.geometry.attributes.position.needsUpdate = true;
+      this.geometry.attributes.uv.needsUpdate = true;
+
+      // Create a canvas texture
+      const canvas = document.createElement('canvas');
+      canvas.width = 256;
+      canvas.height = 256;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = "white";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = "#c1def6";
+      ctx.lineWidth = 2;
+      for (let i = 0; i < canvas.height; i += 20) {
+        ctx.beginPath();
+        ctx.moveTo(0, i);
+        ctx.lineTo(canvas.width, i);
+        ctx.stroke();
+      }
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      texture.repeat.set(5, 2); // Adjust repeat for line density
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+
+       this.material = new THREE.MeshBasicMaterial({ map: texture });
+
+      this.mesh = new THREE.Mesh(this.geometry, this.material);
+      this.scene.add(this.mesh);
+
+      this.texture = texture; // Save texture reference for animation
+    }
+  
+    render(){
+      this.time += 0.05;
+      this.mesh.rotation.y = 0;
+
+      // Animate texture offset to move the lines
+      this.texture.offset.y -= 0.0001;
+
+  
+      this.renderer.render(this.scene, this.camera);
+      requestAnimationFrame(this.render.bind(this));
+    }
+  }
+  
+  new Sketch({
+    domElement: document.getElementById('container')
+  });
+</script>
+
+<script>
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+  import ASVPreview from "@components/ASVPreview.js";
+
+  // Initialize the preview when the DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('asv-preview');
+    if (container) {
+      const preview = new ASVPreview(container);
+
+      // Clean up on page unload
+      window.addEventListener('unload', () => {
+        preview.dispose();
+      });
+    }
+  });
+</script>

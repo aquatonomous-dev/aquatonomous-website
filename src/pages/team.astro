@@ -5,7 +5,7 @@ import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
 
-// Let's try a different path pattern and log what we find
+// Try a different path pattern and log what we find
 const images = import.meta.glob('../assets/*.{jpeg,jpg,png,gif}', {
   eager: true 
 });
@@ -23,8 +23,11 @@ publishedTeamMembers.forEach(member => {
 });
 ---
 
+<div id="container" class="fixed top-0 left-0 w-screen h-screen z-5 pointer-events-none"></div>
+<div class="fixed w-screen h-screen bg-radial-bottom-white from-white to-transparent [background-size:100%_100%]"></div>
+
 <Layout title="Our Team">
-  <Container>
+  <Container class="relative z-10">
     <Sectionhead>
       <Fragment slot="title">Our Team</Fragment>
       <Fragment slot="desc">Founded in 2023, Aquatonomous has rapidly expanded to a team of over 80 passionate members dedicated to pushing the boundaries of autonomous maritime technology. Our mission is to design, build, and program a cutting-edge solar-powered autonomous surface vessel (ASV), offering students an unparalleled opportunity to gain hands-on experience with advanced autonomous systems and sustainable innovation.</Fragment>
@@ -67,3 +70,123 @@ publishedTeamMembers.forEach(member => {
     </div>
   </Container>
 </Layout>
+
+<script>
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+  import { SimplexNoise } from 'three/examples/jsm/math/SimplexNoise.js';
+
+  export default class Sketch {
+    constructor(options){
+      this.container = options.domElement;
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
+
+      this.camera = new THREE.PerspectiveCamera(70, this.width / this.height, 0.01, 10);
+      this.camera.position.z = 1.5;
+
+      this.scene = new THREE.Scene();
+
+      this.renderer = new THREE.WebGLRenderer({ 
+        antialias: true,
+        alpha: true 
+      });
+      this.renderer.setClearColor(0x000000, 0);
+      this.renderer.setPixelRatio(window.devicePixelRatio);
+
+      this.container.appendChild(this.renderer.domElement);
+      this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+
+      this.time = 0;
+      this.noise = new SimplexNoise();
+
+      this.resize();
+      this.addObjects();
+      this.render();
+
+      this.setupResize();
+    }
+
+    resize(){
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
+      this.renderer.setSize(this.width, this.height);
+      this.camera.aspect = this.width / this.height;
+      this.camera.updateProjectionMatrix();
+    }
+
+    setupResize(){
+      window.addEventListener('resize', this.resize.bind(this));
+    }
+
+    addObjects(){
+      // Create a plane geometry
+      this.geometry = new THREE.PlaneGeometry(5, 5, 400, 400);
+
+      // Modify geometry vertices using SimplexNoise
+      const vertices = this.geometry.attributes.position;
+      for (let i = 0; i < vertices.count; i++) {
+        const x = vertices.getX(i);
+        const y = vertices.getY(i);
+        const z = this.noise.noise(x * 1.5, y * 1.5) * 0.2;
+        vertices.setZ(i, z);
+      }
+
+      // Remap UV coordinates for altitude mapping
+      const uvs = this.geometry.attributes.uv;
+      for (let i = 0; i < vertices.count; i++) {
+        const z = vertices.getZ(i);
+        uvs.setXY(i, 0, z);
+      }
+
+      this.geometry.attributes.position.needsUpdate = true;
+      this.geometry.attributes.uv.needsUpdate = true;
+
+      // Create a canvas texture
+      const canvas = document.createElement('canvas');
+      canvas.width = 256;
+      canvas.height = 256;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = "white";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = "#c1def6";
+      ctx.lineWidth = 2;
+      for (let i = 0; i < canvas.height; i += 20) {
+        ctx.beginPath();
+        ctx.moveTo(0, i);
+        ctx.lineTo(canvas.width, i);
+        ctx.stroke();
+      }
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      texture.repeat.set(5, 2); // Adjust repeat for line density
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+
+       this.material = new THREE.MeshBasicMaterial({ map: texture });
+
+      this.mesh = new THREE.Mesh(this.geometry, this.material);
+      this.scene.add(this.mesh);
+
+      this.texture = texture; // Save texture reference for animation
+    }
+  
+    render(){
+      this.time += 0.05;
+      this.mesh.rotation.y = 0;
+
+      // Animate texture offset to move the lines
+      this.texture.offset.y -= 0.0001;
+
+  
+      this.renderer.render(this.scene, this.camera);
+      requestAnimationFrame(this.render.bind(this));
+    }
+  }
+  
+  new Sketch({
+    domElement: document.getElementById('container')
+  });
+</script>
