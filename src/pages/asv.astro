@@ -60,12 +60,93 @@ import Layout from "@layouts/Layout.astro";
         </div>
       </div>
     </section>
-    
 
+    <section class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl font-bold mb-4">Built by Hands, Driven by Passion</h2>
+            <p class="text-slate-600 mb-4">
+              Every inch of Nautical Disaster is built with care by our team. From shaping plywood to layering fiberglass, we’re hands-on every step of the way. It’s not just about building a boat—it’s about creating something we’re proud of.
+            </p>
+            <p class="text-slate-600 mb-4">
+              Whether it’s figuring out tricky assembly pieces or sharing laughs over late-night builds, this project is as much about teamwork as it is about engineering. Everyone’s skills, ideas, and elbow grease come together to make this ASV the best it can be.
+            </p>
+            <p class="text-slate-600">
+              This is what happens when creativity, collaboration, and a shared goal collide. The result? A tough, reliable, and competition-ready ASV we can’t wait to see in action.
+            </p>
+          </div>
+          <div>
+            <img
+              src="hullbuilding.jpg"
+              alt="Team members crafting the ASV"
+              class="w-full h-auto rounded-lg shadow-lg"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  
+    <!-- Capabilities Section -->
+    <section class="py-16 bg-gray-100 rounded-lg">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-center">Capabilities</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-semibold mb-4">Enhanced Control & Navigation</h3>
+            <p class="text-slate-600">
+              Harnessing the precision of dual T200 thrusters combined with advanced path-planning algorithms. Experience seamless transitions through obstacles, ensuring maximum maneuverability.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-4">Intelligent Perception</h3>
+            <p class="text-slate-600">
+              Equipped with 3D LiDAR and high-resolution cameras, the ASV identifies and tracks objects in real-time. This layered sensory input ensures dynamic navigation even in challenging environments.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-4">Safety at the Core</h3>
+            <p class="text-slate-600">
+              Dual-layer safety protocols include physical and remote emergency stops. Combined with redundancy in communication, the system guarantees operational safety.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-4">Sustainable Design</h3>
+            <p class="text-slate-600">
+              Modular hulls and bridge layouts support ecological research tools while remaining transport-friendly. Built to last with marine-grade materials.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Section: Respond & Navigate -->
+    <section class="py-16">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-center">Respond & Navigate</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div class="flex items-center justify-center">
+            <div class="w-full h-[300px] sm:h-[400px] bg-slate-50 bg-opacity-35 rounded-lg shadow-inner"></div>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold mb-4">Adaptive Real-Time Decisions</h3>
+            <p class="text-slate-600 mb-4">
+              Operators can focus on decisions rather than data correlation. Real-time segmentation tracks buoys, obstacles, and routes, presenting clear actionable steps at critical moments.
+            </p>
+            <p class="text-slate-600">
+              A layered approach, combining Potential Fields Algorithm and ROS2-based control, ensures that the ASV responds quickly and efficiently to dynamic challenges.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specifications Section -->
     <section class="py-16 bg-gray-100 rounded-lg">
       <div class="max-w-6xl mx-auto px-6">
         <h2 class="text-3xl font-bold mb-8 text-center">Technical Specifications</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <h3 class="text-xl font-semibold mb-2">Dimensions</h3>
             <p class="text-slate-600">Length: <span class="italic">6 feet</span></p>
@@ -74,18 +155,18 @@ import Layout from "@layouts/Layout.astro";
           </div>
           <div>
             <h3 class="text-xl font-semibold mb-2">Propulsion</h3>
-            <p class="text-slate-600">Motor: <span class="italic">Placeholder</span></p>
-            <p class="text-slate-600">Power: <span class="italic">Placeholder</span></p>
+            <p class="text-slate-600">Motor: <span class="italic">T200 Thrusters</span></p>
+            <p class="text-slate-600">Control: <span class="italic">Step Motor Precision</span></p>
           </div>
           <div>
             <h3 class="text-xl font-semibold mb-2">Sensor Suite</h3>
-            <p class="text-slate-600">Lidar: <span class="italic">Placeholder</span></p>
-            <p class="text-slate-600">Camera: <span class="italic">Placeholder</span></p>
+            <p class="text-slate-600">LiDAR: <span class="italic">Unitree 4D LiDAR</span></p>
+            <p class="text-slate-600">Camera: <span class="italic">High-resolution USB Camera</span></p>
           </div>
           <div>
             <h3 class="text-xl font-semibold mb-2">Control System</h3>
-            <p class="text-slate-600">Algorithm: <span class="italic">PID control</span></p>
-            <p class="text-slate-600">Path Planning: <span class="italic">A*</span></p>
+            <p class="text-slate-600">Algorithm: <span class="italic">PID Control</span></p>
+            <p class="text-slate-600">Path Planning: <span class="italic">A* Algorithm</span></p>
           </div>
         </div>
       </div>
