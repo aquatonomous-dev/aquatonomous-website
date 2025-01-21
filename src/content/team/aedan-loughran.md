@@ -2,7 +2,7 @@
 draft: false
 name: "Aedan Loughran"
 title: "Mechanical Co-Lead"
-url: ""
+url: "https://www.linkedin.com/in/aedan-loughran-039050154/"
 avatar: {
     src: "AedanLoughran.jpg",
     alt: "Aedan Loughran"

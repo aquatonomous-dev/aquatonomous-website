@@ -3,11 +3,44 @@ import PageFindSearch from '@components/pageFind.astro';
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 ---
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
 
 <Layout title="Our ASV">
     <Container>
-        <div class="min-h-[calc(100vh-16rem)]">
+        <div class="my-4 min-h-[calc(100vh-16rem)]">
             <PageFindSearch />
+            <div id="placeholder-text" class="relative z-10 text-center text-gray-500 mt-4">
+                Cast your net! ⚓
+            </div>
         </div>
     </Container>
 </Layout>
+<style is:global>
+    :root {
+        --pagefind-ui-font: "Signate Grotesk", "Bricolage Grotesque Variable";
+    }
+
+    #search .pagefind-ui__result-thumb {
+        display: none;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const placeholder = document.getElementById('placeholder-text');
+        const resultsContainer = document.querySelector('.pagefind-ui__results');
+
+        // Observe changes to the results container
+        const observer = new MutationObserver(() => {
+            if (resultsContainer && resultsContainer.children.length > 0) {
+                placeholder.style.display = 'none'; // Hide the placeholder text when results are shown
+            } else {
+                placeholder.style.display = 'block'; // Show the placeholder text when no results are present
+            }
+        });
+
+        if (resultsContainer) {
+            observer.observe(resultsContainer, { childList: true });
+        }
+    });
+</script>

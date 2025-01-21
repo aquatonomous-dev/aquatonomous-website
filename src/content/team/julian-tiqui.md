@@ -2,6 +2,7 @@
 draft: false
 name: "Julian Tiqui"
 title: "Autonomy Lead"
+url: "https://www.linkedin.com/in/julian-tiqui/"
 avatar: {
     src: "JulianTiqui.jpg",
     alt: "Julian Tiqui"

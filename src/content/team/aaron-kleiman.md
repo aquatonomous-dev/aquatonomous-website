@@ -2,6 +2,7 @@
 draft: false
 name: "Aaron Kleiman"
 title: "Business Lead"
+url: "https://www.linkedin.com/in/aaron-kleiman-477b19286/"
 avatar: {
     src: "AaronKleiman.jpg",
     alt: "Aaron Kleiman"
