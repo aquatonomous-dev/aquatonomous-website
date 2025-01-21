@@ -14,8 +14,7 @@ export interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 
 const resolvedImageWithDomain = new URL(
-  "/aQuatonomous-banner.png",
-  Astro.site
+  "https://raw.githubusercontent.com/aQuatonomous/.github/0d6d880d5a952ce64feeea759788117d6876bf24/profile/aQuatonomous-banner-white.png"
 ).toString();
 
 console.log(resolvedImageWithDomain);
@@ -23,8 +22,8 @@ console.log(resolvedImageWithDomain);
 const { title } = Astro.props;
 
 const makeTitle = title
-  ? title + " | " + "Aquatonomous"
-  : "Aquatonomous - ASV Design Team @ Queen's University";
+  ? title + " | " + "aQuatonomous"
+  : "aQuatonomous - ASV Design Team @ Queen's University";
 ---
 
 <!DOCTYPE html>
@@ -36,21 +35,22 @@ const makeTitle = title
     <link rel="icon" type="image/svg+xml" href="/aqua-logo.svg?v=1" />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
     <meta name="generator" content={Astro.generator} />
+    <meta property="og:locale" content="en_CA" />
 
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
-      description="Aquatonomous is a ASV Design Team at Queen's University."
+      description="aQuatonomous is an ASV design team at Queen's University specializing in autonomous surface vehicle innovation."
       canonical={canonicalURL}
       openGraph={{
         basic: {
           url: canonicalURL,
           type: "website",
-          title: `Aquatonomous is a ASV Design Team at Queen's University.`,
+          title: `aQuatonomous - ASV Design Team @ Queen's University`,
           image: resolvedImageWithDomain,
         },
         image: {
-          alt: "Aquatonomous Homepage Screenshot",
+          alt: "aQuatonomous Homepage Screenshot",
         },
       }}
     />

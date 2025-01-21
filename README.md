@@ -1,4 +1,4 @@
-# Aquatonomous Website
+# aQuatonomous Website
 
 Developed and Deployed by [Joshua Gonzales](https://github.com/theOneAndOnlyOne)
 
