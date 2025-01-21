@@ -1,9 +1,9 @@
 ---
 draft: false
 name: "Angus Dickson"
-title: "Team Member"
+title: "Mechanical Co-Lead"
 avatar: {
-    src: "angus-dickson.jpg",
+    src: "AngusDickson.jpg",
     alt: "Mechanical Co-Lead"
 }
 publishDate: "2024-12-21 15:39"

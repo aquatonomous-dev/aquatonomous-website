@@ -8,69 +8,53 @@ import Layout from "@layouts/Layout.astro";
 <Layout title="Our ASV">
   <Container class="relative z-10">
     <section>
-      <div class="mx-auto px-6 max-w-6xl mt-16">
-        <h1 class="text-4xl lg:text-5xl font-bold text-center mb-12">
-          Our Boat
-        </h1>
-
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mx-auto px-6 max-w-7xl mt-16">
         <div id="asv-preview" class="w-full h-[500px] bg-slate-50 bg-opacity-35 rounded-lg shadow-inner mb-8 z-11">
         </div>
-
-        <p class="text-lg text-center mb-8 text-slate-600">
-          Meet <a href="https://open.spotify.com/track/58Gi98Nvrjo7qVI1dHOqFD?si=affb1f8b4b434b8a" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            class="font-semibold inline-flex items-center gap-1 cursor-pointer hover:text-green-600">Nautical Disaster<svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="w-4 h-4 inline-block">
-            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-          </svg></a>, our Autonomous Surface Vehicle (ASV) designed to compete in the Roboboat competition. Inspired by <span class="font-semibold">The Tragically Hip</span>, our vehicle is a showcase of engineering, innovation, and teamwork.
-        </p>
-      </div>
-    </section>
-
-    <section class="py-16 bg-gray-50 rounded-lg ">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-8 text-center">Subsystems</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="flex flex-col justify-between h-full">
           <div>
-            <h3 class="text-2xl font-semibold mb-4">⚙️Mechanical</h3>
-            <p class="text-slate-600">
-              The mechanical team is responsible for creating a buoyant and stable ASV hull, and designing the propulsion system. The hull must comply with Roboboat competition rules: no more than six feet in length, four feet in width, and no heavier than 75 lbs. They also ensure that all components used by other teams are waterproof, ready for in-water testing.
-            </p>
-            <p class="text-slate-600 mt-4">
-              Additionally, they design a simple transport cart for the hull, often in a quick hackathon session of just three hours!
+            <h1 class="text-4xl lg:text-5xl font-bold mb-12">
+              Nautical Disaster
+            </h1>
+            <p class="text-lg mb-8 text-slate-600">
+              <a href="https://open.spotify.com/track/58Gi98Nvrjo7qVI1dHOqFD?si=affb1f8b4b434b8a" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 class="font-semibold inline-flex items-center gap-1 cursor-pointer hover:text-green-600">
+                Nautical Disaster
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="w-4 h-4 inline-block">
+                  <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                </svg>
+              </a> 
+              is our Autonomous Surface Vehicle (ASV) designed to compete in the Roboboat competition. Inspired by <span class="font-semibold">The Tragically Hip</span>, our vehicle is a showcase of engineering, innovation, and teamwork.
             </p>
           </div>
-          <div>
-            <h3 class="text-2xl font-semibold mb-4">⚡Electrical</h3>
-            <p class="text-slate-600">
-              The electrical team focuses on designing an efficient sensor suite while minimizing costs, integrating the payload computer with onboard sensors, and implementing a robust e-stop safety system with both physical and remote access.
-            </p>
-            <p class="text-slate-600 mt-4">
-              They also collaborate with the mechanical team to ensure smooth motor control for propulsion.
-            </p>
-          </div>
-          <div>
-            <h3 class="text-2xl font-semibold mb-4">🧠Autonomy</h3>
-            <p class="text-slate-600">
-              The autonomy team develops path planning and behavior planning algorithms for the ASV. During the inaugural year, methods like A* for path planning, basic if-else behaviors, and PID control will provide a strong foundation for future advancements.
-            </p>
-          </div>
-          <div>
-            <h3 class="text-2xl font-semibold mb-4">👀Perception</h3>
-            <p class="text-slate-600">
-              The perception team handles localization, mapping, and obstacle detection using the sensor suite. They collaborate closely with the electrical team to determine sensor specifications and placement.
-            </p>
-            <p class="text-slate-600 mt-4">
-              Since the Roboboat competition doesn’t provide a map, the perception team is fully responsible for creating maps and relaying them to the autonomy team.
-            </p>
-          </div>
+          <div class="pb-8">
+          <table class="w-full text-left mt-4 border-spacing-y-2 ">
+            <tbody class="divide-y divide-gray-500">
+              <tr>
+                <td class="py-2 font-semibold text-gray-700">Range</td>
+                <td class="py-2 text-gray-600">+20km</td>
+              </tr>
+              <tr>
+                <td class="py-2 font-semibold text-gray-700">Endurance</td>
+                <td class="py-2 text-gray-600">+45min</td>
+              </tr>
+              <tr>
+                <td class="py-2 font-semibold text-gray-700">Weight</td>
+                <td class="py-2 text-gray-600">Approx. 12lbs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         </div>
       </div>
     </section>
+    
 
     <section class="py-16 bg-gray-100 rounded-lg">
       <div class="max-w-6xl mx-auto px-6">

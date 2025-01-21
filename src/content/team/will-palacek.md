@@ -1,10 +1,10 @@
 ---
 draft: false
 name: "Will Palacek"
-title: "Team Member"
+title: "Co-Captain"
 avatar: {
-    src: "will-palacek.png",
-    alt: "Co-Captain"
+    src: "WillPalacek.jpg",
+    alt: "WillPalacek"
 }
 publishDate: "2024-12-21 15:39"
 ---

@@ -17,6 +17,30 @@ const publishedTeamMembers = await getCollection("team", ({ data }) => {
   return !data.draft && data.publishDate < new Date();
 });
 
+// Sort team members
+const desiredOrder = [
+  "Sabrina Button",
+  "Will Palacek",
+  "Aaron Kleiman",
+  "Spencer Osborn",
+  "Aedan Loughran",
+  "Angus Dickson",
+  "Julian Tiqui",
+  "Sara Bacher",
+  "Joshua Gonzales",
+  "Jai Moraes",
+  "Logan Calder"
+];
+
+const sortedTeamMembers = publishedTeamMembers.sort((a, b) => {
+  const indexA = desiredOrder.indexOf(a.data.name);
+  const indexB = desiredOrder.indexOf(b.data.name);
+
+  // If a name is not found in desiredOrder, it stays at the end
+  return (indexA === -1 ? Infinity : indexA) - (indexB === -1 ? Infinity : indexB);
+});
+
+
 // Log team member data
 publishedTeamMembers.forEach(member => {
   console.log("Member image path:", member.data.avatar.src);
@@ -30,21 +54,21 @@ publishedTeamMembers.forEach(member => {
   <Container class="relative z-10">
     <Sectionhead>
       <Fragment slot="title">Our Team</Fragment>
-      <Fragment slot="desc">Founded in 2023, Aquatonomous has rapidly expanded to a team of over 80 passionate members dedicated to pushing the boundaries of autonomous maritime technology. Our mission is to design, build, and program a cutting-edge solar-powered autonomous surface vessel (ASV), offering students an unparalleled opportunity to gain hands-on experience with advanced autonomous systems and sustainable innovation.</Fragment>
+      <Fragment slot="desc">Founded in 2023, Aquatonomous has rapidly expanded to a team of over 100+ passionate members dedicated to pushing the boundaries of autonomous maritime technology. Our mission is to design, build, and program a cutting-edge solar-powered autonomous surface vessel (ASV), offering students an unparalleled opportunity to gain hands-on experience with advanced autonomous systems and sustainable innovation.</Fragment>
     </Sectionhead>
-    <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
+    <div
+      class="grid grid-cols-3 gap-10 mx-auto max-w-5xl mt-12"
+    >
       {
-        publishedTeamMembers.map((teamMemberEntry) => {
-          // Construct path relative to the current file
+        sortedTeamMembers.map((teamMemberEntry) => {
           const imagePath = `../assets/${teamMemberEntry.data.avatar.src}`;
-          console.log("Looking for image at:", imagePath);
           const image = images[imagePath];
-          
+
           if (!image) {
             console.error(`Image not found for path: ${imagePath}`);
             return null;
           }
-
+        
           return (
             <div class="group">
               <div class="w-full aspect-square">

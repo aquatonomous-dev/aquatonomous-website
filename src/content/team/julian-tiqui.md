@@ -1,9 +1,9 @@
 ---
 draft: false
 name: "Julian Tiqui"
-title: "Core Autonomy Lead"
+title: "Autonomy Lead"
 avatar: {
-    src: "julian-tiqui.jpg",
+    src: "JulianTiqui.jpg",
     alt: "Julian Tiqui"
 }
 publishDate: "2024-12-21 15:39"
