@@ -7,6 +7,7 @@ import honeywell from "assets/honeywell.png";
 import smith from "assets/smith.png";
 import sensortech from "assets/sensortech.png";
 import solidworks from "assets/solidworks.png";
+import alma from "assets/alma.png";
 
 // TO DO: Need to add more sponsors and remove bg from some images
 
@@ -18,6 +19,7 @@ const sponsors = [
   { src: smith, alt: 'Smith sponsor logo', link: 'https://smithengineering.queensu.ca' },
   { src: sensortech, alt: 'Sensortech sponsor logo', link: 'https://sensortechcanada.com' },
   { src: solidworks, alt: 'Solidworks sponsor logo', link: 'https://www.solidworks.com' },
+  { src: alma, alt: 'Alma Mater Society sponsor logo', link: 'https://www.myams.org/about/get-involved/sustainability/' },
 ];
 
 
@@ -26,7 +28,7 @@ const gridClasses = sponsors.length <= 3
   : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
 ---
 
-<div class="mt-24">
+<div class="mt-8 md:mt-24">
   <h2 class="text-center text-slate-500 font-mono lowercase">Special thanks to all our Sponsors :)</h2>
   <div class={`grid ${gridClasses} gap-8 md:gap-20 items-center justify-items-center mt-16 md:mt-8 auto-rows-auto`}>
     {sponsors.map(sponsor => (
