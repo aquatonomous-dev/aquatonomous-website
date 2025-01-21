@@ -1,5 +1,13 @@
 ---
 import PageFindSearch from '@components/pageFind.astro';
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
 ---
 
-<PageFindSearch />
+<Layout title="Our ASV">
+    <Container>
+        <div class="min-h-[calc(100vh-16rem)]">
+            <PageFindSearch />
+        </div>
+    </Container>
+</Layout>
