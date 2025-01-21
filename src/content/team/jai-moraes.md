@@ -2,6 +2,7 @@
 draft: false
 name: "Jai Moraes"
 title: "Electrical Co-Lead"
+url: "https://www.linkedin.com/in/jai-moraes/"
 avatar: {
     src: "JaiMoraes.jpg",
     alt: "Jai Moraes"

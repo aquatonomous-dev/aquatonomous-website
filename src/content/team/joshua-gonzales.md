@@ -2,6 +2,7 @@
 draft: false
 name: "Joshua Gonzales"
 title: "Creative Web Lead"
+url: "https://www.joshuagonzales.org"
 avatar: {
     src: "JoshuaGonzales.jpg",
     alt: "Joshua Gonzales"

@@ -2,6 +2,7 @@
 draft: false
 name: "Sabrina Button"
 title: "Co-Captain"
+url: "https://sabrinabutton.ca/"
 avatar: {
     src: "sabrina-button.png",
     alt: "Sabrina Button"

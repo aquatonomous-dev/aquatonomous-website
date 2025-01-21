@@ -47,9 +47,6 @@ publishedTeamMembers.forEach(member => {
 });
 ---
 
-<div id="container" class="fixed top-0 left-0 w-screen h-screen z-5 pointer-events-none"></div>
-<div class="fixed w-screen h-screen bg-radial-bottom-white from-white to-transparent [background-size:100%_100%]"></div>
-
 <Layout title="Our Team">
   <Container class="relative z-10">
     <Sectionhead>
@@ -72,6 +69,7 @@ publishedTeamMembers.forEach(member => {
           return (
             <div class="group">
               <div class="w-full aspect-square">
+                <a href={teamMemberEntry.data.url}>
                 <Picture
                   src={image.default}
                   alt={teamMemberEntry.data.avatar.alt}
@@ -80,6 +78,7 @@ publishedTeamMembers.forEach(member => {
                   height={400}
                   class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
                 />
+                </a>
               </div>
               <div class="mt-4 text-center">
                 <h2 class="text-lg text-gray-800">{teamMemberEntry.data.name}</h2>
