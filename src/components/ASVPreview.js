@@ -9,14 +9,19 @@ export default class ASVPreview {
     this.scene = new THREE.Scene();
     this.scene.background = null;
     this.modelCenter = new THREE.Vector3();
-
+    console.log("setting up cams");
     this.setupCamera();
+    console.log("setting up renderer");
     this.setupRenderer();
+    console.log("setting up lights");
     this.setupLights();
-
+    console.log("loading models");
     this.loadBoatModel();
+    console.log("setting up controls");
     this.setupControls();
+    console.log("setting up resizing");
     this.setupResizeHandler();
+    console.log("animating");
     this.animate();
   }
 
@@ -34,7 +39,7 @@ export default class ASVPreview {
   setupRenderer() {
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
     this.renderer.shadowMap.enabled = true;
     this.renderer.setClearColor(0x000000, 0);
     this.container.appendChild(this.renderer.domElement);
@@ -88,29 +93,33 @@ export default class ASVPreview {
   
 
   loadBoatModel() {
+    console.log("init loader");
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath('/draco/');
     dracoLoader.preload();
 
     const loader = new GLTFLoader();
+    console.log("setting loader to Draco");
     loader.setDRACOLoader(dracoLoader);
 
     const modelPath = "/models/completewebsitemodel.glb";
-
+    console.log("initializing loader");
     loader.load(
       modelPath,
       (gltf) => {
+        console.log("starting loading");
         const model = gltf.scene;
         
-        const boundingBox = new THREE.Box3().setFromObject(model);
-        const center = boundingBox.getCenter(new THREE.Vector3());
-        const size = boundingBox.getSize(new THREE.Vector3());
-
-        this.modelCenter.copy(center);
-
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 2 / maxDim;
-        model.scale.setScalar(scale);
+        //const boundingBox = new THREE.Box3().setFromObject(model);
+        //const center = boundingBox.getCenter(new THREE.Vector3());
+        //const size = boundingBox.getSize(new THREE.Vector3());
+//
+        //this.modelCenter.copy(center);
+//
+        //const maxDim = Math.max(size.x, size.y, size.z);
+        //const scale = 2 / maxDim;
+        //console.log(scale);
+        model.scale.setScalar(2.1052566493276);
 
         model.position.x = 0;
         model.position.y = 0;
@@ -118,8 +127,6 @@ export default class ASVPreview {
 
         model.traverse((child) => {
           if (child.isMesh) {
-            child.castShadow = true;
-            child.receiveShadow = true;
         
             // Modify the material to make it transparent
             if (child.material) {
@@ -127,7 +134,6 @@ export default class ASVPreview {
               child.material.opacity = 0.8; // Set opacity level (0.0 is fully transparent, 1.0 is fully opaque)
             }
         
-            // Optional: Add a wireframe for better visualization
             const edgesGeometry = new THREE.EdgesGeometry(child.geometry);
             const edgesMaterial = new THREE.LineBasicMaterial({ color: 0x000000 });
             const wireframe = new THREE.LineSegments(edgesGeometry, edgesMaterial);
@@ -138,6 +144,7 @@ export default class ASVPreview {
         
 
         this.scene.add(model);
+        console.log("ending loading");
 
       },
       undefined,
@@ -175,6 +182,7 @@ export default class ASVPreview {
   }
 
   animate() {
+    
     requestAnimationFrame(this.animate.bind(this));
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
