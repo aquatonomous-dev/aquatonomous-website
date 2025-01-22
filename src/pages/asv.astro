@@ -184,6 +184,7 @@ import Layout from "@layouts/Layout.astro";
     const container = document.getElementById('asv-preview');
     if (container) {
       const preview = new ASVPreview(container);
+      console.log("previewed");
 
       // Clean up on page unload
       window.addEventListener('unload', () => {
