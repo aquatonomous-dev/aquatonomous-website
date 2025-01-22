@@ -95,7 +95,7 @@ export default class ASVPreview {
     const loader = new GLTFLoader();
     loader.setDRACOLoader(dracoLoader);
 
-    const modelPath = "/models/ship.glb";
+    const modelPath = "/models/completewebsitemodel.glb";
 
     loader.load(
       modelPath,
@@ -112,9 +112,9 @@ export default class ASVPreview {
         const scale = 2 / maxDim;
         model.scale.setScalar(scale);
 
-        model.position.x = -1.5;
-        model.position.y = -1.75;
-        model.position.z = -3.25;
+        model.position.x = 0;
+        model.position.y = 0;
+        model.position.z = 0;
 
         model.traverse((child) => {
           if (child.isMesh) {
@@ -139,7 +139,6 @@ export default class ASVPreview {
 
         this.scene.add(model);
 
-        this.zoomToFitObject(model);
       },
       undefined,
       (error) => {
