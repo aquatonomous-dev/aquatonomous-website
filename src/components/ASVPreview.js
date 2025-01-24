@@ -103,6 +103,7 @@ export default class ASVPreview {
     loader.setDRACOLoader(dracoLoader);
 
     const modelPath = "/models/completewebsitemodel.glb";
+
     console.log("initializing loader");
     loader.load(
       modelPath,
@@ -194,4 +195,5 @@ export default class ASVPreview {
     this.renderer.dispose();
     this.container.removeChild(this.renderer.domElement);
   }
+
 }
