@@ -127,7 +127,11 @@ import Layout from "@layouts/Layout.astro";
         <h2 class="text-3xl font-bold mb-8 text-center">Respond & Navigate</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div class="flex items-center justify-center">
-            <div class="w-full h-[300px] sm:h-[400px] bg-slate-50 bg-opacity-35 rounded-lg shadow-inner"></div>
+            <img
+              src="geo.jpeg"
+              alt="Team members crafting the ASV"
+              class="w-full h-auto rounded-lg shadow-lg"
+            />
           </div>
           <div>
             <h3 class="text-2xl font-bold mb-4">Adaptive Real-Time Decisions</h3>
@@ -143,32 +147,111 @@ import Layout from "@layouts/Layout.astro";
     </section>
 
     <!-- Specifications Section -->
-    <section class="py-16 bg-gray-100 rounded-lg">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-8 text-center">Technical Specifications</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <h3 class="text-xl font-semibold mb-2">Dimensions</h3>
-            <p class="text-slate-600">Length: <span class="italic">6 feet</span></p>
-            <p class="text-slate-600">Width: <span class="italic">4 feet</span></p>
-            <p class="text-slate-600">Weight: <span class="italic">75 lbs</span></p>
-          </div>
-          <div>
-            <h3 class="text-xl font-semibold mb-2">Propulsion</h3>
-            <p class="text-slate-600">Motor: <span class="italic">T200 Thrusters</span></p>
-            <p class="text-slate-600">Control: <span class="italic">Step Motor Precision</span></p>
-          </div>
-          <div>
-            <h3 class="text-xl font-semibold mb-2">Sensor Suite</h3>
-            <p class="text-slate-600">LiDAR: <span class="italic">Unitree 4D LiDAR</span></p>
-            <p class="text-slate-600">Camera: <span class="italic">High-resolution USB Camera</span></p>
-          </div>
-          <div>
-            <h3 class="text-xl font-semibold mb-2">Control System</h3>
-            <p class="text-slate-600">Algorithm: <span class="italic">PID Control</span></p>
-            <p class="text-slate-600">Path Planning: <span class="italic">A* Algorithm</span></p>
-          </div>
-        </div>
+    <section class="py-16 bg-gray-100  rounded-lg">
+      <h2 class="text-3xl font-bold mb-8 text-center">Technical Specifications</h2>
+      <div class="overflow-x-auto min-w-full bg-white border border-gray-300">
+        <table>
+          <thead>
+            <tr class="bg-gray-200">
+              <th class="py-2 px-4 text-left font-semibold text-gray-700">Component</th>
+              <th class="py-2 px-4 text-left font-semibold text-gray-700">Vendor</th>
+              <th class="py-2 px-4 text-left font-semibold text-gray-700">Model/Type</th>
+              <th class="py-2 px-4 text-left font-semibold text-gray-700">Specs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b">
+              <td class="py-2 px-4">ASV Hull Form/Platform</td>
+              <td class="py-2 px-4">Custom-built</td>
+              <td class="py-2 px-4">Dual-hull marine platform</td>
+              <td class="py-2 px-4">Fiberglass-wrapped plywood and closed-cell foam; 140 lbs max capacity, optimal 55-70 lbs</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Waterproof Connectors</td>
+              <td class="py-2 px-4">Not specified</td>
+              <td class="py-2 px-4">Liquid-tight cord grips</td>
+              <td class="py-2 px-4">O-rings and elevated bases for waterproofing</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Propulsion</td>
+              <td class="py-2 px-4">Blue Robotics</td>
+              <td class="py-2 px-4">T200 Thruster</td>
+              <td class="py-2 px-4">180° rotation, 22A max current, 15.26V</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Power System</td>
+              <td class="py-2 px-4">Blue Robotics</td>
+              <td class="py-2 px-4">Lithium Polymer Battery</td>
+              <td class="py-2 px-4">10Ah, 14.8V, 24A max; dual batteries connected in parallel</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Motor Controls</td>
+              <td class="py-2 px-4">SureStep</td>
+              <td class="py-2 px-4">STP-MTR-23055</td>
+              <td class="py-2 px-4">Bipolar stepper motors, 2.8A, 15.26V with A4988 stepper drivers</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">CPU</td>
+              <td class="py-2 px-4">Nvidia</td>
+              <td class="py-2 px-4">Jetson Nano</td>
+              <td class="py-2 px-4">Runs perception and control algorithms; connects to Pixhawk and sensors</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Teleoperation</td>
+              <td class="py-2 px-4">Multiple</td>
+              <td class="py-2 px-4">RC Radio, Wi-Fi Bullet</td>
+              <td class="py-2 px-4">Ubiquiti airMAX Bullet M2 for telemetry, RC radio for manual control</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Compass</td>
+              <td class="py-2 px-4">Pixhawk</td>
+              <td class="py-2 px-4">Internal</td>
+              <td class="py-2 px-4">Integrated IMU for orientation</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Inertial Measurement Unit (IMU)</td>
+              <td class="py-2 px-4">Pixhawk</td>
+              <td class="py-2 px-4">Internal</td>
+              <td class="py-2 px-4">Gyroscope-based; determines angular and linear movement</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Camera(s)</td>
+              <td class="py-2 px-4">Custom</td>
+              <td class="py-2 px-4">Front and side cameras</td>
+              <td class="py-2 px-4">Used for buoy and obstacle detection; integrated with Jetson</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Algorithms</td>
+              <td class="py-2 px-4">Custom</td>
+              <td class="py-2 px-4">Perception and Planning</td>
+              <td class="py-2 px-4">Left-right buoy navigation, potential fields for obstacle avoidance</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Vision</td>
+              <td class="py-2 px-4">Unitree</td>
+              <td class="py-2 px-4">4D LiDAR L1</td>
+              <td class="py-2 px-4">Secondary obstacle detection, 3-section segmentation</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Localization and Mapping</td>
+              <td class="py-2 px-4">Custom</td>
+              <td class="py-2 px-4">GPS and IMU Integration</td>
+              <td class="py-2 px-4">ROS2 and Mavros middleware for mapping and navigation</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Autonomy</td>
+              <td class="py-2 px-4">Custom</td>
+              <td class="py-2 px-4">Path Planning Algorithms</td>
+              <td class="py-2 px-4">Includes A*, Dijkstra's, and ROS-based navigation</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Open-Source Software</td>
+              <td class="py-2 px-4">Custom</td>
+              <td class="py-2 px-4">ROS2, Mavros</td>
+              <td class="py-2 px-4">Middleware for communication and control</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
   </Container>
