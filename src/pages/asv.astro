@@ -2,12 +2,41 @@
 import Container from "@components/container.astro";
 import Layout from "@layouts/Layout.astro";
 ---
-
 <Layout title="Our ASV">
   <Container class="relative z-10">
+    <style>
+      /* Text overlay styling */
+      .draggable-hint {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.25rem;
+        color: white;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        z-index: 20;
+        pointer-events: none;
+        text-align: center;
+      }
+    
+      #asv-preview canvas {
+        cursor: grab;
+      }
+    
+      #asv-preview canvas:active {
+        cursor: grabbing;
+      }
+    </style>
     <section>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mx-auto max-w-7xl mt-16">
-        <div id="asv-preview" class="w-full h-[300px] sm:h-[500px] bg-slate-50 bg-opacity-35 rounded-lg shadow-inner mb-8 z-11">
+        <div id="asv-preview" class="w-full h-[300px] sm:h-[500px] bg-slate-50 bg-opacity-35 rounded-lg shadow-inner mb-8 z-11 relative">
+          <div
+            id="draggable-hint"
+            class="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white bg-black/70 px-4 py-2 rounded-lg text-center text-sm md:text-base pointer-events-none">
+            Drag to interact
+          </div>
         </div>
         <div class="flex flex-col justify-between h-full">
           <div>
@@ -250,9 +279,21 @@ import Layout from "@layouts/Layout.astro";
   // Initialize the preview when the DOM is loaded
   document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('asv-preview');
+    const draggableHint = document.getElementById('draggable-hint');
     if (container) {
       const preview = new ASVPreview(container);
       console.log("previewed");
+      // Hide the hint when the user interacts
+      const hideHint = () => {
+        if (draggableHint) {
+          draggableHint.classList.add('hidden');
+        }
+        container.removeEventListener('mousedown', hideHint);
+        container.removeEventListener('touchstart', hideHint);
+      };
+
+      container.addEventListener('mousedown', hideHint);
+      container.addEventListener('touchstart', hideHint);
 
       // Clean up on page unload
       window.addEventListener('unload', () => {
@@ -260,4 +301,5 @@ import Layout from "@layouts/Layout.astro";
       });
     }
   });
+  
 </script>
