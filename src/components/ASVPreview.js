@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer';
+
 
 export default class ASVPreview {
   constructor(container) {
@@ -21,6 +23,7 @@ export default class ASVPreview {
     this.setupControls();
     console.log("setting up resizing");
     this.setupResizeHandler();
+
     console.log("animating");
     this.animate();
   }
@@ -194,6 +197,42 @@ export default class ASVPreview {
     this.scene.dispose();
     this.renderer.dispose();
     this.container.removeChild(this.renderer.domElement);
+  }
+
+  setupCSSRenderer() {
+    this.cssRenderer = new CSS2DRenderer();
+    this.cssRenderer.setSize(this.container.clientWidth, this.container.clientHeight);
+    this.cssRenderer.domElement.style.position = 'absolute';
+    this.cssRenderer.domElement.style.top = '0';
+    this.container.appendChild(this.cssRenderer.domElement);
+  }
+
+  addDraggableHint() {
+    // Create the text element
+    const draggableHint = document.createElement('div');
+    draggableHint.className = 'draggable-hint';
+    draggableHint.textContent = 'Drag to interact';
+    draggableHint.style.fontSize = '1.25rem';
+    draggableHint.style.color = 'white';
+    draggableHint.style.background = 'rgba(0, 0, 0, 0.7)';
+    draggableHint.style.padding = '0.5rem 1rem';
+    draggableHint.style.borderRadius = '8px';
+    draggableHint.style.pointerEvents = 'none';
+
+    // Create CSS2DObject
+    const hintObject = new CSS2DObject(draggableHint);
+    hintObject.position.set(0, 1.5, 0); // Place above the model
+    this.scene.add(hintObject);
+
+    // Listen for user interaction to remove the hint
+    const hideHint = () => {
+      this.scene.remove(hintObject);
+      this.container.removeEventListener('mousedown', hideHint);
+      this.container.removeEventListener('touchstart', hideHint);
+    };
+
+    this.container.addEventListener('mousedown', hideHint);
+    this.container.addEventListener('touchstart', hideHint);
   }
 
 }
