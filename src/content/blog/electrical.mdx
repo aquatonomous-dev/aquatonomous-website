@@ -17,19 +17,19 @@ Decisions of electrical structure were made to efficiently, safely, and cost eff
 # 1 Main Power
 ### 1.1 Power Calculations
 Below in *Table 1* is the expected maximum power draw and current of each of the attached circuits. While these circuits will intertwine, this is only to determine the amount of current and power that will be drawn through the fuse block and thus the batteries. The biggest power sink is the thruster, however bench testing has shown that the current draw of steppers is more likely to be around 10-12 Amps which will increase the expected Battery life to 30-40 minutes.	 The ASV will also never be running at a maximum power draw for 20 minutes, meaning that the battery life is not a risk.
-| Component                      | # of Components | Current Draw (A) | Voltage (V) | Power Consumption (W) |
-|--------------------------------|-----------------|------------------|-------------|------------------------|
-| Circuit                        |                 |                  |             |                        |
-| Telem: PixHawk + Jetson        | 1               | 7                | 5           | 36.76                  |
-| Wifi Bullet                    | 1               | 0.29             | 24          | 8.75                   |
-| LiDAR                          | 1               | 0.5              | 12          | 7.05                   |
-| Signal Tower                   | 1               | 0.167            | 12          | 2.35                   |
-| HC-12 Nano E-stop              | 1               | 0.33             | 9           | 3.00                   |
-| T200 Thruster (Theoretical)    | 2               | 22               | 15.26       | 671.44                 |
-| STP-MTR-23055 Stepping Motor   | 2               | 2.8              | 15.26       | 85.46                  |
-| **Totals:**                    | -               | **57.89**        | -           | **814.81**             |
-| **Battery Life (hrs) @ Full pwr** | **0.36**        | **21.8 Minutes** |             |                        |
-| **Battery Life (hrs) @ 80% pwr O/P** | **0.45**        | **27.2 Minutes** |             |                        |
+| Component                      | # of Components | Current Draw (A) | Voltage (V) | % Time Active | Power Consumption (W) |
+|--------------------------------|-----------------|------------------|-------------|---------------|-----------------------|
+| Circuit                        |                 |                  |             | 100%          |                       |
+| Telem: PixHawk + Jetson        | 1               | 7                | 5           | 100%          | 36.76                 |
+| Wifi Bullet                    | 1               | 0.29             | 24          | 100%          | 8.75                  |
+| LiDAR                          | 1               | 0.5              | 12          | 100%          | 7.05                  |
+| Signal Tower                   | 1               | 0.167            | 12          | 100%          | 2.35                  |
+| HC-12 Nano E-stop              | 1               | 0.33             | 9           | 100%          | 3.00                  |
+| T200 Thruster (Theoretical)    | 2               | 22               | 15.26       | 50%           | 335.72                |
+| STP-MTR-23055 Stepping Motor   | 2               | 2.8              | 15.26       | 50%           | 42.73                 |
+| **Totals:**                    | -               | **57.89**        | -           | -             | **814.81**            |
+| **Battery Life (hrs) @ Full pwr** | **0.68**        | **40.7 Minutes** |             |                        |
+| **Battery Life (hrs) @ 80% pwr O/P** | **0.85**        | **50.9 Minutes** |             |                        |
 
 The telemetry circuit uses the HolyBro PM02D power module with voltage regulated to 5V using a step-down system. The main line of the module goes directly to the Jetson, with the PixHawk power branching off the control board. Since the PixHawk and the Jetson Nano run in parallel to each other they are on the same circuit from the perspective of the PDM. It’s expected they will pull a combined 4-8A, this includes their own function and all the different sensors, relays, and actuators the Jetson and PixHawk apply power to. The Wi-Fi bullet is on its own power circuit due to its Power Over Ethernet (POE) requirement but is connected to the Jetson for telemetry communication. This connection is explained further in *Section 3 - Telemetry*. The propulsion system is the highest requirement of power of any part of the set up. The wire to the thruster is 10 American Wire Guage (AWG) to handle the higher current. The actuator power is better explained in *Section 5 - Actuators*.
 ### 1.2 Battery
