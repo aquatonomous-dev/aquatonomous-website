@@ -8,7 +8,7 @@ import smith from "assets/smith.png";
 import sensortech from "assets/sensortech.png";
 import solidworks from "assets/solidworks.png";
 import alma from "assets/alma.png";
-
+import tragic  from "assets/TragicallyHip.png";
 // TO DO: Need to add more sponsors and remove bg from some images
 
 const sponsors = [
@@ -22,6 +22,10 @@ const sponsors = [
   { src: alma, alt: 'Alma Mater Society sponsor logo', link: 'https://www.myams.org/about/get-involved/sustainability/' },
 ];
 
+const partnerships = [
+  { src: tragic, alt: 'The Tragically Hip', link: 'https://thehip.com' },
+];
+
 
 const gridClasses = sponsors.length <= 3 
   ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center"
@@ -29,7 +33,7 @@ const gridClasses = sponsors.length <= 3
 ---
 
 <div class="mt-8 md:mt-24">
-  <h2 class="text-center text-slate-500 font-mono lowercase">Special thanks to all our Sponsors :)</h2>
+  <h2 class="text-center text-slate-500 font-mono lowercase">Our Sponsers</h2>
   <div class={`grid ${gridClasses} gap-8 md:gap-20 items-center justify-items-center mt-16 md:mt-8 auto-rows-auto`}>
     {sponsors.map(sponsor => (
       <div class="flex items-center justify-center">
@@ -37,6 +41,21 @@ const gridClasses = sponsors.length <= 3
           <Image
             src={sponsor.src}
             alt={sponsor.alt}
+            height={200}
+            class="w-auto h-auto object-contain max-h-[100px] sm:max-h-[200px] md:max-h-[250px]"
+          />
+        </a>
+      </div>
+    ))}
+  </div>
+  <h2 class="mt-8 text-center text-slate-500 font-mono lowercase">In Partnership With</h2>
+  <div class={`grid grid-1 gap-8 md:gap-20 items-center justify-items-center mt-16 md:mt-8 auto-rows-auto`}>
+    {partnerships.map(partnership => (
+      <div class="flex items-center justify-center">
+        <a href={partnership.link}>
+          <Image
+            src={partnership.src}
+            alt={partnership.alt}
             height={200}
             class="w-auto h-auto object-contain max-h-[100px] sm:max-h-[200px] md:max-h-[250px]"
           />
