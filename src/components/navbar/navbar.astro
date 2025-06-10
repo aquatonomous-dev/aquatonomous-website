@@ -2,7 +2,6 @@
 import Container from "@components/container.astro";
 import Link from "@components/ui/link.astro";
 import { Image } from "astro:assets";
-import aquaLogo from "assets/aqua-logo.png";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
@@ -47,13 +46,7 @@ const menuitems = [
         
         <div>
           <a href="/" class="text-lg">
-            <Image
-              src={aquaLogo}
-              alt="logo of aQuatonomous"
-              format="avif"
-              width="60" 
-              sizes="(max-width: 40px) 100vw, 40px" 
-            />
+             <img src="/aqua-logo.svg" alt="aQuatonomous logo" class="w-10 h-10 md:w-12 md:h-12" />
           </a>
         </div>
         
