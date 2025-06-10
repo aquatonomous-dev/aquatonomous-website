@@ -18,8 +18,9 @@ module.exports = {
         ],
       },
       colors: {
-        'AquaBlue':'#5A939B',
-        'AquaNeon':'#26FFDF',
+        'AquaNavy':'#10292b',
+        "AquaBlue":'#195c5a',
+        'AquaNeon':'#98cfd4',
       },
       backgroundImage: {
         'radial-bottom-white': 'radial-gradient(circle at 50% 70%, var(--tw-gradient-stops))'

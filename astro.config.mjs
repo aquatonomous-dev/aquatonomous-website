@@ -11,6 +11,6 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://aquatonomous-redesign.vercel.app",
+  site: "https://aquatonomous.vercel.app",
   integrations: [tailwind(), mdx(), sitemap(), icon(), react(), sitemap(), pagefind()],
 });
