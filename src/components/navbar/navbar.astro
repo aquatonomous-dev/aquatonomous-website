@@ -45,24 +45,23 @@ const menuitems = [
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         
-        <div class="invert">
-          <a href="/" class="text-lg"
-          >
+        <div>
+          <a href="/" class="text-lg">
             <Image
               src={aquaLogo}
               alt="logo of aQuatonomous"
               format="avif"
-              width="40" 
+              width="60" 
               sizes="(max-width: 40px) 100vw, 40px" 
             />
           </a>
         </div>
         
-        <a href="/" class="text-lg"
-          ><span class="font-bold text-slate-700">aQua</span><span
-            class="text-slate-500">tonomous</span
+        <!-- <a href="/" class="text-lg"
+          ><span class="font-bold  text-AquaNavy">aQua</span><span
+            class=" text-AquaNavy">tonomous</span
           >
-        </a>
+        </a> -->
         <div class="block lg:hidden">
           <MenuIcon class="w-4 h-4 text-gray-800" />
         </div>
@@ -84,7 +83,7 @@ const menuitems = [
                   <li>
                     <a
                       href={item.path}
-                      class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
+                      class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-AquaBlue">
                       <span> {item.title}</span>
                     </a>
                   </li>

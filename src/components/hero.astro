@@ -2,44 +2,42 @@
 import { Picture } from "astro:assets";
 import heroImage from "assets/hero.png";
 import aquaLogo from "assets/aqua-logo.png";
-import aquaSticker from "assets/aqua-sticker.png";
+import nauticalDisaster from "assets/nautical-disaster.jpg";
 import Link from "@components/ui/link.astro";
 import { Icon } from "astro-icon/components";
+import ImageCarousel from './imageCarousel.astro';
+
 ---
 
 <main
   class="grid lg:grid-cols-[1fr_1.5fr] place-items-center gap-12 pt-16 pb-8 md:pb-24 md:pt-12"
 >
-  <div class="lg:order-1 md:block">
-    <Picture
-      src={aquaSticker}
-      alt="logo of aQuatonomous"
-      widths={[200, 400, 600]}
-      sizes="(max-width: 600px) 100vw, 620px"
-      loading="eager"
-      format="avif"
-    />
-  </div>
-  <div class="">
-    <h1
-      class="text-8xl lg:text-8xl font-bold lg:tracking-tight xl:tracking-tighter">
-      Ahoy!🌊
-    </h1>
-    <p class="text-lg mt-4 text-slate-600 ">
-      aQuatonomous, derived from the words "aqua," "Queen’s," and "autonomous," is an innovative design team at Smith Engineering.     
+  <!-- Left content -->
+  <div id="hero">
+    <div class="flex items-center space-x-4">
+      <h1 class="text-AquaNavy text-5xl lg:text-8xl  font-bold tracking-tight">
+        Ahoy!
+      </h1>
+    </div>
+
+    <p class="text-lg mt-4 text-slate-600">
+      aQuatonomous, derived from the words "aqua," "Queen’s," and "autonomous," is an innovative design team at Smith Engineering.
     </p>
-    <p class="text-lg mt-4 text-slate-600 ">
-      We are dedicated to conceptualizing, constructing, and programming a solar-powered autonomous surface vessel (ASV/robotic boat) to compete in the 2025 RoboNation RoboBoat Competition.   
+    <p class="text-lg mt-4 text-slate-600">
+      We are dedicated to conceptualizing, constructing, and programming an autonomous surface vessel (ASV/robotic boat) to compete annually in the RoboNation RoboBoat Competition.
     </p>
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
       <Link
         href="/about"
         target="_blank"
-        class="flex gap-1 items-center justify-center"
-        rel="noopener">
-         Learn More
+        class="bg-AquaBlue flex gap-1 items-center justify-center"
+        rel="noopener"
+      >
+        Learn More
       </Link>
     </div>
   </div>
-</main>
 
+  <!-- Todo: Carousel -->
+  
+</main>
