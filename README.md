@@ -4,6 +4,12 @@ This is the official website for **aQuatonomous**, a student-led design team bui
 
 > 🚢 In 2025, aQuatonomous placed 4th in Design Presentation and reached the semi-finals at the RoboNation RoboBoat competition — a strong start to an even stronger future.
 
+## 🚀 Development
+
+1. Checkout a new branch to make your changes. Commit and push them.
+2. File a pull request, review and merge it.
+3. Deployment will be handled by the `aquatonomous-website` repository on the `aquatonomous-dev` account, which is forked from the `aquatonomous-website` repository in the `aQuatonomous Organization`. See *Website Hosting*.
+
 ## 📍 Website Hosting
 
 The site is deployed using [Vercel](https://vercel.com), linked to the `aquatonomous-dev` GitHub account.

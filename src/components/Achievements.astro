@@ -1,0 +1,44 @@
+---
+const achievements = [
+  {
+    title: "2025 Design Team of the Year",
+    emoji: "🥇",
+    description: "Awarded by Smith Engineering at Queen’s University for overall excellence.",
+  },
+  {
+    title: "4th Place – International Design Presentation",
+    emoji: "🎤",
+    description: "Top 5 globally in RoboBoat 2025 design documentation presentation category.",
+  },
+  {
+    title: "4/5 Autonomy Tasks – Semifinalist",
+    emoji: "🤖",
+    description: "Qualified for semifinals in nearly all RoboBoat 2025 autonomy challenges.",
+  },
+];
+---
+
+<section class="pb-8 md:pb-24">
+  <div class="max-w-5xl mx-auto">
+    <header class="text-center">
+      <h2 class="text-4xl lg:text-5xl font-bold text-AquaNavy lg:tracking-tight">
+        Our Achievements.
+      </h2>
+      <p class="text-lg mt-4 text-slate-600">
+        In our first year, our team made waves at competitions and on campus. Here's a glimpse of what we've achieved so far.
+      </p>
+    </header>
+
+    <div class="grid border-2 border-dashed border-slate-300 rounded-xl p-8 sm:grid-cols-2 md:grid-cols-3 mt-12 gap-10">
+      {achievements.map((item) => (
+        <div class="flex items-start gap-4">
+          <div class="text-2xl" aria-hidden="true">{item.emoji}</div>
+          <div>
+            <h3 class="text-lg font-semibold text-AquaNavy">{item.title}</h3>
+            <p class="mt-2 text-slate-500 leading-relaxed">{item.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
