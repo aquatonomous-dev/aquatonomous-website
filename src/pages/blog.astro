@@ -14,6 +14,7 @@ const publishedBlogEntries = await getCollection("blog", ({ data }) => {
 publishedBlogEntries.sort(function (a, b) {
   return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
 });
+
 ---
 <Layout title="Blog">
   <Container class="text-AquaNavy relative z-10">

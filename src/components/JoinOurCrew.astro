@@ -3,14 +3,21 @@ import Link from "./ui/Link.astro";
 ---
 
 <div
-  class="bg-AquaNavy p-8 md:px-20 md:py-20 mt-20 mx-auto max-w-5xl rounded-lg flex flex-col items-center text-center">
-  <h2 class="text-white text-4xl md:text-6xl tracking-tight">
+  class="bg-gradient-to-r from-AquaNavy to-AquaBlue p-10 md:px-24 md:py-20 mt-20 mx-auto max-w-5xl rounded-lg flex flex-col items-center text-center"
+>
+  <h2 class="text-white text-4xl md:text-6xl tracking-tight mb-6">
     Set Sail with Us! 🌟🚢
   </h2>
-  <p class="text-slate-400 mt-4 text-lg md:text-xl">
-    Are  you a prospective sponsor? Looking for an opportunity? Feel free to contact us and send us a message.
+  <p class="text-slate-300 max-w-3xl text-lg md:text-xl mb-8">
+    Interested in sponsoring or joining our team? Get in touch — we’d love to hear from you!
   </p>
-  <div class="flex mt-5 rounded-full">
-    <Link href="/contact" style="inverted">Join Our Crew</Link>
+  <div>
+    <Link
+      href="/contact"
+      style="inverted"
+      class="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white text-AquaNavy font-semibold hover:bg-gray-100 transition-transform active:scale-95"
+    >
+      Join Our Crew <span aria-hidden="true">🚢</span>
+    </Link>
   </div>
 </div>

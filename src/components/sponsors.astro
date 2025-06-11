@@ -1,43 +1,65 @@
 ---
-import { Image } from 'astro:assets';
-import ams from "assets/sponsors/AdaptiveMarineSolutions.png";
+import { Image } from "astro:assets";
+
+import adaptiveMarineSolutions from "assets/sponsors/AdaptiveMarineSolutions.png";
 import claigan from "assets/sponsors/Claigan.jpg";
 import seaspan from "assets/sponsors/Seaspan.png";
 import honeywell from "assets/sponsors/Honeywell.png";
-import smith from "assets/sponsors/SmithEngineering.png";
-import sensortech from "assets/sponsors/SensorTechnologies.png";
+import smithEngineering from "assets/sponsors/SmithEngineering.png";
+import sensorTechnologies from "assets/sponsors/SensorTechnologies.png";
 import solidworks from "assets/sponsors/Solidworks.png";
-import alma from "assets/sponsors/AMSSustainability.png";
-import tragic  from "assets/sponsors/TragicallyHip.png";
-// TO DO: Need to add more sponsors and remove bg from some images
+import amsSustainability from "assets/sponsors/AMSSustainability.png";
+import tragicallyHip from "assets/sponsors/TragicallyHip.png";
 
 const sponsors = [
-  { src: ams, alt: 'AMS sponsor logo', link: 'https://ams-ink.ca' },
-  { src: claigan, alt: 'Claigan sponsor logo', link: 'https://www.claigan.com' },
-  { src: seaspan, alt: 'Seaspan sponsor logo', link: 'https://www.seaspan.com' },
-  { src: honeywell, alt: 'Honeywell sponsor logo', link: 'https://www.honeywell.com/us/en' },
-  { src: smith, alt: 'Smith sponsor logo', link: 'https://smithengineering.queensu.ca' },
-  { src: sensortech, alt: 'Sensortech sponsor logo', link: 'https://sensortechcanada.com' },
-  { src: solidworks, alt: 'Solidworks sponsor logo', link: 'https://www.solidworks.com' },
-  { src: alma, alt: 'Alma Mater Society sponsor logo', link: 'https://www.myams.org/about/get-involved/sustainability/' },
+  {
+    src: adaptiveMarineSolutions,
+    alt: "Adaptive Marine Solutions sponsor logo",
+    link: "https://ams-ink.ca",
+  },
+  { src: claigan, alt: "Claigan sponsor logo", link: "https://www.claigan.com" },
+  { src: seaspan, alt: "Seaspan sponsor logo", link: "https://www.seaspan.com" },
+  { src: honeywell, alt: "Honeywell sponsor logo", link: "https://www.honeywell.com/us/en" },
+  {
+    src: smithEngineering,
+    alt: "Smith Engineering sponsor logo",
+    link: "https://smithengineering.queensu.ca",
+  },
+  {
+    src: sensorTechnologies,
+    alt: "Sensor Technologies sponsor logo",
+    link: "https://sensortechcanada.com",
+  },
+  { src: solidworks, alt: "Solidworks sponsor logo", link: "https://www.solidworks.com" },
+  {
+    src: amsSustainability,
+    alt: "Alma Mater Society sponsor logo",
+    link: "https://www.myams.org/about/get-involved/sustainability/",
+  },
 ];
 
 const partnerships = [
-  { src: tragic, alt: 'The Tragically Hip', link: 'https://thehip.com' },
+  {
+    src: tragicallyHip,
+    alt: "The Tragically Hip logo",
+    link: "https://thehip.com",
+  },
 ];
 
-
-const gridClasses = sponsors.length <= 3 
-  ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center"
-  : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
+const gridClasses =
+  sponsors.length <= 3
+    ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center"
+    : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
 ---
 
 <div class="mt-8 md:mt-24">
-  <h2 class="text-center text-slate-500 font-mono lowercase">Our Sponsers</h2>
-  <div class={`grid ${gridClasses} gap-8 md:gap-20 items-center justify-items-center mt-16 md:mt-8 auto-rows-auto`}>
-    {sponsors.map(sponsor => (
-      <div class="flex items-center justify-center">
-        <a href={sponsor.link}>
+  <h2 class="text-center text-slate-500 font-mono lowercase tracking-wide">Our Sponsors</h2>
+  <div
+    class={`grid ${gridClasses} gap-8 md:gap-20 items-center justify-items-center mt-16 md:mt-8 auto-rows-auto`}
+  >
+    {sponsors.map((sponsor) => (
+      <div class="flex items-center justify-center" key={sponsor.alt}>
+        <a href={sponsor.link} target="_blank" rel="noopener noreferrer" aria-label={sponsor.alt}>
           <Image
             src={sponsor.src}
             alt={sponsor.alt}
@@ -48,11 +70,19 @@ const gridClasses = sponsors.length <= 3
       </div>
     ))}
   </div>
-  <h2 class="mt-8 text-center text-slate-500 font-mono lowercase">In Partnership With</h2>
-  <div class={`grid grid-1 gap-8 md:gap-20 items-center justify-items-center mt-16 md:mt-8 auto-rows-auto`}>
-    {partnerships.map(partnership => (
-      <div class="flex items-center justify-center">
-        <a href={partnership.link}>
+
+  <h2 class="mt-8 text-center text-slate-500 font-mono lowercase tracking-wide">In Partnership With</h2>
+  <div
+    class="grid grid-cols-1 gap-8 md:gap-20 items-center justify-items-center mt-16 md:mt-8 auto-rows-auto"
+  >
+    {partnerships.map((partnership) => (
+      <div class="flex items-center justify-center" key={partnership.alt}>
+        <a
+          href={partnership.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={partnership.alt}
+        >
           <Image
             src={partnership.src}
             alt={partnership.alt}
