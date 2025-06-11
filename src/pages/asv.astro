@@ -1,6 +1,7 @@
 ---
 import Container from "@components/Container.astro";
 import Layout from "@layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
 ---
 <Layout title="Our ASV">
   <Container class="relative z-10">
@@ -41,7 +42,7 @@ import Layout from "@layouts/Layout.astro";
         <div class="flex flex-col justify-between h-full">
           <div>
             <h1 class="text-4xl lg:text-5xl font-bold mb-12">
-              Nautical Disaster
+              Nautical Disaster 💥
             </h1>
             <p class="text-lg mb-8 text-slate-600">
               <a href="https://open.spotify.com/track/58Gi98Nvrjo7qVI1dHOqFD?si=affb1f8b4b434b8a" 
@@ -67,9 +68,22 @@ import Layout from "@layouts/Layout.astro";
               <span class="font-light">The Tragically Hip</span>
               </a>, our vehicle is a showcase of engineering, innovation, and teamwork.
             </p>
+
+            <p class="mt-4 text-sm text-slate-500 font-mono inline-flex items-center gap-2">
+              <a
+                href="https://drive.google.com/file/d/1_hwxIo9lGj9N4vvqH4HyaAePKooe21Pv/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-AquaNavy transition inline-flex items-center gap-1"
+              >
+                Read our Technical Design Report
+                <Icon name="mdi:open-in-new" class="w-4 h-4" />
+              </a>
+            </p>
           </div>
           <div class="pb-8">
-          
+
+           
         </div>
         </div>
       </div>
@@ -77,9 +91,36 @@ import Layout from "@layouts/Layout.astro";
 
     <section class="py-16 bg-white">
       <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-4 grid-rows-3 gap-1 rounded-2xl overflow-hidden max-h-[600px]">
+          <img src="/photos/ElectricalDebugging.jpg" alt="Doing some electrical debugging..." 
+              class="object-cover w-full h-full rounded-2xl col-span-2 row-span-2" />
+
+          <img src="/photos/DockedDisaster.JPG" alt="Our ASV on the dock!" 
+              class="object-cover w-full h-full rounded-2xl col-span-2 row-span-1" />
+
+          <img src="/photos/ReadyAtTeamVillage.JPG" alt="The ASV ready to go in the team village!" 
+              class="object-cover w-full h-full rounded-2xl col-span-1 row-span-2" />
+
+          <img src="/photos/TelemetryDebugging.jpg" alt="A nifty antenna design..." 
+              class="object-cover w-full h-full rounded-2xl col-span-1 row-span-2" />
+
+          <img src="/photos/BeforeCompetition.jpg" alt="Holding up the boat in freezing weather on the way to Florida!" 
+              class="object-cover w-full h-full rounded-2xl col-span-2 row-span-1" />
+        </div>
+        <div class="py-8 bg-white">
+           <p class="text-sm mt-1 text-slate-500 text-center font-mono">
+            📸 Competition moments from RoboBoat 2025
+          </p>
+        </div>
+      </div>
+      
+    </section>
+
+    <section class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 class="text-3xl font-bold mb-4">Built by Hands, Driven by Passion</h2>
+            <h2 id="asv-details" class="text-3xl font-bold mb-4">Built by Hands, Driven by Passion</h2>
             <p class="text-slate-600 mb-4">
               Every inch of Nautical Disaster is built with care by our team. From shaping plywood to layering fiberglass, we’re hands-on every step of the way. It’s not just about building a boat—it’s about creating something we’re proud of.
             </p>
