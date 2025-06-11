@@ -1,18 +1,20 @@
 ---
-import Contactform from "@components/contactform.astro";
+import Contactform from "@components/ContactForm.astro";
 import { Picture } from "astro:assets";
-import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
+import Container from "@components/Container.astro";
+import Sectionhead from "@components/SectionHead.astro";
 import Layout from "@layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
-import roboboatImage from "assets/roboboat.png";
+import roboboatImage from "assets/RoboBoatLogo.png";
 ---
 <Layout title="About">
   <Container class="relative z-10">
-    <Sectionhead>
-      <Fragment slot="title">About “aQua” 🌊</Fragment>
-      <Fragment slot="desc">WHO ARE WE?</Fragment>
-    </Sectionhead>
+    <div class="text-AquaNavy">
+      <Sectionhead>
+        <Fragment slot="title">About “aQua” 🌊</Fragment>
+        <Fragment slot="desc">WHO ARE WE?</Fragment>
+      </Sectionhead>
+    </div>
 
     <div class="mx-auto max-w-4xl mt-8">
       <div>
@@ -20,7 +22,7 @@ import roboboatImage from "assets/roboboat.png";
             “aQuatonomous,” a blend of the words “aqua,” “Queen’s,” and “autonomous,” is Smith Engineering’s newest student-led interdisciplinary design team. 
         </p>
         <p class="text-lg leading-relaxed text-slate-500 mt-3">
-            Founded in 2023, our team has rapidly grown to over 40+ active members, with a focus on continual expansion and innovation. Our mission centers on constructing and programming a state-of-the-art autonomous surface vessel (ASV), providing students with a unique, hands-on opportunity to engage with cutting edge autonomous vehicle technology. We aim to be at the forefront of AI-driven autonomy and sustainable design, integrating the expertise of our diverse sub-teams: mechanical, electrical, perception, ecological & water research, business, and core-autonomy. 
+            Founded in 2023, our team has rapidly grown to over 40+ active members, with a focus on continual expansion and innovation. Our mission centers on constructing and programming a state-of-the-art autonomous surface vehicle (ASV), providing students with a unique, hands-on opportunity to engage with cutting edge autonomous vehicle technology. We aim to be at the forefront of AI-driven autonomy and sustainable design, integrating the expertise of our diverse sub-teams: mechanical, electrical, perception, ecological & water research, business, and core-autonomy. 
         </p>
         <p class="text-lg leading-relaxed text-slate-500 mt-3">
             Our ASV project not only advances autonomous maritime technology but also catalyzes sustainability and ecological restoration efforts. Our team offers the boat to water and environmental researchers as a research vessel and measurement station.  
@@ -30,10 +32,12 @@ import roboboatImage from "assets/roboboat.png";
       </div>
     </div>
 
-    <Sectionhead>
-      <Fragment slot="title">Our Mission</Fragment>
-      <Fragment slot="desc">WHAT WE DO?</Fragment>
-    </Sectionhead>
+    <div class="text-AquaNavy">
+      <Sectionhead>
+        <Fragment slot="title">Our Mission</Fragment>
+        <Fragment slot="desc">WHAT WE DO?</Fragment>
+      </Sectionhead>
+    </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8">
       <div>
@@ -67,10 +71,13 @@ import roboboatImage from "assets/roboboat.png";
         </p>
       </div>
     </div>
-    <Sectionhead>
-      <Fragment slot="title">Our Team</Fragment>
-      <Fragment slot="desc">WHAT WE CAN DO</Fragment>
-    </Sectionhead>
+    <div class="text-AquaNavy">
+      <Sectionhead>
+        <Fragment slot="title">Our Sub-Teams</Fragment>
+        <Fragment slot="desc">WHAT WE CAN DO</Fragment>
+      </Sectionhead>
+    </div>
+    
     <section class="mt-8 grid border-2 p-8 border-dashed border-slate-300 rounded-xl  bg-opacity-35 py-16 bg-gray-50 ">
       <div class="max-w-6xl mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -93,28 +100,84 @@ import roboboatImage from "assets/roboboat.png";
             </p>
           </div>
           <div>
-            <h3 class="text-2xl font-semibold mb-4">🧠Autonomy</h3>
+            <h3 class="text-2xl font-semibold mb-4">🧠Autonomy and Perception</h3>
             <p class="text-slate-600">
-              The autonomy team develops path planning and behavior planning algorithms for the ASV. During the inaugural year, methods like A* for path planning, basic if-else behaviors, and PID control will provide a strong foundation for future advancements.
-            </p>
-          </div>
-          <div>
-            <h3 class="text-2xl font-semibold mb-4">👀Perception</h3>
-            <p class="text-slate-600">
-              The perception team handles localization, mapping, and obstacle detection using the sensor suite. They collaborate closely with the electrical team to determine sensor specifications and placement.
+              The perception and autonomy teams work closely to enable intelligent navigation. Perception handles mapping, localization, and obstacle detection using a custom sensor suite, built in collaboration with the electrical team. 
             </p>
             <p class="text-slate-600 mt-4">
-              Since the Roboboat competition doesn’t provide a map, the perception team is fully responsible for creating maps and relaying them to the autonomy team.
+               Since no map is provided at Roboboat, the ASV must generate its own in real time. This data feeds into the autonomy team's algorithms for path and behavior planning. Starting with methods like A*, PID control, and rule-based logic, the system is designed to evolve toward more adaptive, robust decision-making over time.
             </p>
+          </div>
+           <div>
+            <h3 class="text-2xl font-semibold mb-4">🔗Systems Integration</h3>
+            <p class="text-slate-600">
+              The Systems Integration team ensures seamless communication between software, hardware, and onboard systems, acting as the connective tissue of the ASV. This team configures and maintains ROS-based infrastructure, telemetry systems, and firmware like MAVROS and Pixhawk, enabling real-time coordination between perception, autonomy, and actuation.
+            </p>
+            <p class="text-slate-600 mt-4">
+              This team is critical to reliable field performance and iterative testing, especially as the platform scales in complexity.
+            </p>
+          </div>
+           <div>
+            <h3 class="text-2xl font-semibold mb-4">💼Business</h3>
+            <p class="text-slate-600">
+              The Business team drives the sustainability and visibility of aQuatonomous through sponsorship outreach, budget planning, and strategic communication. From crafting compelling grant applications like those for the Sustainable Action Fund to organizing public engagement initiatives, this team ensures the project's long-term impact and community alignment.
+            </p>
+            <p class="text-slate-600 mt-4">
+              The business team ultimatelys supports both the team's technical ambitions and its environmental mission.
+            </p>
+          </div>
+           <div>
+            <h3 class="text-2xl font-semibold mb-4">🪸Ecological Sciences and Water Research</h3>
+            <p class="text-slate-600">
+              The Ecological Sciences and Water Research team anchors the project in environmental relevance by designing research questions and collecting meaningful aquatic data. 
+            </p>
+            <p class="text-slate-600 mt-4">
+               Leveraging the ASV’s sensor payload, they investigate topics such as pollution, water quality, and ecological patterns in Lake Ontario. Their insights guide sensor selection, field deployment, and reinforce the team’s commitment to sustainability-driven innovation.
+            </p>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <div class="text-AquaNavy">
+      <Sectionhead>
+        <Fragment slot="title">Pilot Projects</Fragment>
+        <Fragment slot="desc">INITIATIVES WE'RE KICKING OFF IN 2025-2026</Fragment>
+      </Sectionhead>
+    </div>
+    <section class="mt-8 grid border-2 p-8 border-dashed border-slate-300 rounded-xl  bg-opacity-35 py-16 bg-gray-50 ">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+           <div>
+            <h3 class="text-2xl font-semibold mb-4">⛵aQuaSAIL</h3>
+            <p class="text-slate-600">
+             aQuaSAIL is a new pilot project exploring sustainable propulsion by developing a modular sail system that can transform the ASV into an autonomous sailboat.
+            </p>
+            <p class="text-slate-600 mt-4">
+               The project blends mechanical innovation with control systems to enable wind-powered navigation, reducing reliance on electric motors and extending mission duration. Designed to be attachable and removable, the sail module emphasizes flexibility, experimentation, and long-term environmental viability.
+            </p>
+          </div>
+           <div>
+            <h3 class="text-2xl font-semibold mb-4">🧭aQuaNAVIS</h3>
+            <p class="text-slate-600">
+              NAVIS is a hands-on, course-based initiative designed to train first- and second-year students in core technical skills like Linux, ROS, robotics algorithms, sensors, and naval architecture. 
+            </p>
+            <p class="text-slate-600 mt-4">
+              NAVIS builds core skills early, equipping new members with the knowledge and confidence to contribute meaningfully to aQuatonomous and grow into future team leaders.
+            </p>
+            
           </div>
         </div>
       </div>
     </section>
 
-    <Sectionhead>
-      <Fragment slot="title">Competition</Fragment>
-      <Fragment slot="desc">WHAT WE AIM TO ACHIEVE?</Fragment>
-    </Sectionhead>
+    <div class="text-AquaNavy">
+      <Sectionhead>
+        <Fragment slot="title">Competitions</Fragment>
+        <Fragment slot="desc">WHAT WE AIM TO ACHIEVE</Fragment>
+      </Sectionhead>
+    </div>
 
     <div class="mx-auto max-w-4xl mt-8">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 items-center">
@@ -132,7 +195,7 @@ import roboboatImage from "assets/roboboat.png";
         <!-- Text Column -->
         <div class="lg:col-span-2">
           <p class="text-lg leading-relaxed text-slate-500">
-            In 2025, aQuatonomous plans to compete in the <strong>RoboNation RoboBoat Competition</strong>. This event provides an excellent platform to demonstrate our ASV and to achieve our mission of generating clean-powered vessels that support ecological research and restoration. Competing on a global stage allows us to showcase our cutting-edge technology and commitment to sustainability while fostering collaboration and learning within the international community.
+           In 2025, aQuatonomous made its debut at the <strong>RoboNation RoboBoat Competition</strong>, reaching the semi-finals and placing 4th overall in the Design Presentation category. This marked a strong first showing on the global stage and affirmed our mission to develop clean-powered vessels that support ecological research and restoration. Building on this momentum, we’re continuing to improve our technology and aim to achieve even greater impact in future competitions.
           </p>
         </div>
       </div>

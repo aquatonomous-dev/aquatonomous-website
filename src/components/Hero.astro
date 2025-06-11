@@ -1,0 +1,39 @@
+---
+import { Picture } from "astro:assets";
+import aquaLogo from "assets/Logo.png";
+import roboBoat2025 from "assets/RoboBoat2025.PNG";
+import Link from "@components/ui/Link.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<main class="px-6 grid lg:grid-cols-[1fr_1.5fr] place-items-center gap-12 pt-16 pb-8 md:pb-24 md:pt-12">
+  <!-- Left content -->
+  <div id="hero">
+    <div class="flex items-center space-x-4">
+      <h1 class="text-AquaNavy text-5xl lg:text-8xl font-bold tracking-tight">
+        Ahoy!
+      </h1>
+    </div>
+
+    <p class="text-lg mt-4 text-slate-600">
+      <strong class="text-AquaBlue">aQuatonomous</strong>, a blend of the words “aqua,” “Queen’s,” and “autonomous”, is an undergratuate student design team at Smith Engineering. 
+    </p>
+    <p class="text-lg mt-4 text-slate-600">
+      We build smart, sustainable robotic boats—called autonomous surface vehicles—to compete in the annual <strong>RoboBoat</strong> competition.
+    </p>
+
+    <div class="mt-6 flex flex-col sm:flex-row gap-3">
+      <Link
+        href="/about"
+        class="bg-AquaBlue hover:bg-AquaBlue/80 transition-all duration-200 text-white px-6 py-3 rounded-xl font-medium shadow-lg"
+      >
+        Learn More About Us
+      </Link>
+    </div>
+  </div>
+
+  <!-- Right content / Visual -->
+  <div class="w-full max-w-lg">
+    <Picture src={roboBoat2025} alt="aQua at Roboboat 2025" class="rounded-2xl shadow-lg" />
+  </div>
+</main>

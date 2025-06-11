@@ -1,14 +1,17 @@
 ---
-import Container from "@components/container.astro";
-import Cta from "@components/cta.astro";
-import Features from "@components/features.astro";
+import Container from "@components/Container.astro";
+import Cta from "@components/JoinOurCrew.astro";
+import Features from "@components/Features.astro";
 import YoutubeVideo from "@components/YoutubeVideo.astro";
-import Hero from "@components/hero.astro";
-import Sponsors from "@components/sponsors.astro";
+import Hero from "@components/Hero.astro";
+import Sponsors from "@components/Sponsors.astro";
 import Layout from "@layouts/Layout.astro";
+import Video from "@components/BackgroundVideo.astro"
 ---
 
+<!-- Home Page Layout -->
 <Layout title="">
+  <Video/>
   <Container class="relative z-10">
     <Hero />
     <Features />

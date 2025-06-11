@@ -2,8 +2,8 @@
 import { getCollection } from "astro:content";
 import { Picture } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
-import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
+import Container from "@components/Container.astro";
+import Sectionhead from "@components/SectionHead.astro";
 
 // Filter blog entries with 'draft: false' & date before current date
 const publishedBlogEntries = await getCollection("blog", ({ data }) => {
@@ -14,13 +14,14 @@ const publishedBlogEntries = await getCollection("blog", ({ data }) => {
 publishedBlogEntries.sort(function (a, b) {
   return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
 });
+
 ---
 <Layout title="Blog">
-  <Container class="relative z-10">
+  <Container class="text-AquaNavy relative z-10">
     <Sectionhead>
-      <Fragment slot="title">Our Blog</Fragment>
+      <Fragment slot="title">aQua Blog 📓</Fragment>
       <Fragment slot="desc">
-        Articles about building aQuatonomous and other cool ideas we have in mind.
+        Articles about building and shipping (pun intended) at <strong>aQuatonomous</strong>.
       </Fragment>
     </Sectionhead>
     <main class="mt-16">
@@ -38,14 +39,14 @@ publishedBlogEntries.sort(function (a, b) {
                     height={600}
                     loading={index <= 2 ? "eager" : "lazy"}
                     decoding={index <= 2 ? "sync" : "async"}
-                    class="w-full rounded-md object-cover object-center bg-white"
+                    class="h-[250px] w-full overflow-hidden rounded-xl w-full rounded-md object-cover object-center bg-white"
                   />
                   <div>
-                    <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
+                    <span class="text-AquaBlue uppercase tracking-wider text-sm font-medium">
                       {blogPostEntry.data.category}
                     </span>
 
-                    <h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 ">
+                    <h2 class="text-AquaNavy text-3xl font-semibold leading-snug tracking-tight mt-1 ">
                       {blogPostEntry.data.title}
                     </h2>
 
