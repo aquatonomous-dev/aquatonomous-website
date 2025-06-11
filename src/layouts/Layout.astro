@@ -14,10 +14,7 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 
-const resolvedImageWithDomain = new URL(
-  "https://github.com/aquatonomous-dev/aquatonomous-website/blob/main/public/photos/NauticalDisaster.jpg?raw=true"
-).toString();
-
+const resolvedImageWithDomain = new URL("/photos/NauticalDisaster.jpg", Astro.site).toString();
 const { title } = Astro.props;
 
 const makeTitle = title
