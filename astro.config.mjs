@@ -12,5 +12,11 @@ import { defineConfig } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
   site: "https://aquatonomous.vercel.app",
-  integrations: [tailwind(), mdx(), sitemap(), icon(), react(), sitemap(), pagefind()],
+  integrations: [tailwind(), mdx(), sitemap(), react(), sitemap(), pagefind(), 
+    icon({
+      // Enable additional icon collections here
+      collections: {
+        mdi: () => import('@iconify-json/mdi/icons.json'),
+      },
+    }),],
 });
