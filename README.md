@@ -7,7 +7,7 @@ This is the official website for **aQuatonomous**, a student-led design team bui
 ## 🚀 Development
 
 1. Checkout a new branch to make your changes. Commit and push them.
-2. File a pull request.
+2. File a pull request, review and merge it.
 3. Deployment will be handled by a different repository which is forked from this one. See *Website Hosting*.
 
 ## 📍 Website Hosting
