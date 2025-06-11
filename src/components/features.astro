@@ -1,5 +1,4 @@
 ---
-// @ts-ignore
 import { Icon } from "astro-icon/components";
 
 const features = [
@@ -7,62 +6,62 @@ const features = [
     title: "Mission-Driven Innovation",
     emoji: "🚢",
     description:
-      "Focused on developing solar-powered autonomous surface vessels (ASVs), the team aims to advance sustainable maritime technology and ecological research."
+      "Focused on developing autonomous surface vehicles (ASVs), the team aims to advance sustainable maritime technology and ecological research.",
   },
   {
     title: "Passionate Team Growth",
     emoji: "🚀",
     description:
-      "Founded in 2023, the team has grown to 100+ members across diverse disciplines, uniting expertise in mechanical, electrical, ecological, business, and AI-driven autonomy."
+      "Founded in 2023, the team has grown to 100+ members across diverse disciplines, uniting expertise in mechanical, electrical, ecological, business, and AI-driven autonomy.",
   },
   {
     title: "Sustainability and Ecological Research",
     emoji: "🌱",
     description:
-      "The ASV supports environmental monitoring, sustainability, and water research, aiding scientists with advanced data collection for ecosystem preservation."
+      "The ASV supports environmental monitoring, sustainability, and water research, aiding scientists with advanced data collection for ecosystem preservation.",
   },
   {
     title: "Hands-On Learning & Development",
     emoji: "🛠️",
     description:
-      "Students gain real-world experience in autonomous technology, with first-years included early for professional growth in fields like engineering, programming, and ecological studies."
+      "Students gain real-world experience in autonomous technology, with first-years included early for professional growth in fields like engineering, programming, and ecological studies.",
   },
   {
     title: "Commitment to Equity & Outreach",
     emoji: "🌍",
     description:
-      "The team prioritizes Equity, Diversity, Inclusion, and Indigeneity (EDII), fostering a collaborative and inclusive environment while engaging in impactful outreach initiatives."
+      "The team prioritizes Equity, Diversity, Inclusion, and Indigeneity (EDII), fostering a collaborative and inclusive environment while engaging in impactful outreach initiatives.",
   },
   {
     title: "Global Competition Goals",
     emoji: "🏆",
     description:
-      "The team annually competes in the international RoboNation RoboBoat competition, showcasing cutting-edge ASV technology on a global stage to advance sustainable maritime solutions."
+      "The team annually competes in the international RoboNation RoboBoat competition, showcasing cutting-edge ASV technology on a global stage to advance sustainable maritime solutions.",
   },
 ];
 ---
-<div class="pb-8 md:pb-24">
-  <div class="md:mt-0">
-    <h2 class="text-4xl text-AquaNavy lg:text-5xl font-bold lg:tracking-tight">
-      A movement of Innovation, Sustainability, and Education.
-    </h2>
-    <p class="text-lg mt-4 text-slate-600">
-      Our team pillars itself on innovation, sustainability and education, and in its inaugural year has generated a movement of engineering students from diverse backgrounds, passionate about maritime autonomy, ocean protection, and friendly competition.
-    </p>
-  </div>
-  <div class="grid border-2 p-8 border-dashed border-slate-300 rounded-xl sm:grid-cols-2 md:grid-cols-3 mt-8 gap-16 ">
-    {
-      features.map((item) => (
-        <div class="flex gap-2 items-start">
-          <h3 class="font-semibold text-lg">
-            {item.emoji}
-          </h3>
+
+<section class="pb-8 md:pb-24">
+  <div class="max-w-5xl mx-auto">
+    <header class="text-center md:mt-0">
+      <h2 class="text-4xl lg:text-5xl font-bold text-AquaNavy lg:tracking-tight">
+        A Movement of Innovation, Sustainability, and Education.
+      </h2>
+      <p class="text-lg mt-4 text-slate-600">
+        Our team is built on innovation, sustainability, and education. In our inaugural year, we've sparked a movement of engineering students from diverse backgrounds, all passionate about maritime autonomy, ocean protection, and friendly competition.
+      </p>
+    </header>
+
+    <div class="grid border-2 border-dashed border-slate-300 rounded-xl p-8 sm:grid-cols-2 md:grid-cols-3 mt-12 gap-10">
+      {features.map((feature) => (
+        <div class="flex items-start gap-4">
+          <div class="text-2xl" aria-hidden="true">{feature.emoji}</div>
           <div>
-            <h3 class="font-semibold  text-AquaNavy text-lg">{item.title}</h3>{" "}
-            <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+            <h3 class="text-lg font-semibold text-AquaNavy">{feature.title}</h3>
+            <p class="mt-2 text-slate-500 leading-relaxed">{feature.description}</p>
           </div>
         </div>
-      ))
-    }
+      ))}
+    </div>
   </div>
-</div>
+</section>

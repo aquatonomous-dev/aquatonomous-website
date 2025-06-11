@@ -1,81 +1,26 @@
-# aQuatonomous Website
+# 🌊 aQuatonomous Website
 
-Developed and Deployed by [Joshua Gonzales](https://github.com/theOneAndOnlyOne)
+This is the official website for **aQuatonomous**, a student-led design team building sustainable autonomous surface vehicles (ASVs) for environmental research on Lake Ontario. Our mission is to develop clean-powered marine robotics and showcase our work through outreach, competition, and collaboration.
 
-### 1. Clone the repo
+> 🚢 In 2025, aQuatonomous placed 4th in Design Presentation and reached the semi-finals at the RoboNation RoboBoat competition — a strong start to an even stronger future.
+
+## 📍 Website Hosting
+
+The site is deployed using [Vercel](https://vercel.com), linked to the `aquatonomous-dev` GitHub account.
+
+- Only the **captains** of aQuatonomous have access to the `aquatonomous-dev` account.
+- The `aquatonomous-dev` account is **used solely for deployment**.
+- Please **do not push changes** directly from the `aquatonomous-dev` account unless explicitly necessary for build/debug purposes.
+
+## 🔧 Local Development
 
 ```bash
-git clone 
-```
+# 1. Clone the repository
+git clone https://github.com/aquatonomous-dev/aquatonomous-website.git
+cd aquatonomous-website
 
-The `.` will clone it to the current directory so make sure you are inside your project folder first.
-
-### 2. Install Dependencies
-
-```bash
+# 2. Install dependencies
 npm install
-# or
-yarn install
-# or (recommended)
-pnpm install
-```
 
-### 3. Start development Server
-
-```bash
+# 3. Start local dev server
 npm run dev
-# or
-yarn dev
-# or (recommended)
-pnpm dev
-```
-
-### Preview & Build
-
-```bash
-npm run preview
-npm run build
-# or
-yarn preview
-yarn build
-# or (recommended)
-pnpm preview
-pnpm build
-```
-
-We recommend using [pnpm](https://pnpm.io/) to save disk space on your computer.
-
-### Other Commands
-
-```bash
-pnpm astro ...
-pnpm astro add
-pnpm astro --help
-```
-
-## Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```
-/
-├── public/
-│   └── ...
-├── src/
-│   ├── components/
-│   │   └── ...
-│   ├── layouts/
-│   │   └── ...
-│   └── pages/
-│       └── ...
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## TailwindCSS
-
-TailwindCSS is already configured in this repo, so you can start using it without any installation.
-
