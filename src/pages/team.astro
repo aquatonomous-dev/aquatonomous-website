@@ -6,7 +6,7 @@ import Container from "@components/Container.astro";
 import Sectionhead from "@components/SectionHead.astro";
 
 // Try a different path pattern and log what we find
-const images = import.meta.glob('../assets/*.{jpeg,jpg,png,gif}', {
+const images = import.meta.glob('../assets/team-2024-2025/*.{jpeg,jpg,png,gif}', {
   eager: true 
 });
 
@@ -60,7 +60,7 @@ publishedTeamMembers.forEach(member => {
     >
       {
         sortedTeamMembers.map((teamMemberEntry) => {
-          const imagePath = `../assets/team-2025-2025/${teamMemberEntry.data.avatar.src}`;
+          const imagePath = `../assets/team-2024-2025/${teamMemberEntry.data.avatar.src}`;
           const image = images[imagePath];
 
           if (!image) {
