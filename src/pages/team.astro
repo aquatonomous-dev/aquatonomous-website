@@ -6,8 +6,8 @@ import Container from "@components/Container.astro";
 import Sectionhead from "@components/SectionHead.astro";
 
 // Try a different path pattern and log what we find
-const images = import.meta.glob('../assets/team-2024-2025/*.{jpeg,jpg,png,gif}', {
-  eager: true 
+const images = import.meta.glob('../assets/**/*.{jpeg,jpg,png,gif}', {
+  eager: true
 });
 
 // Log available images
@@ -17,69 +17,110 @@ const publishedTeamMembers = await getCollection("team", ({ data }) => {
   return !data.draft && data.publishDate < new Date();
 });
 
-// Sort team members
-const desiredOrder = [
+// 2025–2026 ordering (new team)
+const order2025_2026 = [
+  "Omar Allam",
+  "Julian Tiqui",
+  "Grace Smerchinski",
+  "Logan Calder",
+  "Kate Aiken",
+  "Sarah Dubé",
+  "Ethan Astri",
+  "Katrina Reimer",
+  "Lorenzo DeMarni",
+  "Jacob Badali",
+  "Charles Debane",
+  "Teema Mackay",
+  "Ethan Powell",
+  "Julia Atteck",
+  "Brian McRae",
+  "Thomas Hung"
+];
+
+// 2024–2025 ordering (old team)
+const order2024_2025 = [
   "Sabrina Button",
   "Will Palacek",
   "Aaron Kleiman",
   "Spencer Osborn",
   "Aedan Loughran",
   "Angus Dickson",
-  "Julian Tiqui",
   "Sara Bacher",
   "Joshua Gonzales",
-  "Jai Moraes",
-  "Logan Calder"
+  "Jai Moraes"
 ];
 
-const sortedTeamMembers = publishedTeamMembers.sort((a, b) => {
-  const indexA = desiredOrder.indexOf(a.data.name);
-  const indexB = desiredOrder.indexOf(b.data.name);
+// Helper to sort by an order array
+const sortByOrder = (members, order) =>
+  members.sort((a, b) => {
+    const indexA = order.indexOf(a.data.name);
+    const indexB = order.indexOf(b.data.name);
+    return (indexA === -1 ? Infinity : indexA) - (indexB === -1 ? Infinity : indexB);
+  });
 
-  // If a name is not found in desiredOrder, it stays at the end
-  return (indexA === -1 ? Infinity : indexA) - (indexB === -1 ? Infinity : indexB);
-});
+// Split into two groups
+const team2025_2026 = sortByOrder(
+  publishedTeamMembers.filter((m) => {
+    const imagePath = `../assets/team-2025-2026/${m.data.avatar.src}`;
+    return order2025_2026.includes(m.data.name) && Boolean(images[imagePath]);
+  }),
+  order2025_2026
+);
 
+const team2024_2025 = sortByOrder(
+  publishedTeamMembers.filter((m) => {
+    const imagePath = `../assets/team-2024-2025/${m.data.avatar.src}`;
+    return order2024_2025.includes(m.data.name) && Boolean(images[imagePath]);
+  }),
+  order2024_2025
+);
 
 // Log team member data
 publishedTeamMembers.forEach(member => {
   console.log("Member image path:", member.data.avatar.src);
 });
 ---
-
 <Layout title="Our Team">
   <Container class="text-AquaNavy relative z-10">
     <Sectionhead>
       <Fragment slot="title">Our Team</Fragment>
-      <Fragment slot="desc">Founded in 2023, aQuatonomous has rapidly expanded to a team of over 40+ active members dedicated to pushing the boundaries of autonomous maritime technology. Our mission is to design, build, and program a cutting-edge autonomous surface vehicle (ASV), offering students an unparalleled opportunity to gain hands-on experience with advanced autonomous systems and sustainable innovation.</Fragment>
-      <Fragment slot="desc"><br/><br/>Below is the 2024-2025 team. The 2025-2026 team has been hired! Profiles coming soon. :) </Fragment>
-      
+      <Fragment slot="desc">
+        Founded in 2023, aQuatonomous has rapidly expanded to a team of over 110+ active members
+        dedicated to pushing the boundaries of autonomous maritime technology. Our mission is to
+        design, build, and program a cutting-edge autonomous surface vehicle (ASV), offering students
+        an unparalleled opportunity to gain hands-on experience with advanced autonomous systems
+        and sustainable innovation.
+      </Fragment>
+      <Fragment slot="desc">
+        <br /><br />
+        <span class="text-gray-800 font-semibold">2025–2026 Team</span>
+      </Fragment>
     </Sectionhead>
-    <div
-      class="grid grid-cols-1 sm:grid-cols-3 gap-10 mx-auto max-w-5xl mt-12"
-    >
+
+    {/* 2025–2026 Team – replaces the current grid */}
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 mx-auto max-w-5xl mt-12">
       {
-        sortedTeamMembers.map((teamMemberEntry) => {
-          const imagePath = `../assets/team-2024-2025/${teamMemberEntry.data.avatar.src}`;
+        team2025_2026.map((teamMemberEntry) => {
+          const imagePath = `../assets/team-2025-2026/${teamMemberEntry.data.avatar.src}`;
           const image = images[imagePath];
 
           if (!image) {
             console.error(`Image not found for path: ${imagePath}`);
             return null;
           }
-        
+
           return (
             <div class="group">
               <div class="w-full aspect-square">
                 <a href={teamMemberEntry.data.url}>
-                <Picture
-                  src={image.default}
-                  alt={teamMemberEntry.data.avatar.alt}
-                  sizes="(max-width: 800px) 100vw, 400px"
-                  width={400}
-                  height={400}
-                  class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
-                />
+                  <Picture
+                    src={image.default}
+                    alt={teamMemberEntry.data.avatar.alt}
+                    sizes="(max-width: 800px) 100vw, 400px"
+                    width={400}
+                    height={400}
+                    class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
+                  />
                 </a>
               </div>
               <div class="mt-4 text-center">
@@ -93,5 +134,49 @@ publishedTeamMembers.forEach(member => {
         })
       }
     </div>
+
+    {/* 2024–2025 Team – old team in dropdown below */}
+    <details class="mt-16">
+      <summary class="cursor-pointer text-lg font-semibold text-center">
+        2024–2025 Team
+      </summary>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 mx-auto max-w-5xl mt-8">
+        {
+          team2024_2025.map((teamMemberEntry) => {
+            const imagePath = `../assets/team-2024-2025/${teamMemberEntry.data.avatar.src}`;
+            const image = images[imagePath];
+
+            if (!image) {
+              console.error(`Image not found for path: ${imagePath}`);
+              return null;
+            }
+
+            return (
+              <div class="group">
+                <div class="w-full aspect-square">
+                  <a href={teamMemberEntry.data.url}>
+                    <Picture
+                      src={image.default}
+                      alt={teamMemberEntry.data.avatar.alt}
+                      sizes="(max-width: 800px) 100vw, 400px"
+                      width={400}
+                      height={400}
+                      class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
+                    />
+                  </a>
+                </div>
+                <div class="mt-4 text-center">
+                  <h2 class="text-lg text-gray-800">{teamMemberEntry.data.name}</h2>
+                  <h3 class="text-sm text-slate-500">
+                    {teamMemberEntry.data.title}
+                  </h3>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </details>
   </Container>
 </Layout>
