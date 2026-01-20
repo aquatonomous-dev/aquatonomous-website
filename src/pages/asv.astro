@@ -3,6 +3,7 @@ import Container from "@components/Container.astro";
 import Layout from "@layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
 ---
+
 <Layout title="Our ASV">
   <Container class="relative z-10">
     <style>
@@ -21,292 +22,419 @@ import { Icon } from "astro-icon/components";
         pointer-events: none;
         text-align: center;
       }
-    
+
       #asv-preview canvas {
         cursor: grab;
       }
-    
+
       #asv-preview canvas:active {
         cursor: grabbing;
       }
+
+      /* Dropdown styling */
+      details.asv-dropdown summary {
+        cursor: pointer;
+        user-select: none;
+        list-style: none;
+      }
+      details.asv-dropdown summary::-webkit-details-marker {
+        display: none;
+      }
     </style>
+
+    <!-- ========================= -->
+    <!-- NEW ASV: THE FRONTENAC -->
+    <!-- ========================= -->
     <section>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mx-auto max-w-7xl mt-16">
-        <div id="asv-preview" class="w-full h-[300px] sm:h-[500px] bg-slate-50 bg-opacity-35 rounded-lg shadow-inner mb-8 z-11 relative">
-          <div
-            id="draggable-hint"
-            class="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white bg-black/70 px-4 py-2 rounded-lg text-center text-sm md:text-base pointer-events-none">
-            Drag to interact
-          </div>
+        <!-- Frontenac now uses a placeholder panel (no 3D model here) -->
+        <div class="w-full h-[300px] sm:h-[500px] bg-slate-50 bg-opacity-35 rounded-lg shadow-inner mb-8 z-11 relative flex items-center justify-center">
+          <p class="text-slate-500 font-mono text-sm">Frontenac photos coming soon</p>
         </div>
+
         <div class="flex flex-col justify-between h-full">
           <div>
-            <h1 class="text-4xl lg:text-5xl font-bold mb-12">
-              Nautical Disaster 💥
+            <h1 class="text-4xl lg:text-5xl font-bold mb-6">
+              The Frontenac ⚓
             </h1>
-            <p class="text-lg mb-8 text-slate-600">
-              <a href="https://open.spotify.com/track/58Gi98Nvrjo7qVI1dHOqFD?si=affb1f8b4b434b8a" 
-                 target="_blank" 
-                 rel="noopener noreferrer" 
-                 class="font-semibold inline-flex items-center gap-1 cursor-pointer hover:text-green-600">
-                Nautical Disaster
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="w-4 h-4 inline-block">
-                  <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-                </svg>
-              </a> 
-              is our Autonomous Surface Vehicle (ASV) designed to compete in the Roboboat 2025 competition. Named after Kingston's home grown band, 
-              
-              <a href="https://open.spotify.com/artist/0YMeriqrS3zgsX24nfY0F0" 
-                 target="_blank" 
-                 rel="noopener noreferrer" 
-                 class="font-semibold inline-flex items-center gap-1 cursor-pointer hover:text-green-600">
-              
-              <span class="font-light">The Tragically Hip</span>
-              </a>, our vehicle is a showcase of engineering, innovation, and teamwork.
+
+            <p class="text-lg mb-6 text-slate-600">
+              <span class="font-semibold">The Frontenac</span> is our 2025–2026 Autonomous Surface Vehicle (ASV) designed for RoboNation RoboBoat.
+              It is built around reliability, modularity, and clean integration, prioritizing consistent autonomous performance over unnecessary complexity.
             </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div class="rounded-lg border border-slate-200 bg-white p-4">
+                <p class="text-xs uppercase tracking-wide text-slate-500">Platform</p>
+                <p class="font-semibold text-slate-800">Catamaran, modular architecture</p>
+              </div>
+              <div class="rounded-lg border border-slate-200 bg-white p-4">
+                <p class="text-xs uppercase tracking-wide text-slate-500">Dimensions</p>
+                <p class="font-semibold text-slate-800">3.55 ft L, 3.02 ft W, 1.92 ft tall</p>
+              </div>
+              <div class="rounded-lg border border-slate-200 bg-white p-4">
+                <p class="text-xs uppercase tracking-wide text-slate-500">Mass and payload</p>
+                <p class="font-semibold text-slate-800">45 lb mass, 150 lb max load (45 lb optimal)</p>
+              </div>
+              <div class="rounded-lg border border-slate-200 bg-white p-4">
+                <p class="text-xs uppercase tracking-wide text-slate-500">Hull build</p>
+                <p class="font-semibold text-slate-800">3D-printed hulls, fibreglass wrapped</p>
+              </div>
+            </div>
+
+            <p class="text-slate-600 mb-6">
+              The wide catamaran beam improves transverse stability and reduces roll, giving us a stable platform for sensing and autonomy.
+              The boat is designed to disassemble quickly for transport, with the bridge, electrical system, and hulls detachable from one another.
+            </p>
+
+            <div class="rounded-xl bg-slate-50 border border-slate-200 p-5 mb-6">
+              <h2 class="text-lg font-bold mb-2">Sensor and autonomy stack</h2>
+              <ul class="text-slate-600 space-y-2">
+                <li>
+                  <span class="font-semibold">Navigation core:</span> Pixhawk 4 + M10 GPS + 6-axis IMU with EKF localisation, plus a secondary 9-axis IMU on the Jetson for redundancy.
+                </li>
+                <li>
+                  <span class="font-semibold">Perception:</span> Unitree 4D LiDAR L1 mounted forward at an angle for collision detection and three Arducam AR0234 cameras for wide coverage.
+                </li>
+                <li>
+                  <span class="font-semibold">Compute:</span> NVIDIA Jetson Orin Nano running ROS 2 Humble, interfacing to Pixhawk via MAVLink and MAVROS.
+                </li>
+                <li>
+                  <span class="font-semibold">Task handling:</span> Two-level planning, with a task-aware global planner and a potential-field local planner for waypoint tracking and obstacle avoidance.
+                </li>
+              </ul>
+            </div>
 
             <p class="mt-4 text-sm text-slate-500 font-mono inline-flex items-center gap-2">
               <a
-                href="https://drive.google.com/file/d/1_hwxIo9lGj9N4vvqH4HyaAePKooe21Pv/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/"
                 class="hover:text-AquaNavy transition inline-flex items-center gap-1"
               >
                 Read our Technical Design Report
                 <Icon name="mdi:open-in-new" class="w-4 h-4" />
               </a>
+              <span class="text-slate-400">(link placeholder)</span>
+            </p>
+
+            <p class="text-xs text-slate-400 mt-2">
+              Frontenac details sourced from the RoboBoat 2026 Technical Design Report PDF.
             </p>
           </div>
-          <div class="pb-8">
 
-           
-        </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-16 bg-white">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="grid grid-cols-4 grid-rows-3 gap-1 rounded-2xl overflow-hidden max-h-[600px]">
-          <img src="/photos/ElectricalDebugging.jpg" alt="Doing some electrical debugging..." 
-              class="object-cover w-full h-full rounded-2xl col-span-2 row-span-2" />
-
-          <img src="/photos/DockedDisaster.JPG" alt="Our ASV on the dock!" 
-              class="object-cover w-full h-full rounded-2xl col-span-2 row-span-1" />
-
-          <img src="/photos/ReadyAtTeamVillage.JPG" alt="The ASV ready to go in the team village!" 
-              class="object-cover w-full h-full rounded-2xl col-span-1 row-span-2" />
-
-          <img src="/photos/TelemetryDebugging.jpg" alt="A nifty antenna design..." 
-              class="object-cover w-full h-full rounded-2xl col-span-1 row-span-2" />
-
-          <img src="/photos/BeforeCompetition.jpg" alt="Holding up the boat in freezing weather on the way to Florida!" 
-              class="object-cover w-full h-full rounded-2xl col-span-2 row-span-1" />
-        </div>
-        <div class="py-8 bg-white">
-           <p class="text-sm mt-1 text-slate-500 text-center font-mono">
-            📸 Competition moments from RoboBoat 2025
-          </p>
-        </div>
-      </div>
-      
-    </section>
-
-    <section class="py-16 bg-white">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 id="asv-details" class="text-3xl font-bold mb-4">Built by Hands, Driven by Passion</h2>
-            <p class="text-slate-600 mb-4">
-              Every inch of Nautical Disaster is built with care by our team. From shaping plywood to layering fiberglass, we’re hands-on every step of the way. It’s not just about building a boat—it’s about creating something we’re proud of.
-            </p>
-            <p class="text-slate-600 mb-4">
-              Whether it’s figuring out tricky assembly pieces or sharing laughs over late-night builds, this project is as much about teamwork as it is about engineering. Everyone’s skills, ideas, and elbow grease come together to make this ASV the best it can be.
-            </p>
-            <p class="text-slate-600">
-              This is what happens when creativity, collaboration, and a shared goal collide. The result? A tough, reliable, and competition-ready ASV we can’t wait to see in action.
-            </p>
-          </div>
-          <div>
-            <img
-              src="photos/HullBuilding.jpg"
-              alt="Team members crafting the ASV"
-              class="w-full h-auto rounded-lg shadow-lg"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-    
-  
-    <!-- Capabilities Section -->
-    <section class="py-16 bg-gray-100 rounded-lg">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-8 text-center">Capabilities</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          <div>
-            <h3 class="text-xl font-semibold mb-4">Enhanced Control & Navigation</h3>
-            <p class="text-slate-600">
-              Harnessing the precision of dual T200 thrusters combined with advanced path-planning algorithms. Experience seamless transitions through obstacles, ensuring maximum maneuverability.
-            </p>
-          </div>
-          <div>
-            <h3 class="text-xl font-semibold mb-4">Intelligent Perception</h3>
-            <p class="text-slate-600">
-              Equipped with 3D LiDAR and high-resolution cameras, the ASV identifies and tracks objects in real-time. This layered sensory input ensures dynamic navigation even in challenging environments.
-            </p>
-          </div>
-          <div>
-            <h3 class="text-xl font-semibold mb-4">Safety at the Core</h3>
-            <p class="text-slate-600">
-              Dual-layer safety protocols include physical and remote emergency stops. Combined with redundancy in communication, the system guarantees operational safety.
-            </p>
-          </div>
-          <div>
-            <h3 class="text-xl font-semibold mb-4">Sustainable Design</h3>
-            <p class="text-slate-600">
-              Modular hulls and bridge layouts support ecological research tools while remaining transport-friendly. Built to last with marine-grade materials.
-            </p>
-          </div>
+          <div class="pb-8"></div>
         </div>
       </div>
     </section>
 
-    <!-- Featured Section: Respond & Navigate -->
-    <section class="py-16">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-8 text-center">Respond & Navigate</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div class="flex items-center justify-center">
-            <img
-              src="photos/MissionPlanner.jpg"
-              alt="Team members crafting the ASV"
-              class="w-full h-auto rounded-lg shadow-lg"
-            />
-          </div>
-          <div>
-            <h3 class="text-2xl font-bold mb-4">Adaptive Real-Time Decisions</h3>
-            <p class="text-slate-600 mb-4">
-              Operators can focus on decisions rather than data correlation. Real-time segmentation tracks buoys, obstacles, and routes, presenting clear actionable steps at critical moments.
-            </p>
-            <p class="text-slate-600">
-              A layered approach, combining Potential Fields Algorithm and ROS2-based control, ensures that the ASV responds quickly and efficiently to dynamic challenges.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- ========================= -->
+    <!-- DROPDOWN: NAUTICAL DISASTER -->
+    <!-- ========================= -->
+    <section class="mt-10">
+      <div class="max-w-7xl mx-auto">
+        <details class="asv-dropdown rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+          <summary class="flex items-center justify-between px-6 py-5">
+            <div>
+              <h2 class="text-2xl font-bold">Nautical Disaster 💥</h2>
+              <p class="text-slate-600 text-sm mt-1">
+                RoboBoat 2025 ASV, builds, photos, specs, and story
+              </p>
+            </div>
 
-    <!-- Specifications Section -->
-    <section class="py-16 bg-gray-100  rounded-lg">
-      <h2 class="text-3xl font-bold mb-8 text-center">Technical Specifications</h2>
-      <div class="overflow-x-auto min-w-full bg-white border border-gray-300">
-        <table>
-          <thead>
-            <tr class="bg-gray-200">
-              <th class="py-2 px-4 text-left font-semibold text-gray-700">Component</th>
-              <th class="py-2 px-4 text-left font-semibold text-gray-700">Vendor</th>
-              <th class="py-2 px-4 text-left font-semibold text-gray-700">Model/Type</th>
-              <th class="py-2 px-4 text-left font-semibold text-gray-700">Specs</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-b">
-              <td class="py-2 px-4">ASV Hull Form/Platform</td>
-              <td class="py-2 px-4">Custom-built</td>
-              <td class="py-2 px-4">Dual-hull marine platform</td>
-              <td class="py-2 px-4">Fiberglass-wrapped plywood and closed-cell foam; 140 lbs max capacity, optimal 55-70 lbs</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">Waterproof Connectors</td>
-              <td class="py-2 px-4">Not specified</td>
-              <td class="py-2 px-4">Liquid-tight cord grips</td>
-              <td class="py-2 px-4">O-rings and elevated bases for waterproofing</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">Propulsion</td>
-              <td class="py-2 px-4">Blue Robotics</td>
-              <td class="py-2 px-4">T200 Thruster</td>
-              <td class="py-2 px-4">180° rotation, 22A max current, 15.26V</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">Power System</td>
-              <td class="py-2 px-4">Blue Robotics</td>
-              <td class="py-2 px-4">Lithium Polymer Battery</td>
-              <td class="py-2 px-4">10Ah, 14.8V, 24A max; dual batteries connected in parallel</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">Motor Controls</td>
-              <td class="py-2 px-4">SureStep</td>
-              <td class="py-2 px-4">STP-MTR-23055</td>
-              <td class="py-2 px-4">Bipolar stepper motors, 2.8A, 15.26V with A4988 stepper drivers</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">CPU</td>
-              <td class="py-2 px-4">Nvidia</td>
-              <td class="py-2 px-4">Jetson Nano</td>
-              <td class="py-2 px-4">Runs perception and control algorithms; connects to Pixhawk and sensors</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">Teleoperation</td>
-              <td class="py-2 px-4">Multiple</td>
-              <td class="py-2 px-4">RC Radio, Wi-Fi Bullet</td>
-              <td class="py-2 px-4">Ubiquiti airMAX Bullet M2 for telemetry, RC radio for manual control</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">Compass</td>
-              <td class="py-2 px-4">Pixhawk</td>
-              <td class="py-2 px-4">Internal</td>
-              <td class="py-2 px-4">Integrated IMU for orientation</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">Inertial Measurement Unit (IMU)</td>
-              <td class="py-2 px-4">Pixhawk</td>
-              <td class="py-2 px-4">Internal</td>
-              <td class="py-2 px-4">Gyroscope-based; determines angular and linear movement</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">Camera(s)</td>
-              <td class="py-2 px-4">Custom</td>
-              <td class="py-2 px-4">Front and side cameras</td>
-              <td class="py-2 px-4">Used for buoy and obstacle detection; integrated with Jetson</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">Algorithms</td>
-              <td class="py-2 px-4">Custom</td>
-              <td class="py-2 px-4">Perception and Planning</td>
-              <td class="py-2 px-4">Left-right buoy navigation, potential fields for obstacle avoidance</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">Vision</td>
-              <td class="py-2 px-4">Unitree</td>
-              <td class="py-2 px-4">4D LiDAR L1</td>
-              <td class="py-2 px-4">Secondary obstacle detection, 3-section segmentation</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">Localization and Mapping</td>
-              <td class="py-2 px-4">Custom</td>
-              <td class="py-2 px-4">GPS and IMU Integration</td>
-              <td class="py-2 px-4">ROS2 and Mavros middleware for mapping and navigation</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">Autonomy</td>
-              <td class="py-2 px-4">Custom</td>
-              <td class="py-2 px-4">Path Planning Algorithms</td>
-              <td class="py-2 px-4">Includes A*, Dijkstra's, and ROS-based navigation</td>
-            </tr>
-            <tr class="border-b">
-              <td class="py-2 px-4">Open-Source Software</td>
-              <td class="py-2 px-4">Custom</td>
-              <td class="py-2 px-4">ROS2, Mavros</td>
-              <td class="py-2 px-4">Middleware for communication and control</td>
-            </tr>
-          </tbody>
-        </table>
+            <span class="inline-flex items-center gap-2 text-slate-600 font-semibold">
+              Expand
+              <Icon name="mdi:chevron-down" class="w-5 h-5" />
+            </span>
+          </summary>
+
+          <div class="px-6 pb-6">
+            <!-- 3D model moved here (under Nautical Disaster) -->
+            <div
+              id="asv-preview"
+              class="w-full h-[300px] sm:h-[500px] bg-slate-50 bg-opacity-35 rounded-lg shadow-inner mb-8 z-11 relative"
+            >
+              <div
+                id="draggable-hint"
+                class="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white bg-black/70 px-4 py-2 rounded-lg text-center text-sm md:text-base pointer-events-none"
+              >
+                Drag to interact
+              </div>
+            </div>
+
+            <!-- ========================= -->
+            <!-- EVERYTHING BELOW IS YOUR ORIGINAL NAUTICAL DISASTER PAGE CONTENT -->
+            <!-- I only wrapped it inside this dropdown. -->
+            <!-- ========================= -->
+
+            <section>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mx-auto max-w-7xl mt-6">
+                <div class="flex flex-col justify-between h-full">
+                  <div>
+                    <h1 class="text-4xl lg:text-5xl font-bold mb-12">
+                      Nautical Disaster 💥
+                    </h1>
+                    <p class="text-lg mb-8 text-slate-600">
+                      <a href="https://open.spotify.com/track/58Gi98Nvrjo7qVI1dHOqFD?si=affb1f8b4b434b8a"
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         class="font-semibold inline-flex items-center gap-1 cursor-pointer hover:text-green-600">
+                        Nautical Disaster
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          class="w-4 h-4 inline-block">
+                          <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                        </svg>
+                      </a>
+                      is our Autonomous Surface Vehicle (ASV) designed to compete in the Roboboat 2025 competition. Named after Kingston's home grown band,
+
+                      <a href="https://open.spotify.com/artist/0YMeriqrS3zgsX24nfY0F0"
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         class="font-semibold inline-flex items-center gap-1 cursor-pointer hover:text-green-600">
+
+                      <span class="font-light">The Tragically Hip</span>
+                      </a>, our vehicle is a showcase of engineering, innovation, and teamwork.
+                    </p>
+
+                    <p class="mt-4 text-sm text-slate-500 font-mono inline-flex items-center gap-2">
+                      <a
+                        href="https://drive.google.com/file/d/1_hwxIo9lGj9N4vvqH4HyaAePKooe21Pv/view?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hover:text-AquaNavy transition inline-flex items-center gap-1"
+                      >
+                        Read our Technical Design Report
+                        <Icon name="mdi:open-in-new" class="w-4 h-4" />
+                      </a>
+                    </p>
+                  </div>
+                  <div class="pb-8"></div>
+                </div>
+              </div>
+            </section>
+
+            <section class="py-16 bg-white">
+              <div class="max-w-6xl mx-auto px-6">
+                <div class="grid grid-cols-4 grid-rows-3 gap-1 rounded-2xl overflow-hidden max-h-[600px]">
+                  <img src="/photos/ElectricalDebugging.jpg" alt="Doing some electrical debugging..."
+                      class="object-cover w-full h-full rounded-2xl col-span-2 row-span-2" />
+
+                  <img src="/photos/DockedDisaster.JPG" alt="Our ASV on the dock!"
+                      class="object-cover w-full h-full rounded-2xl col-span-2 row-span-1" />
+
+                  <img src="/photos/ReadyAtTeamVillage.JPG" alt="The ASV ready to go in the team village!"
+                      class="object-cover w-full h-full rounded-2xl col-span-1 row-span-2" />
+
+                  <img src="/photos/TelemetryDebugging.jpg" alt="A nifty antenna design..."
+                      class="object-cover w-full h-full rounded-2xl col-span-1 row-span-2" />
+
+                  <img src="/photos/BeforeCompetition.jpg" alt="Holding up the boat in freezing weather on the way to Florida!"
+                      class="object-cover w-full h-full rounded-2xl col-span-2 row-span-1" />
+                </div>
+                <div class="py-8 bg-white">
+                  <p class="text-sm mt-1 text-slate-500 text-center font-mono">
+                    📸 Competition moments from RoboBoat 2025
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section class="py-16 bg-white">
+              <div class="max-w-6xl mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                  <div>
+                    <h2 id="asv-details" class="text-3xl font-bold mb-4">Built by Hands, Driven by Passion</h2>
+                    <p class="text-slate-600 mb-4">
+                      Every inch of Nautical Disaster is built with care by our team. From shaping plywood to layering fiberglass, we’re hands-on every step of the way. It’s not just about building a boat, it’s about creating something we’re proud of.
+                    </p>
+                    <p class="text-slate-600 mb-4">
+                      Whether it’s figuring out tricky assembly pieces or sharing laughs over late-night builds, this project is as much about teamwork as it is about engineering. Everyone’s skills, ideas, and elbow grease come together to make this ASV the best it can be.
+                    </p>
+                    <p class="text-slate-600">
+                      This is what happens when creativity, collaboration, and a shared goal collide. The result? A tough, reliable, and competition-ready ASV we can’t wait to see in action.
+                    </p>
+                  </div>
+                  <div>
+                    <img
+                      src="photos/HullBuilding.jpg"
+                      alt="Team members crafting the ASV"
+                      class="w-full h-auto rounded-lg shadow-lg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Capabilities Section -->
+            <section class="py-16 bg-gray-100 rounded-lg">
+              <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-8 text-center">Capabilities</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div>
+                    <h3 class="text-xl font-semibold mb-4">Enhanced Control & Navigation</h3>
+                    <p class="text-slate-600">
+                      Harnessing the precision of dual T200 thrusters combined with advanced path-planning algorithms. Experience seamless transitions through obstacles, ensuring maximum maneuverability.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-semibold mb-4">Intelligent Perception</h3>
+                    <p class="text-slate-600">
+                      Equipped with 3D LiDAR and high-resolution cameras, the ASV identifies and tracks objects in real-time. This layered sensory input ensures dynamic navigation even in challenging environments.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-semibold mb-4">Safety at the Core</h3>
+                    <p class="text-slate-600">
+                      Dual-layer safety protocols include physical and remote emergency stops. Combined with redundancy in communication, the system guarantees operational safety.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-semibold mb-4">Sustainable Design</h3>
+                    <p class="text-slate-600">
+                      Modular hulls and bridge layouts support ecological research tools while remaining transport-friendly. Built to last with marine-grade materials.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Featured Section: Respond & Navigate -->
+            <section class="py-16">
+              <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-8 text-center">Respond & Navigate</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                  <div class="flex items-center justify-center">
+                    <img
+                      src="photos/MissionPlanner.jpg"
+                      alt="Team members crafting the ASV"
+                      class="w-full h-auto rounded-lg shadow-lg"
+                    />
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold mb-4">Adaptive Real-Time Decisions</h3>
+                    <p class="text-slate-600 mb-4">
+                      Operators can focus on decisions rather than data correlation. Real-time segmentation tracks buoys, obstacles, and routes, presenting clear actionable steps at critical moments.
+                    </p>
+                    <p class="text-slate-600">
+                      A layered approach, combining Potential Fields Algorithm and ROS2-based control, ensures that the ASV responds quickly and efficiently to dynamic challenges.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Specifications Section -->
+            <section class="py-16 bg-gray-100 rounded-lg">
+              <h2 class="text-3xl font-bold mb-8 text-center">Technical Specifications</h2>
+              <div class="overflow-x-auto min-w-full bg-white border border-gray-300">
+                <table>
+                  <thead>
+                    <tr class="bg-gray-200">
+                      <th class="py-2 px-4 text-left font-semibold text-gray-700">Component</th>
+                      <th class="py-2 px-4 text-left font-semibold text-gray-700">Vendor</th>
+                      <th class="py-2 px-4 text-left font-semibold text-gray-700">Model/Type</th>
+                      <th class="py-2 px-4 text-left font-semibold text-gray-700">Specs</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- unchanged rows -->
+                    <tr class="border-b">
+                      <td class="py-2 px-4">ASV Hull Form/Platform</td>
+                      <td class="py-2 px-4">Custom-built</td>
+                      <td class="py-2 px-4">Dual-hull marine platform</td>
+                      <td class="py-2 px-4">Fiberglass-wrapped plywood and closed-cell foam; 140 lbs max capacity, optimal 55-70 lbs</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">Waterproof Connectors</td>
+                      <td class="py-2 px-4">Not specified</td>
+                      <td class="py-2 px-4">Liquid-tight cord grips</td>
+                      <td class="py-2 px-4">O-rings and elevated bases for waterproofing</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">Propulsion</td>
+                      <td class="py-2 px-4">Blue Robotics</td>
+                      <td class="py-2 px-4">T200 Thruster</td>
+                      <td class="py-2 px-4">180° rotation, 22A max current, 15.26V</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">Power System</td>
+                      <td class="py-2 px-4">Blue Robotics</td>
+                      <td class="py-2 px-4">Lithium Polymer Battery</td>
+                      <td class="py-2 px-4">10Ah, 14.8V, 24A max; dual batteries connected in parallel</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">Motor Controls</td>
+                      <td class="py-2 px-4">SureStep</td>
+                      <td class="py-2 px-4">STP-MTR-23055</td>
+                      <td class="py-2 px-4">Bipolar stepper motors, 2.8A, 15.26V with A4988 stepper drivers</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">CPU</td>
+                      <td class="py-2 px-4">Nvidia</td>
+                      <td class="py-2 px-4">Jetson Nano</td>
+                      <td class="py-2 px-4">Runs perception and control algorithms; connects to Pixhawk and sensors</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">Teleoperation</td>
+                      <td class="py-2 px-4">Multiple</td>
+                      <td class="py-2 px-4">RC Radio, Wi-Fi Bullet</td>
+                      <td class="py-2 px-4">Ubiquiti airMAX Bullet M2 for telemetry, RC radio for manual control</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">Compass</td>
+                      <td class="py-2 px-4">Pixhawk</td>
+                      <td class="py-2 px-4">Internal</td>
+                      <td class="py-2 px-4">Integrated IMU for orientation</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">Inertial Measurement Unit (IMU)</td>
+                      <td class="py-2 px-4">Pixhawk</td>
+                      <td class="py-2 px-4">Internal</td>
+                      <td class="py-2 px-4">Gyroscope-based; determines angular and linear movement</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">Camera(s)</td>
+                      <td class="py-2 px-4">Custom</td>
+                      <td class="py-2 px-4">Front and side cameras</td>
+                      <td class="py-2 px-4">Used for buoy and obstacle detection; integrated with Jetson</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">Algorithms</td>
+                      <td class="py-2 px-4">Custom</td>
+                      <td class="py-2 px-4">Perception and Planning</td>
+                      <td class="py-2 px-4">Left-right buoy navigation, potential fields for obstacle avoidance</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">Vision</td>
+                      <td class="py-2 px-4">Unitree</td>
+                      <td class="py-2 px-4">4D LiDAR L1</td>
+                      <td class="py-2 px-4">Secondary obstacle detection, 3-section segmentation</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">Localization and Mapping</td>
+                      <td class="py-2 px-4">Custom</td>
+                      <td class="py-2 px-4">GPS and IMU Integration</td>
+                      <td class="py-2 px-4">ROS2 and Mavros middleware for mapping and navigation</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">Autonomy</td>
+                      <td class="py-2 px-4">Custom</td>
+                      <td class="py-2 px-4">Path Planning Algorithms</td>
+                      <td class="py-2 px-4">Includes A*, Dijkstra's, and ROS-based navigation</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2 px-4">Open-Source Software</td>
+                      <td class="py-2 px-4">Custom</td>
+                      <td class="py-2 px-4">ROS2, Mavros</td>
+                      <td class="py-2 px-4">Middleware for communication and control</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </details>
       </div>
     </section>
   </Container>
@@ -321,26 +449,39 @@ import { Icon } from "astro-icon/components";
   document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('asv-preview');
     const draggableHint = document.getElementById('draggable-hint');
-    if (container) {
-      const preview = new ASVPreview(container);
-      console.log("previewed");
-      // Hide the hint when the user interacts
-      const hideHint = () => {
-        if (draggableHint) {
-          draggableHint.classList.add('hidden');
+
+    if (!container) return;
+
+    const preview = new ASVPreview(container);
+    console.log("previewed");
+
+    // Hide the hint when the user interacts
+    const hideHint = () => {
+      if (draggableHint) {
+        draggableHint.classList.add('hidden');
+      }
+      container.removeEventListener('mousedown', hideHint);
+      container.removeEventListener('touchstart', hideHint);
+    };
+
+    container.addEventListener('mousedown', hideHint);
+    container.addEventListener('touchstart', hideHint);
+
+    // Re-trigger resize when dropdown opens so Three.js sizes correctly
+    const details = document.querySelector('details.asv-dropdown');
+    if (details) {
+      details.addEventListener('toggle', () => {
+        if (details.open) {
+          setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+          }, 50);
         }
-        container.removeEventListener('mousedown', hideHint);
-        container.removeEventListener('touchstart', hideHint);
-      };
-
-      container.addEventListener('mousedown', hideHint);
-      container.addEventListener('touchstart', hideHint);
-
-      // Clean up on page unload
-      window.addEventListener('unload', () => {
-        preview.dispose();
       });
     }
+
+    // Clean up on page unload
+    window.addEventListener('unload', () => {
+      preview.dispose();
+    });
   });
-  
 </script>
