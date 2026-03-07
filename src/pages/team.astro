@@ -26,12 +26,10 @@ const order2025_2026 = [
   "Kate Aiken",
   "Sarah Dubé",
   "Ethan Astri",
-  "Katrina Reimer",
   "Lorenzo DeMarni",
   "Jacob Badali",
   "Charles Debane",
   "Teema Mackay",
-  "Ethan Powell",
   "Julia Atteck",
   "Brian McRae",
   "Thomas Hung"
@@ -41,6 +39,8 @@ const order2025_2026 = [
 const order2024_2025 = [
   "Sabrina Button",
   "Will Palacek",
+  "Julian Tiqui",
+  "Logan Calder",
   "Aaron Kleiman",
   "Spencer Osborn",
   "Aedan Loughran",
@@ -57,6 +57,26 @@ const sortByOrder = (members, order) =>
     const indexB = order.indexOf(b.data.name);
     return (indexA === -1 ? Infinity : indexA) - (indexB === -1 ? Infinity : indexB);
   });
+
+const getTeamCardClass = (index, total) => {
+  const remainder = total % 3;
+
+  if (remainder === 1 && index === total - 1) {
+    return "sm:col-start-3";
+  }
+
+  if (remainder === 2) {
+    if (index === total - 2) {
+      return "sm:col-start-2";
+    }
+
+    if (index === total - 1) {
+      return "sm:col-start-4";
+    }
+  }
+
+  return "";
+};
 
 // Split into two groups
 const team2025_2026 = sortByOrder(
@@ -98,9 +118,9 @@ publishedTeamMembers.forEach(member => {
     </Sectionhead>
 
     {/* 2025–2026 Team – replaces the current grid */}
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 mx-auto max-w-5xl mt-12">
+    <div class="grid grid-cols-1 gap-10 mx-auto max-w-5xl mt-12 sm:grid-cols-6">
       {
-        team2025_2026.map((teamMemberEntry) => {
+        team2025_2026.map((teamMemberEntry, index) => {
           const imagePath = `../assets/team-2025-2026/${teamMemberEntry.data.avatar.src}`;
           const image = images[imagePath];
 
@@ -110,7 +130,7 @@ publishedTeamMembers.forEach(member => {
           }
 
           return (
-            <div class="group">
+            <div class={`group sm:col-span-2 ${getTeamCardClass(index, team2025_2026.length)}`}>
               <div class="w-full aspect-square">
                 <a href={teamMemberEntry.data.url}>
                   <Picture
@@ -141,9 +161,9 @@ publishedTeamMembers.forEach(member => {
         2024–2025 Team
       </summary>
 
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 mx-auto max-w-5xl mt-8">
+      <div class="grid grid-cols-1 gap-10 mx-auto max-w-5xl mt-8 sm:grid-cols-6">
         {
-          team2024_2025.map((teamMemberEntry) => {
+          team2024_2025.map((teamMemberEntry, index) => {
             const imagePath = `../assets/team-2024-2025/${teamMemberEntry.data.avatar.src}`;
             const image = images[imagePath];
 
@@ -153,7 +173,7 @@ publishedTeamMembers.forEach(member => {
             }
 
             return (
-              <div class="group">
+              <div class={`group sm:col-span-2 ${getTeamCardClass(index, team2024_2025.length)}`}>
                 <div class="w-full aspect-square">
                   <a href={teamMemberEntry.data.url}>
                     <Picture

@@ -1,44 +1,38 @@
 ---
-const achievements = [
-  {
-    title: "2025 Design Team of the Year",
-    emoji: "🥇",
-    description: "Awarded by The Engineering Society of Queen’s University for overall excellence.",
-  },
-  {
-    title: "4th Place – International Design Presentation",
-    emoji: "🎤",
-    description: "Top 5 globally in RoboBoat 2025 design documentation presentation category.",
-  },
-  {
-    title: "4/5 Autonomy Tasks – Semifinalist",
-    emoji: "🤖",
-    description: "Qualified for semifinals in nearly all RoboBoat 2025 autonomy challenges.",
-  },
-];
+import { latestAchievements } from "@utils/achievements.js";
 ---
 
 <section class="pb-8 md:pb-24">
-  <div class="max-w-5xl mx-auto">
+  <div class="mx-auto max-w-5xl">
     <header class="text-center">
-      <h2 class="text-4xl lg:text-5xl font-bold text-AquaNavy lg:tracking-tight">
-        Our Achievements.
+      <h2 class="text-4xl font-bold text-AquaNavy lg:text-5xl lg:tracking-tight">
+        Latest Achievements.
       </h2>
-      <p class="text-lg mt-4 text-slate-600">
-        In our first year, our team made waves at competitions and on campus. Here's a glimpse of what we've achieved so far.
+      <p class="mt-4 text-lg text-slate-600">
+        The newest additions to our record are highlighted here. Visit the full
+        achievements page for our broader milestones and awards.
       </p>
     </header>
 
-    <div class="grid border-2 border-dashed border-slate-300 rounded-xl p-8 sm:grid-cols-2 md:grid-cols-3 mt-12 gap-10">
-      {achievements.map((item) => (
+    <div class="mt-12 grid gap-10 rounded-xl border-2 border-dashed border-slate-300 p-8 md:grid-cols-2">
+      {latestAchievements.map((item) => (
         <div class="flex items-start gap-4">
           <div class="text-2xl" aria-hidden="true">{item.emoji}</div>
           <div>
             <h3 class="text-lg font-semibold text-AquaNavy">{item.title}</h3>
-            <p class="mt-2 text-slate-500 leading-relaxed">{item.description}</p>
+            <p class="mt-2 leading-relaxed text-slate-500">{item.description}</p>
           </div>
         </div>
       ))}
+    </div>
+
+    <div class="mt-8 text-center">
+      <a
+        href="/achievements"
+        class="inline-flex items-center rounded-xl bg-AquaNavy px-6 py-3 text-sm font-medium text-white shadow-lg transition-all duration-200 hover:bg-AquaBlue"
+      >
+        View All Achievements
+      </a>
     </div>
   </div>
 </section>

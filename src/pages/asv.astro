@@ -2,6 +2,34 @@
 import Container from "@components/Container.astro";
 import Layout from "@layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
+
+const frontenacPhotos = [
+  {
+    src: "/photos/the-frontenac/IMG_2288.jpg",
+    alt: "Frontenac team photo",
+    class: "col-span-2 row-span-2",
+  },
+  {
+    src: "/photos/the-frontenac/IMG_2297.jpg",
+    alt: "Frontenac on display",
+    class: "col-span-2 row-span-1",
+  },
+  {
+    src: "/photos/the-frontenac/IMG_6672.jpg",
+    alt: "Frontenac build detail",
+    class: "col-span-1 row-span-2",
+  },
+  {
+    src: "/photos/the-frontenac/IMG-20260220-WA0006.jpg",
+    alt: "Frontenac competition preparation",
+    class: "col-span-1 row-span-2",
+  },
+  {
+    src: "/photos/the-frontenac/IMG-20260224-WA0076.jpg",
+    alt: "Frontenac competition moment",
+    class: "col-span-2 row-span-1",
+  },
+];
 ---
 
 <Layout title="Our ASV">
@@ -47,9 +75,19 @@ import { Icon } from "astro-icon/components";
     <!-- ========================= -->
     <section>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mx-auto max-w-7xl mt-16">
-        <!-- Frontenac now uses a placeholder panel (no 3D model here) -->
-        <div class="w-full h-[300px] sm:h-[500px] bg-slate-50 bg-opacity-35 rounded-lg shadow-inner mb-8 z-11 relative flex items-center justify-center">
-          <p class="text-slate-500 font-mono text-sm">Frontenac photos coming soon</p>
+        <div class="mb-8">
+          <div class="grid max-h-[500px] grid-cols-4 grid-rows-3 gap-1 overflow-hidden rounded-2xl">
+            {frontenacPhotos.map((photo) => (
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                class={`h-full w-full rounded-2xl object-cover ${photo.class}`}
+              />
+            ))}
+          </div>
+          <p class="mt-4 text-center font-mono text-sm text-slate-500">
+            Frontenac build and competition moments
+          </p>
         </div>
 
         <div class="flex flex-col justify-between h-full">
