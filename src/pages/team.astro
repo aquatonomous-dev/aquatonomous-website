@@ -95,6 +95,59 @@ const team2024_2025 = sortByOrder(
   order2024_2025
 );
 
+const members2026 = new Map(
+  publishedTeamMembers
+    .filter((member) => member.data.year === "2026-2027")
+    .map((member) => [member.data.name, member])
+);
+
+const groups2026_2027 = [
+  {
+    heading: "",
+    names: ["Spencer Osborn", "Angus Dickson"],
+  },
+  {
+    heading: "Mechanical",
+    names: ["Kyle Hermer", "Mathias Weeda"],
+  },
+  {
+    heading: "Electrical",
+    names: [
+      "Sachin Khandelwal",
+      "Dylan Jacob",
+      "Autumn Heyerman",
+      "Alisa Ruzhynsky",
+    ],
+  },
+  {
+    heading: "Software Team",
+    names: [
+      "Ethan Astri",
+      "Nathaniel Felsky-Deelstra",
+      "Evan Verikios",
+      "Visakam Markilrajah",
+    ],
+  },
+  {
+    heading: "Ecological",
+    names: ["Julie Schaber", "Kaya Novotny", "Jimmy Tia"],
+  },
+  {
+    heading: "NAVIS",
+    names: ["Carson Wong", "Becca Salai"],
+  },
+  {
+    heading: "Business",
+    names: ["Will Garrod", "Bryce Tovich", "Tecla Johnson"],
+  },
+].map((group) => ({
+  heading: group.heading,
+  members: group.names.flatMap((name) => {
+    const member = members2026.get(name);
+    return member ? [member] : [];
+  }),
+}));
+
 // Log team member data
 publishedTeamMembers.forEach(member => {
   console.log("Member image path:", member.data.avatar.src);
@@ -113,47 +166,90 @@ publishedTeamMembers.forEach(member => {
       </Fragment>
       <Fragment slot="desc">
         <br /><br />
-        <span class="text-gray-800 font-semibold">2025–2026 Team</span>
+        <span class="text-gray-800 font-semibold">2026–2027 Team</span>
       </Fragment>
     </Sectionhead>
 
-    {/* 2025–2026 Team – replaces the current grid */}
-    <div class="grid grid-cols-1 gap-10 mx-auto max-w-5xl mt-12 sm:grid-cols-6">
-      {
-        team2025_2026.map((teamMemberEntry, index) => {
-          const imagePath = `../assets/team-2025-2026/${teamMemberEntry.data.avatar.src}`;
-          const image = images[imagePath];
+    {
+      groups2026_2027.map((group) => (
+        <section>
+          {group.heading && (
+            <h2 class="mt-16 text-center text-xl font-semibold text-gray-800">
+              {group.heading}
+            </h2>
+          )}
+          <div class="grid grid-cols-1 gap-10 mx-auto max-w-5xl mt-12 sm:grid-cols-6">
+            {
+              group.members.map((teamMemberEntry, index) => (
+                <div class={`sm:col-span-2 ${getTeamCardClass(index, group.members.length)}`}>
+                  <div class="w-full aspect-square">
+                    {teamMemberEntry.data.url ? (
+                      <a
+                        href={teamMemberEntry.data.url}
+                        class="block w-full h-full rounded-md bg-slate-100"
+                        aria-label={teamMemberEntry.data.name}
+                      ></a>
+                    ) : (
+                      <div class="w-full h-full rounded-md bg-slate-100"></div>
+                    )}
+                  </div>
+                  <div class="mt-4 text-center">
+                    <h2 class="text-lg text-gray-800">{teamMemberEntry.data.name}</h2>
+                    <h3 class="text-sm text-slate-500">
+                      {teamMemberEntry.data.title}
+                    </h3>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+      ))
+    }
 
-          if (!image) {
-            console.error(`Image not found for path: ${imagePath}`);
-            return null;
-          }
+    {/* 2025–2026 Team */}
+    <details class="mt-16">
+      <summary class="cursor-pointer text-lg font-semibold text-center">
+        2025–2026 Team
+      </summary>
 
-          return (
-            <div class={`group sm:col-span-2 ${getTeamCardClass(index, team2025_2026.length)}`}>
-              <div class="w-full aspect-square">
-                <a href={teamMemberEntry.data.url}>
-                  <Picture
-                    src={image.default}
-                    alt={teamMemberEntry.data.avatar.alt}
-                    sizes="(max-width: 800px) 100vw, 400px"
-                    width={400}
-                    height={400}
-                    class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
-                  />
-                </a>
+      <div class="grid grid-cols-1 gap-10 mx-auto max-w-5xl mt-8 sm:grid-cols-6">
+        {
+          team2025_2026.map((teamMemberEntry, index) => {
+            const imagePath = `../assets/team-2025-2026/${teamMemberEntry.data.avatar.src}`;
+            const image = images[imagePath];
+
+            if (!image) {
+              console.error(`Image not found for path: ${imagePath}`);
+              return null;
+            }
+
+            return (
+              <div class={`group sm:col-span-2 ${getTeamCardClass(index, team2025_2026.length)}`}>
+                <div class="w-full aspect-square">
+                  <a href={teamMemberEntry.data.url}>
+                    <Picture
+                      src={image.default}
+                      alt={teamMemberEntry.data.avatar.alt}
+                      sizes="(max-width: 800px) 100vw, 400px"
+                      width={400}
+                      height={400}
+                      class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
+                    />
+                  </a>
+                </div>
+                <div class="mt-4 text-center">
+                  <h2 class="text-lg text-gray-800">{teamMemberEntry.data.name}</h2>
+                  <h3 class="text-sm text-slate-500">
+                    {teamMemberEntry.data.title}
+                  </h3>
+                </div>
               </div>
-              <div class="mt-4 text-center">
-                <h2 class="text-lg text-gray-800">{teamMemberEntry.data.name}</h2>
-                <h3 class="text-sm text-slate-500">
-                  {teamMemberEntry.data.title}
-                </h3>
-              </div>
-            </div>
-          );
-        })
-      }
-    </div>
+            );
+          })
+        }
+      </div>
+    </details>
 
     {/* 2024–2025 Team – old team in dropdown below */}
     <details class="mt-16">

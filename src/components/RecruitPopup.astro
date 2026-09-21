@@ -1,0 +1,139 @@
+---
+const applyUrl =
+  "https://apply.clikk.ca/engsoc/jobs/fc74677e-519c-4a9c-8cb8-2548971a09ac";
+---
+
+<div
+  id="recruit-popup"
+  class="fixed inset-0 z-50 hidden items-end justify-center p-4 sm:items-center"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="recruit-popup-title"
+  hidden
+>
+  <button
+    type="button"
+    class="absolute inset-0 bg-AquaNavy/70 backdrop-blur-sm"
+    data-recruit-dismiss
+    aria-label="Close application notice"
+  ></button>
+
+  <div
+    class="relative w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl"
+  >
+    <div class="bg-gradient-to-r from-AquaNavy to-AquaBlue px-6 py-5 text-white">
+      <p class="font-mono text-xs uppercase tracking-widest text-AquaNeon">
+        Now recruiting
+      </p>
+      <h2 id="recruit-popup-title" class="mt-1 text-2xl font-semibold tracking-tight">
+        Apply to be a general member
+      </h2>
+    </div>
+
+    <div class="px-6 py-5">
+      <p class="text-slate-600">
+        aQuatonomous is looking for general members. Apply through EngSoc to join the team.
+      </p>
+
+      <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+        <a
+          href={applyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-recruit-apply
+          class="inline-flex flex-1 items-center justify-center rounded-full bg-AquaNavy px-5 py-2.5 text-center font-semibold text-white transition hover:bg-AquaBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-AquaNavy"
+        >
+          Apply now
+        </a>
+        <button
+          type="button"
+          data-recruit-dismiss
+          class="inline-flex flex-1 items-center justify-center rounded-full border-2 border-AquaNavy px-5 py-2.5 font-semibold text-AquaNavy transition hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-AquaNavy"
+        >
+          Not now
+        </button>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      data-recruit-dismiss
+      class="absolute right-3 top-3 rounded-full p-1 text-white/80 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      aria-label="Close"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = "aq-general-member-popup";
+  const popup = document.getElementById("recruit-popup");
+
+  // Shown through September 25, 2026, then removed at midnight Eastern
+  // (12:00 AM on September 26 in America/New_York).
+  const recruitmentIsOpen = (now = new Date()) => {
+    const deadlineGuess = Date.UTC(2026, 8, 26, 0, 0, 0);
+    const parts = Object.fromEntries(
+      new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        hourCycle: "h23",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      })
+        .formatToParts(new Date(deadlineGuess))
+        .map((part) => [part.type, part.value]),
+    );
+    const renderedAsUtc = Date.UTC(
+      Number(parts.year),
+      Number(parts.month) - 1,
+      Number(parts.day),
+      Number(parts.hour),
+      Number(parts.minute),
+      Number(parts.second),
+    );
+    const deadline = deadlineGuess - (renderedAsUtc - deadlineGuess);
+    return now.getTime() < deadline;
+  };
+
+  if (popup) {
+    const dismissed = (() => {
+      try {
+        return sessionStorage.getItem(STORAGE_KEY) === "dismissed";
+      } catch {
+        return false;
+      }
+    })();
+
+    const close = () => {
+      popup.classList.add("hidden");
+      popup.classList.remove("flex");
+      popup.setAttribute("hidden", "");
+      try {
+        sessionStorage.setItem(STORAGE_KEY, "dismissed");
+      } catch {
+        // Private browsing can block storage; the popup still closes.
+      }
+    };
+
+    if (!dismissed && recruitmentIsOpen()) {
+      popup.classList.remove("hidden");
+      popup.classList.add("flex");
+      popup.removeAttribute("hidden");
+    }
+
+    popup.querySelectorAll("[data-recruit-dismiss], [data-recruit-apply]").forEach((el) => {
+      el.addEventListener("click", close);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !popup.hasAttribute("hidden")) close();
+    });
+  }
+</script>
