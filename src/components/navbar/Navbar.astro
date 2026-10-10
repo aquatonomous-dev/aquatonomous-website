@@ -4,6 +4,8 @@ import Link from "@components/ui/Link.astro";
 import Dropdown from "./Dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
+const donateUrl = "https://donate.queensu.ca/cart?a[]=AF-AQUATONOMOUS";
+
 // Menu items for navbar
 const navLinks = [
   {
@@ -21,6 +23,10 @@ const navLinks = [
   {
     title: "ASV",
     path: "/asv",
+  },
+  {
+    title: "Simulator",
+    path: "/sim",
   },
   {
     title: "Blog",
@@ -81,10 +87,12 @@ const navLinks = [
         <!-- Optional mobile-specific button -->
         <div class="lg:hidden flex items-center mt-3 gap-4">
           <Link
-            href="/contact"
+            href={donateUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             class="bg-AquaBlue hover:bg-AquaBlue/80 transition duration-200 text-white px-3 py-1.5 rounded-md font-medium shadow-md text-sm"
           >
-            Get in Touch
+            Donate
           </Link>
         </div>
       </MenuItems>
@@ -93,10 +101,12 @@ const navLinks = [
     <!-- Desktop CTA button -->
     <div class="hidden lg:flex items-center">
       <Link
-        href="/contact"
+        href={donateUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         class="bg-AquaBlue hover:bg-AquaBlue/80 transition duration-200 text-white px-3 py-2 rounded-md font-medium shadow-md text-sm"
       >
-        Get in Touch
+        Donate
       </Link>
     </div>
 

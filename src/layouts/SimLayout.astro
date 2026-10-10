@@ -1,0 +1,39 @@
+---
+import { SEO } from "astro-seo";
+import "@fontsource-variable/inter/index.css";
+
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!DOCTYPE html>
+<html lang="en" class="h-full overflow-hidden bg-AquaNavy">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/logos/GradientTextLogo.svg?v=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <SEO
+      title={`${title} | aQuatonomous`}
+      description={description}
+      canonical={canonicalURL}
+      noindex
+      nofollow
+    />
+  </head>
+  <body
+    data-pagefind-ignore="all"
+    class="h-full overflow-hidden select-none text-white antialiased selection:bg-AquaNeon selection:text-black"
+  >
+    <slot />
+  </body>
+</html>

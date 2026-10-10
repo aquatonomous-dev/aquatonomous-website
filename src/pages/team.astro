@@ -180,27 +180,43 @@ publishedTeamMembers.forEach(member => {
           )}
           <div class="grid grid-cols-1 gap-10 mx-auto max-w-5xl mt-12 sm:grid-cols-6">
             {
-              group.members.map((teamMemberEntry, index) => (
-                <div class={`sm:col-span-2 ${getTeamCardClass(index, group.members.length)}`}>
-                  <div class="w-full aspect-square">
-                    {teamMemberEntry.data.url ? (
-                      <a
-                        href={teamMemberEntry.data.url}
-                        class="block w-full h-full rounded-md bg-slate-100"
-                        aria-label={teamMemberEntry.data.name}
-                      ></a>
-                    ) : (
-                      <div class="w-full h-full rounded-md bg-slate-100"></div>
-                    )}
+              group.members.map((teamMemberEntry, index) => {
+                const imagePath = `../assets/team-2026-2027/${teamMemberEntry.data.avatar.src}`;
+                const image = images[imagePath];
+
+                return (
+                  <div class={`group sm:col-span-2 ${getTeamCardClass(index, group.members.length)}`}>
+                    <div class="w-full aspect-square">
+                      {image ? (
+                        <a href={teamMemberEntry.data.url || undefined}>
+                          <Picture
+                            src={image.default}
+                            alt={teamMemberEntry.data.avatar.alt}
+                            sizes="(max-width: 800px) 100vw, 400px"
+                            width={400}
+                            height={400}
+                            class="w-full rounded-md transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
+                          />
+                        </a>
+                      ) : teamMemberEntry.data.url ? (
+                        <a
+                          href={teamMemberEntry.data.url}
+                          class="block w-full h-full rounded-md bg-slate-100"
+                          aria-label={teamMemberEntry.data.name}
+                        ></a>
+                      ) : (
+                        <div class="w-full h-full rounded-md bg-slate-100"></div>
+                      )}
+                    </div>
+                    <div class="mt-4 text-center">
+                      <h2 class="text-lg text-gray-800">{teamMemberEntry.data.name}</h2>
+                      <h3 class="text-sm text-slate-500">
+                        {teamMemberEntry.data.title}
+                      </h3>
+                    </div>
                   </div>
-                  <div class="mt-4 text-center">
-                    <h2 class="text-lg text-gray-800">{teamMemberEntry.data.name}</h2>
-                    <h3 class="text-sm text-slate-500">
-                      {teamMemberEntry.data.title}
-                    </h3>
-                  </div>
-                </div>
-              ))
+                );
+              })
             }
           </div>
         </section>

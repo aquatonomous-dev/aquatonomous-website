@@ -1,0 +1,1588 @@
+{
+  "source": {
+    "repo": "aQuatonomous/autonomy-ws-25-26",
+    "ref": "0ec782e994111e32e9045d89bb07c7779673d8cb",
+    "label": "aQuatonomous/autonomy-ws-25-26@0ec782e994111e32e9045d89bb07c7779673d8cb",
+    "world": "src/asv_wave_sim/gz-waves-models/worlds/aquatonomous_world.sdf",
+    "generatedBy": "scripts/sim/sync-gazebo-assets.mjs"
+  },
+  "frame": "gazebo: metres, z up, x east, y north",
+  "world": {
+    "name": "aquatonomous_course",
+    "physicsStep": 0.002,
+    "gravity": [
+      0,
+      0,
+      -9.81
+    ],
+    "ambient": [
+      1,
+      1,
+      1
+    ],
+    "background": [
+      0.8,
+      0.8,
+      0.8
+    ],
+    "sun": {
+      "direction": [
+        -0.5,
+        0.1,
+        -0.9
+      ],
+      "diffuse": [
+        0.8,
+        0.8,
+        0.8,
+        1
+      ]
+    },
+    "waves": {
+      "algorithm": "fft",
+      "tileSize": 64,
+      "cellCount": 64,
+      "windSpeed": 0.5,
+      "windAngleDeg": 135,
+      "steepness": 0.2,
+      "updateRate": 20
+    },
+    "home": {
+      "lat": 51.566151,
+      "lon": -4.034345,
+      "alt": 10,
+      "heading": -135
+    }
+  },
+  "boat": {
+    "name": "ourboat",
+    "model": "ourboat",
+    "pose": [
+      -27.192,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "vehicle": "ArduPilot Rover, rover-skid frame",
+    "thrusters": [
+      {
+        "joint": "motor_port_joint",
+        "side": "left",
+        "channel": 1,
+        "position": [
+          -0.488,
+          0.295,
+          -0.272
+        ],
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "minThrust": -35,
+        "maxThrust": 35,
+        "servoMin": 1000,
+        "servoMax": 2000
+      },
+      {
+        "joint": "motor_stbd_joint",
+        "side": "right",
+        "channel": 3,
+        "position": [
+          -0.488,
+          -0.295,
+          -0.272
+        ],
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "minThrust": -35,
+        "maxThrust": 35,
+        "servoMin": 1000,
+        "servoMax": 2000
+      }
+    ],
+    "cameras": [
+      {
+        "name": "camera3",
+        "type": "camera",
+        "pose": [
+          0.3,
+          0,
+          0.2,
+          0,
+          0,
+          1.22173
+        ],
+        "rate": 30,
+        "topic": "camera3_topic",
+        "hfov": 1.484,
+        "width": 1920,
+        "height": 1200,
+        "near": 0.05,
+        "far": 1000,
+        "rosTopic": "/camera2/image_raw"
+      },
+      {
+        "name": "camera2",
+        "type": "camera",
+        "pose": [
+          0.3,
+          0,
+          0.2,
+          0,
+          0,
+          0
+        ],
+        "rate": 30,
+        "topic": "camera2_topic",
+        "hfov": 1.484,
+        "width": 1920,
+        "height": 1200,
+        "near": 0.05,
+        "far": 1000,
+        "rosTopic": "/camera1/image_raw"
+      },
+      {
+        "name": "camera1",
+        "type": "camera",
+        "pose": [
+          0.3,
+          0,
+          0.2,
+          0,
+          0,
+          -1.22173
+        ],
+        "rate": 30,
+        "topic": "camera1_topic",
+        "hfov": 1.484,
+        "width": 1920,
+        "height": 1200,
+        "near": 0.05,
+        "far": 1000,
+        "rosTopic": "/camera0/image_raw"
+      }
+    ],
+    "lidar": {
+      "name": "lidar",
+      "type": "gpu_lidar",
+      "pose": [
+        0.3,
+        0,
+        0.2,
+        -0.5236,
+        0,
+        -1.59
+      ],
+      "rate": 10,
+      "topic": "lidar_topic",
+      "horizontal": {
+        "samples": 720,
+        "minAngle": -3.14,
+        "maxAngle": 3.14
+      },
+      "vertical": {
+        "samples": 360,
+        "minAngle": 0,
+        "maxAngle": 3.14
+      },
+      "rangeMin": 0.15,
+      "rangeMax": 15
+    }
+  },
+  "models": {
+    "ourboat": {
+      "name": "ourboat",
+      "sdfName": "ourboat",
+      "static": false,
+      "mass": {
+        "mass": 30.9,
+        "com": [
+          -0.054861,
+          0,
+          -0.149152
+        ],
+        "principalInertia": [
+          2.475998,
+          4.218441,
+          5.953063
+        ],
+        "inertiaFrame": [
+          0,
+          -0.003631,
+          0,
+          0.999993
+        ]
+      },
+      "collisions": [
+        {
+          "name": "hull_collision",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "geometry": {
+            "type": "mesh",
+            "url": "/sim/models/ourboat-hull_collision.f32",
+            "triangles": 960
+          }
+        }
+      ],
+      "visuals": [
+        {
+          "name": "hull_visual",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "roughness": 0.5,
+          "metalness": 0.5,
+          "geometry": {
+            "type": "mesh",
+            "url": "/sim/models/blueboat_hull_collision.glb"
+          }
+        },
+        {
+          "name": "deck_visual",
+          "pose": [
+            0.05,
+            0,
+            0.07,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.07,
+            0.07,
+            0.08,
+            1
+          ],
+          "roughness": 0.75,
+          "metalness": 0.3,
+          "geometry": {
+            "type": "box",
+            "size": [
+              1.18,
+              0.62,
+              0.06
+            ]
+          }
+        },
+        {
+          "name": "fore_crossbeam_visual",
+          "pose": [
+            0.34,
+            0,
+            0.04,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.12,
+            0.12,
+            0.13,
+            1
+          ],
+          "roughness": 0.45,
+          "metalness": 0.6,
+          "geometry": {
+            "type": "box",
+            "size": [
+              0.08,
+              0.8,
+              0.08
+            ]
+          }
+        },
+        {
+          "name": "aft_crossbeam_visual",
+          "pose": [
+            -0.31,
+            0,
+            0.04,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.12,
+            0.12,
+            0.13,
+            1
+          ],
+          "roughness": 0.45,
+          "metalness": 0.6,
+          "geometry": {
+            "type": "box",
+            "size": [
+              0.08,
+              0.8,
+              0.08
+            ]
+          }
+        },
+        {
+          "name": "console_visual",
+          "pose": [
+            0.08,
+            0,
+            0.24,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.16,
+            0.16,
+            0.17,
+            1
+          ],
+          "roughness": 0.55,
+          "metalness": 0.4,
+          "geometry": {
+            "type": "box",
+            "size": [
+              0.28,
+              0.18,
+              0.26
+            ]
+          }
+        },
+        {
+          "name": "mast_visual",
+          "pose": [
+            0.2,
+            0,
+            0.42,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.85,
+            0.85,
+            0.87,
+            1
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "geometry": {
+            "type": "cylinder",
+            "radius": 0.015,
+            "length": 0.42
+          }
+        },
+        {
+          "name": "flag_visual_safe",
+          "pose": [
+            0.27,
+            0,
+            0.53,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.95,
+            0.82,
+            0.08,
+            1
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "geometry": {
+            "type": "box",
+            "size": [
+              0.12,
+              0.01,
+              0.08
+            ]
+          }
+        }
+      ],
+      "hydrodynamics": {
+        "damping": true,
+        "viscousDrag": true,
+        "pressureDrag": true
+      }
+    },
+    "RedSurMark": {
+      "name": "RedSurMark",
+      "sdfName": "Red Surmark Buoy",
+      "static": false,
+      "mass": {
+        "mass": 50,
+        "com": [
+          0,
+          0,
+          0
+        ],
+        "principalInertia": [
+          0.1636,
+          0.1636,
+          0.1636
+        ],
+        "inertiaFrame": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "collisions": [
+        {
+          "name": "collision",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "geometry": {
+            "type": "sphere",
+            "radius": 0.25
+          }
+        }
+      ],
+      "visuals": [
+        {
+          "name": "visual",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.62,
+            0.04,
+            0.03,
+            1
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "geometry": {
+            "type": "mesh",
+            "url": "/sim/models/RedSurmark.glb"
+          }
+        }
+      ],
+      "hydrodynamics": {
+        "damping": true,
+        "viscousDrag": true,
+        "pressureDrag": true
+      }
+    },
+    "GreenSurMark": {
+      "name": "GreenSurMark",
+      "sdfName": "Green Surmark Buoy",
+      "static": false,
+      "mass": {
+        "mass": 50,
+        "com": [
+          0,
+          0,
+          0
+        ],
+        "principalInertia": [
+          0.1636,
+          0.1636,
+          0.1636
+        ],
+        "inertiaFrame": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "collisions": [
+        {
+          "name": "collision",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "geometry": {
+            "type": "sphere",
+            "radius": 0.25
+          }
+        }
+      ],
+      "visuals": [
+        {
+          "name": "visual",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.04,
+            0.42,
+            0.1,
+            1
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "geometry": {
+            "type": "mesh",
+            "url": "/sim/models/GreenSurmark.glb"
+          }
+        }
+      ],
+      "hydrodynamics": {
+        "damping": true,
+        "viscousDrag": true,
+        "pressureDrag": true
+      }
+    },
+    "ColourIndicatorRed": {
+      "name": "ColourIndicatorRed",
+      "sdfName": "Red Colour Indicator",
+      "static": false,
+      "mass": {
+        "mass": 20,
+        "com": [
+          0,
+          0,
+          0
+        ],
+        "principalInertia": [
+          0.1636,
+          0.1636,
+          0.1636
+        ],
+        "inertiaFrame": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "collisions": [
+        {
+          "name": "collision",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "geometry": {
+            "type": "sphere",
+            "radius": 0.25
+          }
+        }
+      ],
+      "visuals": [
+        {
+          "name": "visual",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.62,
+            0.04,
+            0.03,
+            1
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "geometry": {
+            "type": "mesh",
+            "url": "/sim/models/ColourIndicatorRedAssembly.glb"
+          }
+        }
+      ],
+      "hydrodynamics": {
+        "damping": true,
+        "viscousDrag": true,
+        "pressureDrag": true
+      }
+    },
+    "YellowRopehold": {
+      "name": "YellowRopehold",
+      "sdfName": "Yellow Ropehold Buoy",
+      "static": false,
+      "mass": {
+        "mass": 20,
+        "com": [
+          0,
+          0,
+          0
+        ],
+        "principalInertia": [
+          0.1636,
+          0.1636,
+          0.1636
+        ],
+        "inertiaFrame": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "collisions": [
+        {
+          "name": "collision",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "geometry": {
+            "type": "sphere",
+            "radius": 0.25
+          }
+        }
+      ],
+      "visuals": [
+        {
+          "name": "visual",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "emissive": [
+            0.15,
+            0.15,
+            0
+          ],
+          "geometry": {
+            "type": "mesh",
+            "url": "/sim/models/RedRopehold.glb"
+          }
+        }
+      ],
+      "hydrodynamics": {
+        "damping": true,
+        "viscousDrag": true,
+        "pressureDrag": true
+      }
+    },
+    "BlackRopehold": {
+      "name": "BlackRopehold",
+      "sdfName": "Black Ropehold Buoy",
+      "static": false,
+      "mass": {
+        "mass": 20,
+        "com": [
+          0,
+          0,
+          0
+        ],
+        "principalInertia": [
+          0.1636,
+          0.1636,
+          0.1636
+        ],
+        "inertiaFrame": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "collisions": [
+        {
+          "name": "collision",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "geometry": {
+            "type": "sphere",
+            "radius": 0.25
+          }
+        }
+      ],
+      "visuals": [
+        {
+          "name": "visual",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.035,
+            0.035,
+            0.04,
+            1
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "geometry": {
+            "type": "mesh",
+            "url": "/sim/models/RedRopehold.glb"
+          }
+        }
+      ],
+      "hydrodynamics": {
+        "damping": true,
+        "viscousDrag": true,
+        "pressureDrag": true
+      }
+    },
+    "RedRopehold": {
+      "name": "RedRopehold",
+      "sdfName": "Red Ropehold Buoy",
+      "static": false,
+      "mass": {
+        "mass": 20,
+        "com": [
+          0,
+          0,
+          0
+        ],
+        "principalInertia": [
+          0.1636,
+          0.1636,
+          0.1636
+        ],
+        "inertiaFrame": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "collisions": [
+        {
+          "name": "collision",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "geometry": {
+            "type": "sphere",
+            "radius": 0.25
+          }
+        }
+      ],
+      "visuals": [
+        {
+          "name": "visual",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.62,
+            0.04,
+            0.03,
+            1
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "geometry": {
+            "type": "mesh",
+            "url": "/sim/models/RedRopehold.glb"
+          }
+        }
+      ],
+      "hydrodynamics": {
+        "damping": true,
+        "viscousDrag": true,
+        "pressureDrag": true
+      }
+    },
+    "GreenRopehold": {
+      "name": "GreenRopehold",
+      "sdfName": "Green Ropehold Buoy",
+      "static": false,
+      "mass": {
+        "mass": 20,
+        "com": [
+          0,
+          0,
+          0
+        ],
+        "principalInertia": [
+          0.1636,
+          0.1636,
+          0.1636
+        ],
+        "inertiaFrame": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "collisions": [
+        {
+          "name": "collision",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "geometry": {
+            "type": "sphere",
+            "radius": 0.25
+          }
+        }
+      ],
+      "visuals": [
+        {
+          "name": "visual",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.04,
+            0.42,
+            0.1,
+            1
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "geometry": {
+            "type": "mesh",
+            "url": "/sim/models/RedRopehold.glb"
+          }
+        }
+      ],
+      "hydrodynamics": {
+        "damping": true,
+        "viscousDrag": true,
+        "pressureDrag": true
+      }
+    },
+    "ColourIndicatorGreen": {
+      "name": "ColourIndicatorGreen",
+      "sdfName": "Green Colour Indicator",
+      "static": false,
+      "mass": {
+        "mass": 20,
+        "com": [
+          0,
+          0,
+          0
+        ],
+        "principalInertia": [
+          0.1636,
+          0.1636,
+          0.1636
+        ],
+        "inertiaFrame": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "collisions": [
+        {
+          "name": "collision",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "geometry": {
+            "type": "sphere",
+            "radius": 0.25
+          }
+        }
+      ],
+      "visuals": [
+        {
+          "name": "visual",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.04,
+            0.42,
+            0.1,
+            1
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "geometry": {
+            "type": "mesh",
+            "url": "/sim/models/ColourIndicatorGreenAssembly.glb"
+          }
+        }
+      ],
+      "hydrodynamics": {
+        "damping": true,
+        "viscousDrag": true,
+        "pressureDrag": true
+      }
+    },
+    "aqua_t4_yellow": {
+      "name": "aqua_t4_yellow",
+      "sdfName": "aqua_t4_yellow",
+      "static": false,
+      "mass": {
+        "mass": 100,
+        "com": [
+          0,
+          0,
+          0
+        ],
+        "principalInertia": [
+          3.42,
+          20.08,
+          20.83
+        ],
+        "inertiaFrame": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "collisions": [
+        {
+          "name": "collision",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              1.5,
+              0.5,
+              0.4
+            ]
+          }
+        }
+      ],
+      "visuals": [
+        {
+          "name": "visual",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.95,
+            0.9,
+            0,
+            1
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "geometry": {
+            "type": "mesh",
+            "url": "/sim/models/AQUA_T4_ASSY_MED.glb"
+          }
+        }
+      ],
+      "hydrodynamics": {
+        "damping": true,
+        "viscousDrag": true,
+        "pressureDrag": true
+      }
+    },
+    "aqua_t4_black": {
+      "name": "aqua_t4_black",
+      "sdfName": "aqua_t4_black",
+      "static": false,
+      "mass": {
+        "mass": 100,
+        "com": [
+          0,
+          0,
+          0
+        ],
+        "principalInertia": [
+          3.42,
+          20.08,
+          20.83
+        ],
+        "inertiaFrame": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "collisions": [
+        {
+          "name": "collision",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "geometry": {
+            "type": "box",
+            "size": [
+              1.5,
+              0.5,
+              0.4
+            ]
+          }
+        }
+      ],
+      "visuals": [
+        {
+          "name": "visual",
+          "pose": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "color": [
+            0.1,
+            0.1,
+            0.1,
+            1
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "geometry": {
+            "type": "mesh",
+            "url": "/sim/models/AQUA_T4_ASSY_WATER.glb"
+          }
+        }
+      ],
+      "hydrodynamics": {
+        "damping": true,
+        "viscousDrag": true,
+        "pressureDrag": true
+      }
+    }
+  },
+  "instances": [
+    {
+      "name": "RedSurMark_2",
+      "model": "RedSurMark",
+      "pose": [
+        -22.192,
+        -1.22,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "GreenSurMark_6",
+      "model": "GreenSurMark",
+      "pose": [
+        -22.192,
+        1.22,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "RedSurMark_3",
+      "model": "RedSurMark",
+      "pose": [
+        -6.952,
+        -1.22,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "GreenSurMark_7",
+      "model": "GreenSurMark",
+      "pose": [
+        -6.952,
+        1.22,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "RedSurMark_4",
+      "model": "RedSurMark",
+      "pose": [
+        -22.192,
+        -6.78,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "GreenSurMark_8",
+      "model": "GreenSurMark",
+      "pose": [
+        -22.192,
+        -9.22,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ColourIndicatorRed_9",
+      "model": "ColourIndicatorRed",
+      "pose": [
+        -13.048,
+        -8,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "YellowRopehold_0",
+      "model": "YellowRopehold",
+      "pose": [
+        -3.904,
+        -8,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_24",
+      "model": "BlackRopehold",
+      "pose": [
+        -20,
+        -7.5,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_25",
+      "model": "BlackRopehold",
+      "pose": [
+        -17,
+        -9,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_26",
+      "model": "BlackRopehold",
+      "pose": [
+        -14,
+        -7,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_27",
+      "model": "BlackRopehold",
+      "pose": [
+        -11,
+        -8.5,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_28",
+      "model": "BlackRopehold",
+      "pose": [
+        -8,
+        -9.3,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_29",
+      "model": "BlackRopehold",
+      "pose": [
+        -5,
+        -6.8,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_30",
+      "model": "BlackRopehold",
+      "pose": [
+        -2,
+        -8,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "RedRopehold_6",
+      "model": "RedRopehold",
+      "pose": [
+        3.048,
+        1.22,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "RedRopehold_7",
+      "model": "RedRopehold",
+      "pose": [
+        10.548,
+        -0.28,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "RedRopehold_8",
+      "model": "RedRopehold",
+      "pose": [
+        16.548,
+        -5.28,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "RedRopehold_9",
+      "model": "RedRopehold",
+      "pose": [
+        23.048,
+        -9.78,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "GreenRopehold_1",
+      "model": "GreenRopehold",
+      "pose": [
+        0.048,
+        -5.28,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "GreenRopehold_2",
+      "model": "GreenRopehold",
+      "pose": [
+        6.548,
+        -6.78,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "GreenRopehold_3",
+      "model": "GreenRopehold",
+      "pose": [
+        11.548,
+        -11.28,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "GreenRopehold_4",
+      "model": "GreenRopehold",
+      "pose": [
+        17.548,
+        -14.78,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_10",
+      "model": "BlackRopehold",
+      "pose": [
+        5.048,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_11",
+      "model": "BlackRopehold",
+      "pose": [
+        9.298,
+        -5.91,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_12",
+      "model": "BlackRopehold",
+      "pose": [
+        15.178,
+        -7.28,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_21",
+      "model": "BlackRopehold",
+      "pose": [
+        17.178,
+        -13.28,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_13",
+      "model": "BlackRopehold",
+      "pose": [
+        21.5,
+        -12.5,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_14",
+      "model": "BlackRopehold",
+      "pose": [
+        25,
+        -11.5,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_15",
+      "model": "BlackRopehold",
+      "pose": [
+        22,
+        -15,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_18",
+      "model": "BlackRopehold",
+      "pose": [
+        19.5,
+        -16,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "BlackRopehold_20",
+      "model": "BlackRopehold",
+      "pose": [
+        24,
+        -17.5,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ColourIndicatorRed_8",
+      "model": "ColourIndicatorRed",
+      "pose": [
+        25.548,
+        -14.78,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ColourIndicatorGreen_5",
+      "model": "ColourIndicatorGreen",
+      "pose": [
+        21.548,
+        -16.78,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "aqua_t4_yellow",
+      "model": "aqua_t4_yellow",
+      "pose": [
+        10,
+        -10,
+        0,
+        -1.5708,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "aqua_t4_black",
+      "model": "aqua_t4_black",
+      "pose": [
+        18,
+        -10,
+        0,
+        -1.5708,
+        0,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+---
+import SimLayout from "@layouts/SimLayout.astro";
+---
+
+<SimLayout
+  title="Boat Simulator"
+  description="Drive the aQuatonomous ASV around the team's RoboBoat practice course, ported from our Gazebo simulation."
+>
+  <main id="sim-root" class="fixed inset-0 font-sans">
+    <div id="sim-viewport" class="absolute inset-0 touch-none"></div>
+
+    <div id="sim-pip-labels" class="pointer-events-none absolute inset-0 hidden"></div>
+
+    <!-- Telemetry -->
+    <section
+      class="pointer-events-none absolute left-2 top-2 w-44 rounded-xl border border-white/10 bg-AquaNavy/75 p-2.5 font-mono text-[0.7rem] shadow-lg backdrop-blur sm:left-3 sm:top-3 sm:w-60 sm:p-3 sm:text-xs"
+    >
+      <div class="flex items-center justify-between">
+        <a href="/" class="pointer-events-auto flex items-center gap-2 text-AquaNeon hover:text-white">
+          <img src="/logos/GradientTextLogo.svg" alt="" class="h-5 w-5" />
+          <span class="hidden text-[0.7rem] uppercase tracking-[0.2em] sm:inline">Boat sim</span>
+        </a>
+        <span id="hud-mode" class="rounded bg-AquaBlue px-1.5 py-0.5 text-[0.65rem] font-medium tracking-wider">MANUAL</span>
+      </div>
+      <div class="mt-3 flex items-end gap-2">
+        <span id="hud-speed" class="text-2xl font-medium leading-none tabular-nums sm:text-3xl">0.00</span>
+        <span class="pb-0.5 text-white/60">m/s</span>
+        <span id="hud-speed-kn" class="ml-auto pb-0.5 tabular-nums text-white/60">0.0 kn</span>
+      </div>
+      <div class="mt-2 flex items-center justify-between">
+        <span class="text-white/60">Heading</span>
+        <span><span id="hud-heading" class="tabular-nums">090°</span> <span id="hud-heading-card" class="text-white/60">E</span></span>
+      </div>
+      <div class="mt-1 hidden justify-between sm:flex">
+        <span class="text-white/60">GPS</span>
+        <span id="hud-gps" class="tabular-nums">–</span>
+      </div>
+      <div class="mt-1 flex justify-between">
+        <span class="text-white/60">Course</span>
+        <span id="hud-xy" class="tabular-nums">–</span>
+      </div>
+      <div class="mt-3 grid grid-cols-2 gap-3">
+        <div>
+          <div class="flex justify-between text-white/60"><span>Left</span><span id="hud-thrust-left-value" class="tabular-nums">0 N</span></div>
+          <div class="mt-1 h-1.5 overflow-hidden rounded bg-white/10">
+            <div id="hud-thrust-left" class="h-full w-0 rounded bg-AquaNeon"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between text-white/60"><span>Right</span><span id="hud-thrust-right-value" class="tabular-nums">0 N</span></div>
+          <div class="mt-1 h-1.5 overflow-hidden rounded bg-white/10">
+            <div id="hud-thrust-right" class="h-full w-0 rounded bg-AquaNeon"></div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-2 flex justify-between gap-2 text-[0.65rem] text-white/50">
+        <span id="hud-stats" class="truncate">– fps</span>
+        <span id="hud-time" class="shrink-0">t 0.0 s</span>
+      </div>
+    </section>
+
+    <!-- Controls -->
+    <section
+      class="absolute right-2 top-2 flex max-w-[calc(100vw-12.5rem)] flex-col items-end gap-2 font-mono text-xs sm:right-3 sm:top-3 sm:max-w-[calc(100vw-17rem)]"
+    >
+      <div class="flex flex-wrap justify-end gap-1.5">
+        <button id="btn-reset" class="sim-btn" title="Reset (R)">Reset</button>
+        <button id="btn-pause" class="sim-btn" title="Pause (P)">Pause</button>
+        <button id="btn-camera" class="sim-btn" title="Camera (C)">Chase</button>
+        <button id="btn-pip" class="sim-btn hidden sm:inline-flex" title="Onboard cameras (V)">Cams</button>
+        <button id="btn-help" class="sim-btn" title="Help (H)">?</button>
+      </div>
+      <label class="flex max-w-full items-center gap-2 rounded-lg border border-white/10 bg-AquaNavy/75 px-2 py-1 backdrop-blur">
+        <span class="text-white/60">Sea</span>
+        <select id="hud-sea" class="min-w-0 max-w-full truncate bg-transparent text-white outline-none"></select>
+      </label>
+    </section>
+
+    <!-- Minimap -->
+    <section
+      class="pointer-events-none absolute bottom-3 right-3 hidden overflow-hidden rounded-xl border border-white/10 bg-AquaNavy/75 shadow-lg backdrop-blur sm:block"
+    >
+      <canvas id="hud-minimap" class="block h-[150px] w-[220px]"></canvas>
+    </section>
+
+    <!-- Touch sticks -->
+    <div id="touch-controls" class="pointer-events-none absolute inset-x-0 bottom-0 hidden h-1/2">
+      <div data-stick="throttle" class="touch-stick left-6">
+        <div class="touch-knob"></div>
+        <span class="touch-label">Throttle</span>
+      </div>
+      <div data-stick="steering" class="touch-stick right-6">
+        <div class="touch-knob"></div>
+        <span class="touch-label">Steer</span>
+      </div>
+    </div>
+
+    <!-- Help -->
+    <div id="sim-help" class="absolute inset-0 z-20 hidden items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
+      <div class="max-h-full w-full max-w-lg overflow-y-auto rounded-2xl border border-white/10 bg-AquaNavy/95 p-6 shadow-2xl">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p class="font-mono text-[0.7rem] uppercase tracking-[0.25em] text-AquaNeon">aQuatonomous</p>
+            <h1 class="mt-1 text-2xl font-bold">Boat simulator</h1>
+          </div>
+          <button id="btn-help-close" class="sim-btn" aria-label="Close help">Close</button>
+        </div>
+        <p class="mt-3 text-sm text-white/70">
+          The team's Gazebo world rebuilt for the browser: the same course layout, wave model, hull buoyancy and
+          twin-thruster boat. Steering is mixed the way ArduPilot Rover does it in MANUAL mode.
+        </p>
+        <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 font-mono text-xs">
+          <dt class="text-AquaNeon">W / S, ↑ / ↓</dt><dd>Throttle forward / reverse</dd>
+          <dt class="text-AquaNeon">A / D, ← / →</dt><dd>Steer left / right</dd>
+          <dt class="text-AquaNeon">Space</dt><dd>Centre the sticks</dd>
+          <dt class="text-AquaNeon">C</dt><dd>Switch view: chase, orbit, top-down, then the front and side cameras</dd>
+          <dt class="text-AquaNeon">V</dt><dd>Show or hide the onboard camera views; click one to drive from it</dd>
+          <dt class="text-AquaNeon">1 – 4</dt><dd>Sea state</dd>
+          <dt class="text-AquaNeon">R</dt><dd>Reset the boat and course</dd>
+          <dt class="text-AquaNeon">P</dt><dd>Pause</dd>
+          <dt class="text-AquaNeon">Gamepad</dt><dd>Left stick throttle, right stick steering</dd>
+        </dl>
+        <p class="mt-4 text-xs text-white/50">
+          Like ArduPilot's default, steering reverses when you back up, and throttle ramps at 100% per second.
+          Thrust tops out at 35 N per motor, as in the Gazebo model.
+        </p>
+        <p id="sim-source" class="mt-2 break-all font-mono text-[0.65rem] text-white/40"></p>
+      </div>
+    </div>
+
+    <!-- Loading and errors -->
+    <div id="sim-loading" class="absolute inset-0 z-30 flex flex-col items-center justify-center gap-4 bg-AquaNavy">
+      <img src="/logos/GradientTextLogo.svg" alt="aQuatonomous" class="h-14 w-14 animate-pulse" />
+      <p id="sim-loading-status" class="font-mono text-xs text-white/70">Loading simulator…</p>
+      <div class="h-1 w-48 overflow-hidden rounded bg-white/10">
+        <div id="sim-loading-bar" class="h-full w-0 bg-AquaNeon transition-[width]"></div>
+      </div>
+    </div>
+    <div id="sim-error" class="absolute inset-0 z-40 hidden items-center justify-center bg-AquaNavy p-6">
+      <div class="max-w-md text-center">
+        <h1 class="text-xl font-bold">The simulator couldn't start</h1>
+        <p id="sim-error-message" class="mt-2 font-mono text-xs text-white/70"></p>
+        <a href="/" class="mt-4 inline-block text-AquaNeon hover:text-white">Back to the aQuatonomous website</a>
+      </div>
+    </div>
+  </main>
+</SimLayout>
+
+<style is:global>
+  .sim-btn {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    background: rgb(16 41 43 / 0.75);
+    padding: 0.35rem 0.6rem;
+    color: white;
+    backdrop-filter: blur(8px);
+    transition: background 120ms;
+  }
+  .sim-btn:hover {
+    background: #195c5a;
+  }
+  .sim-btn[aria-pressed="true"] {
+    background: #195c5a;
+    border-color: #98cfd4;
+  }
+  #hud-sea option {
+    background: #10292b;
+  }
+  .touch-stick {
+    position: absolute;
+    bottom: 1.5rem;
+    width: 8.5rem;
+    height: 8.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgb(255 255 255 / 0.25);
+    background: rgb(16 41 43 / 0.35);
+    pointer-events: auto;
+    touch-action: none;
+  }
+  .touch-knob {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: -1.75rem 0 0 -1.75rem;
+    border-radius: 9999px;
+    background: rgb(152 207 212 / 0.85);
+  }
+  .touch-label {
+    position: absolute;
+    bottom: -1.3rem;
+    width: 100%;
+    text-align: center;
+    font-family: "DM Mono", monospace;
+    font-size: 0.65rem;
+    color: rgb(255 255 255 / 0.6);
+  }
+  .sim-pip-view {
+    position: absolute;
+    pointer-events: auto;
+    border: 1px solid rgb(255 255 255 / 0.15);
+    border-radius: 0.35rem;
+    background: transparent;
+    cursor: pointer;
+  }
+  .sim-pip-view:hover {
+    border-color: rgb(152 207 212 / 0.8);
+  }
+  .sim-pip-view[aria-pressed="true"] {
+    border: 2px solid #98cfd4;
+  }
+  .sim-pip-label {
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    max-width: calc(100% - 12px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.35rem;
+    background: rgb(16 41 43 / 0.8);
+    font-family: "DM Mono", monospace;
+    font-size: 0.6rem;
+    color: white;
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  import { boot } from "../sim";
+
+  boot();
+</script>
