@@ -2,7 +2,7 @@
 draft: false
 name: "Kaya Novotny"
 title: "Wet Lab"
-url: ""
+url: "https://www.linkedin.com/in/kayanovotny/"
 year: "2026-2027"
 avatar: {
     src: "KayaNovotny.jpg",

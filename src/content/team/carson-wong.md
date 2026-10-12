@@ -2,7 +2,7 @@
 draft: false
 name: "Carson Wong"
 title: "Director"
-url: ""
+url: "https://www.linkedin.com/in/carsoncwong/"
 year: "2026-2027"
 avatar: {
     src: "CarsonWong.jpg",

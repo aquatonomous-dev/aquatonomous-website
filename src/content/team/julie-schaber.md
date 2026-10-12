@@ -2,7 +2,7 @@
 draft: false
 name: "Julie Schaber"
 title: "Director"
-url: ""
+url: "https://www.linkedin.com/in/julie-schaber/"
 year: "2026-2027"
 avatar: {
     src: "JulieSchaber.jpg",

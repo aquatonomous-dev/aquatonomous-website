@@ -2,7 +2,7 @@
 draft: false
 name: "Dylan Jacob"
 title: "Power"
-url: ""
+url: "https://www.linkedin.com/in/dylan--jacob/"
 year: "2026-2027"
 avatar: {
     src: "DylanJacob.jpg",

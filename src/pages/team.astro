@@ -188,7 +188,11 @@ publishedTeamMembers.forEach(member => {
                   <div class={`group sm:col-span-2 ${getTeamCardClass(index, group.members.length)}`}>
                     <div class="w-full aspect-square">
                       {image ? (
-                        <a href={teamMemberEntry.data.url || undefined}>
+                        <a
+                          href={teamMemberEntry.data.url || undefined}
+                          target={teamMemberEntry.data.url ? "_blank" : undefined}
+                          rel={teamMemberEntry.data.url ? "noopener noreferrer" : undefined}
+                        >
                           <Picture
                             src={image.default}
                             alt={teamMemberEntry.data.avatar.alt}
@@ -201,6 +205,8 @@ publishedTeamMembers.forEach(member => {
                       ) : teamMemberEntry.data.url ? (
                         <a
                           href={teamMemberEntry.data.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           class="block w-full h-full rounded-md bg-slate-100"
                           aria-label={teamMemberEntry.data.name}
                         ></a>
@@ -243,7 +249,7 @@ publishedTeamMembers.forEach(member => {
             return (
               <div class={`group sm:col-span-2 ${getTeamCardClass(index, team2025_2026.length)}`}>
                 <div class="w-full aspect-square">
-                  <a href={teamMemberEntry.data.url}>
+                  <a href={teamMemberEntry.data.url} target="_blank" rel="noopener noreferrer">
                     <Picture
                       src={image.default}
                       alt={teamMemberEntry.data.avatar.alt}
@@ -287,7 +293,7 @@ publishedTeamMembers.forEach(member => {
             return (
               <div class={`group sm:col-span-2 ${getTeamCardClass(index, team2024_2025.length)}`}>
                 <div class="w-full aspect-square">
-                  <a href={teamMemberEntry.data.url}>
+                  <a href={teamMemberEntry.data.url} target="_blank" rel="noopener noreferrer">
                     <Picture
                       src={image.default}
                       alt={teamMemberEntry.data.avatar.alt}

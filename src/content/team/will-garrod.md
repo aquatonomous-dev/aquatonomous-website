@@ -2,7 +2,7 @@
 draft: false
 name: "Will Garrod"
 title: "Director"
-url: ""
+url: "https://www.linkedin.com/in/garrodwill/"
 year: "2026-2027"
 avatar: {
     src: "WillGarrod.jpg",

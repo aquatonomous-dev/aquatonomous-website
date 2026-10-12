@@ -2,7 +2,7 @@
 draft: false
 name: "Nathaniel Felsky-Deelstra"
 title: "Simulation Lead"
-url: ""
+url: "https://www.linkedin.com/in/nathaniel-felsky-deelstra/"
 year: "2026-2027"
 avatar: {
     src: "blank.jpg",

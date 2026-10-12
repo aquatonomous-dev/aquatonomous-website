@@ -2,7 +2,7 @@
 draft: false
 name: "Mathias Weeda"
 title: "Director"
-url: ""
+url: "https://www.linkedin.com/in/mathias-weeda/"
 year: "2026-2027"
 avatar: {
     src: "blank.jpg",

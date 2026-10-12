@@ -2,7 +2,7 @@
 draft: false
 name: "Autumn Heyerman"
 title: "Telemetry"
-url: ""
+url: "https://www.linkedin.com/in/autumn-heyerman/"
 year: "2026-2027"
 avatar: {
     src: "blank.jpg",

@@ -2,7 +2,7 @@
 draft: false
 name: "Bryce Tovich"
 title: "Marketing"
-url: ""
+url: "https://www.linkedin.com/in/brycetovich/"
 year: "2026-2027"
 avatar: {
     src: "BryceTovich.jpg",

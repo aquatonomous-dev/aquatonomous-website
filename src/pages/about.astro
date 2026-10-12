@@ -22,7 +22,7 @@ import roboboatImage from "assets/RoboBoatLogo.png";
             “aQuatonomous,” a blend of the words “aqua,” “Queen’s,” and “autonomous,” is Smith Engineering’s newest student-led interdisciplinary design team. 
         </p>
         <p class="text-lg leading-relaxed text-slate-500 mt-3">
-            Founded in 2023, our team has rapidly grown to over 40+ active members, with a focus on continual expansion and innovation. Our mission centers on constructing and programming a state-of-the-art autonomous surface vehicle (ASV), providing students with a unique, hands-on opportunity to engage with cutting edge autonomous vehicle technology. We aim to be at the forefront of AI-driven autonomy and sustainable design, integrating the expertise of our diverse sub-teams: mechanical, electrical, perception, ecological & water research, business, and core-autonomy. 
+            Founded in 2023, our team has rapidly grown to over 80+ active members, with a focus on continual expansion and innovation. Our mission centers on constructing and programming a state-of-the-art autonomous surface vehicle (ASV), providing students with a unique, hands-on opportunity to engage with cutting edge autonomous vehicle technology. We aim to be at the forefront of AI-driven autonomy and sustainable design, integrating the expertise of our diverse sub-teams: mechanical, electrical, software, ecological & water research, business, and NAVIS. 
         </p>
         <p class="text-lg leading-relaxed text-slate-500 mt-3">
             Our ASV project not only advances autonomous maritime technology but also catalyzes sustainability and ecological restoration efforts. Our team offers the boat to water and environmental researchers as a research vessel and measurement station.  
@@ -93,37 +93,28 @@ import roboboatImage from "assets/RoboBoatLogo.png";
           <div>
             <h3 class="text-2xl font-semibold mb-4">⚡Electrical</h3>
             <p class="text-slate-600">
-              The electrical team focuses on designing an efficient sensor suite while minimizing costs, integrating the payload computer with onboard sensors, and implementing a robust e-stop safety system with both physical and remote access.
+              The electrical team focuses on designing an efficient sensor suite while minimizing costs, integrating the payload computer with onboard sensors, and implementing a robust e-stop safety system with both physical and remote access. They also design and implement custom PCBs to manage battery usage and ensure proper, safe power distribution across the boat.
             </p>
             <p class="text-slate-600 mt-4">
-              They also collaborate with the mechanical team to ensure smooth motor control for propulsion.
+              On top of that, they collaborate with the mechanical team to ensure smooth motor control for propulsion.
             </p>
           </div>
           <div>
-            <h3 class="text-2xl font-semibold mb-4">🧠Autonomy and Perception</h3>
+            <h3 class="text-2xl font-semibold mb-4">🧠Software</h3>
             <p class="text-slate-600">
-              The perception and autonomy teams work closely to enable intelligent navigation. Perception handles mapping, localization, and obstacle detection using a custom sensor suite, built in collaboration with the electrical team. 
+              The software team is in charge of all things on the computer, including simulation, mapping, computer vision, and navigation and control. Their job is to make sure the boat can drive itself reliably, both in competition and during ecological testing and demonstrations.
             </p>
             <p class="text-slate-600 mt-4">
-               Since no map is provided at Roboboat, the ASV must generate its own in real time. This data feeds into the autonomy team's algorithms for path and behavior planning. Starting with methods like A*, PID control, and rule-based logic, the system is designed to evolve toward more adaptive, robust decision-making over time.
+              Since no map is provided at RoboBoat, the ASV must generate its own in real time from a custom sensor suite built with the electrical team. That data feeds path and behavior planning, from methods like A*, PID control, and rule-based logic toward more adaptive decision-making. The team also maintains the ROS-based infrastructure, telemetry, and MAVROS/Pixhawk firmware that tie perception, autonomy, and actuation together.
             </p>
           </div>
            <div>
-            <h3 class="text-2xl font-semibold mb-4">🔗Systems Integration</h3>
+            <h3 class="text-2xl font-semibold mb-4">🧭NAVIS</h3>
             <p class="text-slate-600">
-              The Systems Integration team ensures seamless communication between software, hardware, and onboard systems, acting as the connective tissue of the ASV. This team configures and maintains ROS-based infrastructure, telemetry systems, and firmware like MAVROS and Pixhawk, enabling real-time coordination between perception, autonomy, and actuation.
+              aQuaNAVIS, the Naval Autonomous Vessel Innovation School, is a hands-on, course-based program that aims to provide first- and second-year students with a basic understanding of autonomous marine systems. By gaining hands-on experience with Linux, ROS, robotics algorithms, sensors, and naval architecture, new members of aQuatonomous can develop the necessary skills to progress within the team.
             </p>
             <p class="text-slate-600 mt-4">
-              This team is critical to reliable field performance and iterative testing, especially as the platform scales in complexity.
-            </p>
-          </div>
-           <div>
-            <h3 class="text-2xl font-semibold mb-4">💼Business</h3>
-            <p class="text-slate-600">
-              The Business team drives the sustainability and visibility of aQuatonomous through sponsorship outreach, budget planning, and strategic communication. From crafting compelling grant applications like those for the Sustainable Action Fund to organizing public engagement initiatives, this team ensures the project's long-term impact and community alignment.
-            </p>
-            <p class="text-slate-600 mt-4">
-              The business team ultimately supports both the team's technical ambitions and its environmental mission.
+              Additionally, NAVIS is incharge of outreach to community member and setting up opportunities for young students in the greater Kingston area to accessable access to robotics. 
             </p>
           </div>
            <div>
@@ -135,39 +126,54 @@ import roboboatImage from "assets/RoboBoatLogo.png";
                Leveraging the ASV’s sensor payload, they investigate topics such as pollution, water quality, and ecological patterns in Lake Ontario. Their insights guide sensor selection, field deployment, and reinforce the team’s commitment to sustainability-driven innovation.
             </p>
           </div>
-          
+           <div>
+            <h3 class="text-2xl font-semibold mb-4">💼Business</h3>
+            <p class="text-slate-600">
+              The Business team drives the sustainability and visibility of aQuatonomous through sponsorship outreach, budget planning, and strategic communication. From crafting compelling grant applications like those for the Sustainable Action Fund to organizing public engagement initiatives, this team ensures the project's long-term impact and community alignment.
+            </p>
+            <p class="text-slate-600 mt-4">
+              The business team ultimately supports both the team's technical ambitions and its environmental mission.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
     <div class="text-AquaNavy">
       <Sectionhead>
-        <Fragment slot="title">Pilot Projects</Fragment>
-        <Fragment slot="desc">INITIATIVES WE'RE KICKING OFF IN 2025-2026</Fragment>
+        <Fragment slot="title">Sister Team</Fragment>
+        <Fragment slot="desc">SHARED DESIGN SPACE, SHARED IDEOLOGY</Fragment>
       </Sectionhead>
     </div>
     <section class="mt-8 grid border-2 p-8 border-dashed border-slate-300 rounded-xl  bg-opacity-35 py-16 bg-gray-50 ">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-           <div>
-            <h3 class="text-2xl font-semibold mb-4">⛵aQuaFOIL</h3>
-            <p class="text-slate-600">
-             aQuaFOIL is a new engineering initiative exploring sustainable hydrofoil racing through the development of a high-performance foiling sailboat. The project focuses on blending speed, handling, and renewability through innovative marine design.
-            </p>
-            <p class="text-slate-600 mt-4">
-               At its core, aQuaFOIL sits at the intersection of hydrofoil technology and sustainable manufacturing. Through work toward the SuMoth Challenge, the team is developing a single-handed foiling monohull that uses mechanical marine engineering and renewable composites to push high performance with a lower carbon footprint. The project also aims to strengthen ties with Kingston's maritime community while setting a new benchmark for sustainable competitive sailing.
-            </p>
-          </div>
-           <div>
-            <h3 class="text-2xl font-semibold mb-4">🧭aQuaNAVIS</h3>
-            <p class="text-slate-600">
-              aQuaNAVIS is a hands-on, course-based program that aims to provide first- and second-year students with a basic understanding of autonomous marine systems. By gaining hands-on experience with Linux, ROS, robotics algorithms, sensors, and naval architecture, new members of aQuatonomous can develop the necessary skills to progress within the team.
-            </p>
-            <p class="text-slate-600 mt-4">
-              Essentially, aQuaNAVIS is about creating confident and competent engineers from day one. By combining education with practical applications of various designs, new members of aQuatonomous are able to make a meaningful contribution to the team, as well as develop essential skills that can lead them to become future leaders of the team.
-            </p>
-            
-          </div>
+      <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+        <div class="flex justify-center lg:col-span-1">
+          <a href="https://www.aquafoil.ca/" target="_blank" rel="noopener noreferrer">
+            <img
+              src="/logos/aquafoil.png"
+              alt="aQuaFoil logo"
+              class="max-h-48 w-auto object-contain rounded-xl"
+            />
+          </a>
+        </div>
+        <div class="lg:col-span-2">
+        <h3 class="text-2xl font-semibold mb-4">
+          ⛵<a href="https://www.aquafoil.ca/" target="_blank" rel="noopener noreferrer" class="underline hover:text-AquaNavy">aQuaFoil</a>
+        </h3>
+        <p class="text-slate-600">
+          aQuaFoil is our sister team, a Queen's engineering design team building a sustainable foiling Moth for the 2027 SuMoth Challenge. The team was carved out of aQuatonomous by former members who wanted to take on a project of their own, and we continue to share a design space and the same ideology: sustainable design and elite engineering performance are the same challenge.
+        </p>
+        <p class="text-slate-600 mt-4">
+          Their single-handed foiling monohull combines bio-composites, timber, CFD, and structural analysis into one race-ready vessel, pushing high performance with a lower carbon footprint while strengthening ties with Kingston's maritime community.
+        </p>
+        <a
+          href="https://www.aquafoil.ca/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-6 inline-block font-semibold text-AquaNavy underline"
+        >
+          Visit aQuaFoil →
+        </a>
         </div>
       </div>
     </section>
@@ -208,6 +214,31 @@ import roboboatImage from "assets/RoboBoatLogo.png";
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
           <div class="flex justify-center lg:col-span-1">
             <img
+              src="/logos/njord-challenge.png"
+              alt="Illustration of an autonomous surface vessel alongside a ship and a kayaker"
+              class="max-h-48 w-auto object-contain"
+            />
+          </div>
+
+          <div class="lg:col-span-2">
+            <h3 class="text-2xl font-semibold text-slate-700">
+              Njord Challenge (New)
+              <span class="ml-2 text-base font-medium text-slate-400">(2027)</span>
+            </h3>
+            <p class="mt-4 text-lg leading-relaxed text-slate-500">
+              aQuatonomous is planning to expand internationally by attending the 2027 <strong>Njord Challenge</strong>, hosted by NTNU in Trondheim, Norway.
+            </p>
+            <p class="mt-4 text-lg leading-relaxed text-slate-500">
+              Njord brings together student teams from around the world to compete in autonomous docking, collision avoidance, manoeuvring, and pathfinding, along with technical inspection, reporting, and presentation. This new set of tasks in a new location is a great learning environment for our members, and a great way to represent aQuatonomous and Queen’s on a global stage.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="rounded-xl border-2 border-dashed border-slate-300 bg-gray-50 bg-opacity-35 p-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+          <div class="flex justify-center lg:col-span-1">
+            <img
               src="/logos/sumoth-challenge.png"
               alt="logo of the SuMoth Challenge"
               class="max-h-48 w-auto object-contain"
@@ -217,13 +248,13 @@ import roboboatImage from "assets/RoboBoatLogo.png";
           <div class="lg:col-span-2">
             <h3 class="text-2xl font-semibold text-slate-700">
               Foiling SuMoth Challenge
-              <span class="ml-2 text-base font-medium text-slate-400">(Coming Soon)</span>
+              <span class="ml-2 text-base font-medium text-slate-400">(via aQuaFoil)</span>
             </h3>
             <p class="mt-4 text-lg leading-relaxed text-slate-500">
               The <strong>SuMoth Challenge</strong> is a student foiling competition centered on designing, building, and racing sustainable Moth-class sailboats, with teams evaluated on design quality, manufacturing, performance, and sustainability.
             </p>
             <p class="mt-4 text-lg leading-relaxed text-slate-500">
-              This competition connects directly to aQuaFOIL and aQuatonomous by extending our work from autonomous marine systems into high-performance sustainable sailing. It creates a platform for hydrofoil design, composite manufacturing, systems thinking, and environmentally conscious marine innovation while broadening the team's impact within the maritime engineering space.
+              SuMoth is the competition our sister team, <a href="https://www.aquafoil.ca/" target="_blank" rel="noopener noreferrer" class="underline">aQuaFoil</a>, competes in. It extends our shared work from autonomous marine systems into high-performance sustainable sailing, with a focus on hydrofoil design, composite manufacturing, and environmentally conscious marine innovation.
             </p>
           </div>
         </div>

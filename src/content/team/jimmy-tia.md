@@ -2,7 +2,7 @@
 draft: false
 name: "Jimmy Tia"
 title: "aQuatic Engineering"
-url: ""
+url: "https://www.linkedin.com/in/jimmy-tia-5ab334398/"
 year: "2026-2027"
 avatar: {
     src: "blank.jpg",

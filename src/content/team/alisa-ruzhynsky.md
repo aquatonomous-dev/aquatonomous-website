@@ -2,7 +2,7 @@
 draft: false
 name: "Alisa Ruzhynsky"
 title: "Special Projects"
-url: ""
+url: "https://www.linkedin.com/in/alisa-ruzhynsky/"
 year: "2026-2027"
 avatar: {
     src: "AlisaRuzhynsky.jpg",

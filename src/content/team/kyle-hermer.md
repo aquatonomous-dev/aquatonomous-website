@@ -2,7 +2,7 @@
 draft: false
 name: "Kyle Hermer"
 title: "Director"
-url: ""
+url: "https://www.linkedin.com/in/kyle-hermer-759599357/"
 year: "2026-2027"
 avatar: {
     src: "KyleHermer.jpg",
