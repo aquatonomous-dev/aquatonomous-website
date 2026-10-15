@@ -82,7 +82,11 @@ const getTeamCardClass = (index, total) => {
 const team2025_2026 = sortByOrder(
   publishedTeamMembers.filter((m) => {
     const imagePath = `../assets/team-2025-2026/${m.data.avatar.src}`;
-    return order2025_2026.includes(m.data.name) && Boolean(images[imagePath]);
+    return (
+      m.data.year !== "2026-2027" &&
+      order2025_2026.includes(m.data.name) &&
+      Boolean(images[imagePath])
+    );
   }),
   order2025_2026
 );
@@ -90,7 +94,11 @@ const team2025_2026 = sortByOrder(
 const team2024_2025 = sortByOrder(
   publishedTeamMembers.filter((m) => {
     const imagePath = `../assets/team-2024-2025/${m.data.avatar.src}`;
-    return order2024_2025.includes(m.data.name) && Boolean(images[imagePath]);
+    return (
+      m.data.year !== "2026-2027" &&
+      order2024_2025.includes(m.data.name) &&
+      Boolean(images[imagePath])
+    );
   }),
   order2024_2025
 );
@@ -178,14 +186,18 @@ publishedTeamMembers.forEach(member => {
               {group.heading}
             </h2>
           )}
-          <div class="grid grid-cols-1 gap-10 mx-auto max-w-5xl mt-12 sm:grid-cols-6">
+          <div
+            class="team-row mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-10"
+            data-count={group.members.length}
+            style={`--team-count: ${group.members.length};`}
+          >
             {
-              group.members.map((teamMemberEntry, index) => {
+              group.members.map((teamMemberEntry) => {
                 const imagePath = `../assets/team-2026-2027/${teamMemberEntry.data.avatar.src}`;
                 const image = images[imagePath];
 
                 return (
-                  <div class={`group sm:col-span-2 ${getTeamCardClass(index, group.members.length)}`}>
+                  <div class="group min-w-0">
                     <div class="w-full aspect-square">
                       {image ? (
                         <a
@@ -318,3 +330,21 @@ publishedTeamMembers.forEach(member => {
     </details>
   </Container>
 </Layout>
+
+<style>
+  @media (min-width: 640px) {
+    .team-row {
+      grid-template-columns: repeat(var(--team-count), minmax(0, 1fr));
+    }
+
+    .team-row[data-count="1"] {
+      grid-template-columns: minmax(0, calc((100% - 5rem) / 3));
+      justify-content: center;
+    }
+
+    .team-row[data-count="2"] {
+      grid-template-columns: repeat(2, minmax(0, calc((100% - 5rem) / 3)));
+      justify-content: center;
+    }
+  }
+</style>
