@@ -17,17 +17,17 @@ const frontenacPhotos = [
   {
     src: "/photos/the-frontenac/IMG_6672.jpg",
     alt: "Frontenac build detail",
-    class: "col-span-1 row-span-2",
+    class: "col-span-1 row-span-1",
   },
   {
     src: "/photos/the-frontenac/IMG-20260220-WA0006.jpg",
     alt: "Frontenac competition preparation",
-    class: "col-span-1 row-span-2",
+    class: "col-span-1 row-span-1",
   },
   {
     src: "/photos/the-frontenac/IMG-20260224-WA0076.jpg",
     alt: "Frontenac competition moment",
-    class: "col-span-2 row-span-1",
+    class: "col-span-4 row-span-1",
   },
 ];
 ---
@@ -75,27 +75,8 @@ const frontenacPhotos = [
     <!-- ========================= -->
     <section>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mx-auto max-w-7xl mt-16">
-        <div class="mb-8">
-          <div class="mb-6">
-            <div class="w-full h-[300px] sm:h-[420px] rounded-2xl border border-slate-200 bg-slate-50 bg-opacity-35 shadow-inner relative overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-AquaBlue/10"></div>
-              <div class="absolute inset-0 flex items-center justify-center p-6 text-center">
-                <div>
-                  <p class="text-xs font-mono uppercase tracking-[0.3em] text-slate-500">
-                    Interactive 3D CAD Model
-                  </p>
-                  <h2 class="mt-3 text-2xl font-bold text-AquaNavy">
-                    Frontenac model placeholder
-                  </h2>
-                  <p class="mt-3 max-w-md text-slate-600">
-                    This space is reserved for an interactive 3D CAD viewer of The Frontenac, similar to the Nautical Disaster preview below.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="grid max-h-[500px] grid-cols-4 grid-rows-3 gap-1 overflow-hidden rounded-2xl">
+        <div class="mb-8 md:relative md:mb-0">
+          <div class="grid max-h-[500px] md:absolute md:inset-x-0 md:top-0 md:bottom-10 md:max-h-none grid-cols-4 grid-rows-3 gap-1 overflow-hidden rounded-2xl">
             {frontenacPhotos.map((photo) => (
               <img
                 src={photo.src}
@@ -104,7 +85,7 @@ const frontenacPhotos = [
               />
             ))}
           </div>
-          <p class="mt-4 text-center font-mono text-sm text-slate-500">
+          <p class="mt-4 text-center font-mono text-sm text-slate-500 md:absolute md:inset-x-0 md:bottom-0 md:mt-0">
             Frontenac build and competition moments
           </p>
         </div>
