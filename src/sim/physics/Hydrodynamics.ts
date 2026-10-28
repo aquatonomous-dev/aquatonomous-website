@@ -132,6 +132,34 @@ export function boxMesh(size: ArrayLike<number>, divisions = 3): TriangleMesh {
   return { vertices: new Float64Array(vertices), indices: new Uint32Array(indices) };
 }
 
+/** Closed cylinder mesh, axis along z (SDF convention), outward-facing triangles. */
+export function cylinderMesh(radius: number, length: number, segments = 16): TriangleMesh {
+  const half = length / 2;
+  const vertices: number[] = [];
+  const indices: number[] = [];
+  const topCenter = vertices.length / 3;
+  vertices.push(0, 0, half);
+  const bottomCenter = vertices.length / 3;
+  vertices.push(0, 0, -half);
+  const topRing: number[] = [];
+  const bottomRing: number[] = [];
+  for (let i = 0; i < segments; i++) {
+    const a = (2 * Math.PI * i) / segments;
+    const x = radius * Math.cos(a), y = radius * Math.sin(a);
+    topRing.push(vertices.length / 3);
+    vertices.push(x, y, half);
+    bottomRing.push(vertices.length / 3);
+    vertices.push(x, y, -half);
+  }
+  for (let i = 0; i < segments; i++) {
+    const j = (i + 1) % segments;
+    indices.push(bottomRing[i], bottomRing[j], topRing[j], bottomRing[i], topRing[j], topRing[i]);
+    indices.push(topCenter, topRing[i], topRing[j]);
+    indices.push(bottomCenter, bottomRing[j], bottomRing[i]);
+  }
+  return { vertices: new Float64Array(vertices), indices: new Uint32Array(indices) };
+}
+
 export function meshBounds(mesh: TriangleMesh): { min: number[]; max: number[] } {
   const min = [Infinity, Infinity, Infinity];
   const max = [-Infinity, -Infinity, -Infinity];

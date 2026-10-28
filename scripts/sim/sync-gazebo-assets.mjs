@@ -4,11 +4,13 @@
  *
  *   node scripts/sim/sync-gazebo-assets.mjs [--ref <commit>] [--local <autonomy-ws path>] [--boat <model>]
  *
- * Reads aquatonomous_world.sdf plus every model SDF and mesh it includes from
- * aQuatonomous/autonomy-ws-25-26 (the pinned commit below, another --ref, or a
- * local clone), then writes src/sim/data/course.json and Draco-compressed GLBs
- * in public/sim/models/. --boat swaps in another model folder from the same
- * workspace as the vessel, keeping the world's spawn pose.
+ * Reads roboboat2026_course.sdf (the RoboBoat 2026 course: gates, channel,
+ * docking, speed challenge, plus the shoreline/dock/boundary-marker scenery
+ * defined inline in the world) plus every model SDF and mesh it references,
+ * from aQuatonomous/autonomy-workspace-26-27 (the pinned commit below, another
+ * --ref, or a local clone), then writes src/sim/data/course.json and
+ * Draco-compressed GLBs in public/sim/models/. --boat swaps in another model
+ * folder from the same workspace as the vessel, keeping the world's spawn pose.
  *
  * All output geometry stays in Gazebo's frame: metres, Z up, x East, y North.
  */
@@ -22,12 +24,13 @@ import { KHRDracoMeshCompression } from "@gltf-transform/extensions";
 import { draco, weld } from "@gltf-transform/functions";
 import draco3d from "draco3dgltf";
 
-const REPO = "aQuatonomous/autonomy-ws-25-26";
-const DEFAULT_REF = "0ec782e994111e32e9045d89bb07c7779673d8cb";
+const REPO = "aQuatonomous/autonomy-workspace-26-27";
+const DEFAULT_REF = "99cd9a7724f170799a964c50b135002534518012";
 const SIM_DIR = "src/asv_wave_sim";
 const MODELS_ROOT = `${SIM_DIR}/gz-waves-models`;
-const WORLD_PATH = `${MODELS_ROOT}/worlds/aquatonomous_world.sdf`;
-const LAUNCH_SCRIPT_PATH = `${SIM_DIR}/run_full_simulation_tmux.bash`;
+const WORLD_PATH = `${MODELS_ROOT}/worlds/roboboat2026_course.sdf`;
+const ANSWER_KEY_PATH = `${MODELS_ROOT}/worlds/roboboat2026_course.answer_key.json`;
+const BRIDGES_SCRIPT_PATH = `${SIM_DIR}/sim/2_bridges.sh`;
 const MODEL_SEARCH_DIRS = [`${MODELS_ROOT}/models`, `${MODELS_ROOT}/world_models`];
 
 const SITE_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -356,10 +359,10 @@ function parseSensor(sensor) {
   return base;
 }
 
-function parseModelSdf(sdfText, modelDir) {
-  const root = xml.parse(sdfText).sdf;
-  const model = root.model?.[0];
-  if (!model) throw new Error(`No <model> in ${modelDir}/model.sdf`);
+// Parses a model already extracted from an SDF document (a standalone model.sdf's root
+// <model>, or a <model> embedded directly in a world file, e.g. the course's shoreline/dock/
+// boundary-marker scenery).
+function parseModelNode(model, modelDir) {
   const links = (model.link ?? []).map((link) => ({
     name: link["@_name"],
     pose: poseOf(link.pose),
@@ -394,6 +397,13 @@ function parseModelSdf(sdfText, modelDir) {
   return { name: model["@_name"], isStatic: boolOf(model.static, false), links, joints, plugins, dir: modelDir };
 }
 
+function parseModelSdf(sdfText, modelDir) {
+  const root = xml.parse(sdfText).sdf;
+  const model = root.model?.[0];
+  if (!model) throw new Error(`No <model> in ${modelDir}/model.sdf`);
+  return parseModelNode(model, modelDir);
+}
+
 // ---------------------------------------------------------------------------
 // Meshes
 
@@ -414,6 +424,38 @@ function parseStl(bytes) {
   ]);
   if (values.length === 0 || values.length % 9 !== 0) throw new Error("Unreadable STL file");
   return new Float32Array(values);
+}
+
+// Wavefront OBJ, as written by tools/make_course_models.py for the course's shared shapes
+// (indicator frustum, number banner, sign triangle, stationary-vessel hull). Faces may be
+// n-gons (quads); fan-triangulate them. Normals, if present, are ignored -- flatNormals()
+// recomputes them per triangle the same way parseStl's output does.
+function parseObj(text) {
+  const vertices = [];
+  const positions = [];
+  for (const line of text.split("\n")) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith("v ")) {
+      const [x, y, z] = trimmed.slice(2).trim().split(/\s+/).map(Number);
+      vertices.push([x, y, z]);
+    } else if (trimmed.startsWith("f ")) {
+      const face = trimmed
+        .slice(2)
+        .trim()
+        .split(/\s+/)
+        .map((token) => {
+          const i = Number(token.split("/")[0]);
+          return i > 0 ? vertices[i - 1] : vertices[vertices.length + i];
+        });
+      for (let i = 1; i < face.length - 1; i++) positions.push(face[0], face[i], face[i + 1]);
+    }
+  }
+  if (positions.length === 0) throw new Error("Unreadable OBJ file (no faces)");
+  return new Float32Array(positions.flat());
+}
+
+function parseMesh(bytes, ext) {
+  return ext === ".obj" ? parseObj(new TextDecoder().decode(bytes)) : parseStl(bytes);
 }
 
 function transformPositions(positions, { scale = [1, 1, 1], pose = null, fixup = null }) {
@@ -519,7 +561,7 @@ async function main() {
 
   async function meshSource(repoPath) {
     const ext = path.posix.extname(repoPath).toLowerCase();
-    if (ext === ".stl") return repoPath;
+    if (ext === ".stl" || ext === ".obj") return repoPath;
     const dir = path.posix.dirname(repoPath);
     const base = path.posix.basename(repoPath, path.posix.extname(repoPath)).toLowerCase();
     const stls = (await source.list(dir)).filter(
@@ -547,7 +589,8 @@ async function main() {
   const writtenMeshes = new Map();
   async function emitMesh(repoPath, { scale, fixup }) {
     const stlPath = await meshSource(repoPath);
-    const positions = transformPositions(parseStl(await source.binary(stlPath)), { scale, fixup });
+    const ext = path.posix.extname(stlPath).toLowerCase();
+    const positions = transformPositions(parseMesh(await source.binary(stlPath), ext), { scale, fixup });
     const hash = createHash("sha1").update(Buffer.from(positions.buffer)).digest("hex");
     if (!writtenMeshes.has(hash)) {
       const baseName = path.posix.basename(stlPath, path.posix.extname(stlPath));
@@ -562,17 +605,27 @@ async function main() {
 
   // World
   const world = xml.parse(await source.text(WORLD_PATH)).sdf.world;
+  const worldDir = path.posix.dirname(WORLD_PATH);
   const includes = (world.include ?? []).map((inc) => {
     const uri = textOf(inc.uri);
     const model = uri.replace(/^models?:\/\//, "").replace(/\/$/, "");
     return { model, name: textOf(inc.name) ?? model, pose: poseOf(inc.pose) };
   });
+  // Course scenery (shoreline, docks, boundary markers, ...) defined as <model> directly in
+  // the world file, rather than placed by <include> from the shared model library.
+  const inlineModels = (world.model ?? []).map((m) => ({
+    name: m["@_name"],
+    parsed: parseModelNode(m, worldDir),
+    pose: poseOf(m.pose),
+  }));
   const sun = (world.light ?? []).find((l) => l["@_type"] === "directional") ?? world.light?.[0];
 
-  // Waves
+  // Waves: an <include> of the shared "waves" model, or (in the RoboBoat 2026 course) a <model>
+  // with the WavesModel plugin embedded directly in the world.
   const wavesInclude = includes.find((inc) => inc.model === "waves");
-  if (!wavesInclude) throw new Error("World has no model://waves include");
-  const wavesModel = await loadModel("waves");
+  const wavesInline = inlineModels.find((m) => m.name === "waves");
+  if (!wavesInclude && !wavesInline) throw new Error("World has no waves model (include or inline)");
+  const wavesModel = wavesInline ? wavesInline.parsed : await loadModel("waves");
   const wavesPlugin = wavesModel.plugins.find((p) => p.filename.includes("waves-model"));
   const wave = wavesPlugin?.raw.wave ?? {};
   const waves = {
@@ -585,12 +638,14 @@ async function main() {
     updateRate: numberOf(wavesPlugin?.raw.update_rate, 30),
   };
 
-  // Launch-script details that live outside the SDF
-  const launch = await source.text(LAUNCH_SCRIPT_PATH);
-  const home = /--custom-location=([-\d.]+),([-\d.]+),([-\d.]+),([-\d.]+)/.exec(launch);
+  // Details that live outside the course SDF: the SITL home (lat,lon,alt,heading, same string
+  // format select_course.sh writes) comes from the course's answer key, and the ROS topic each
+  // camera ends up on comes from the ros_gz_bridge remaps in sim/2_bridges.sh.
+  const answerKeyText = await source.text(ANSWER_KEY_PATH).catch(() => null);
+  const home = answerKeyText && /"sitl_home"\s*:\s*"([-\d.]+),([-\d.]+),([-\d.]+),([-\d.]+)"/.exec(answerKeyText);
+  const bridgesScript = await source.text(BRIDGES_SCRIPT_PATH).catch(() => "");
   const cameraTopics = Object.fromEntries(
-    [...launch.matchAll(/parameter_bridge\s+\/(\w+)@sensor_msgs\/msg\/Image@gz\.msgs\.Image\s+--ros-args\s+-r\s+\/\w+:=(\S+?)"?$/gm)]
-      .map((m) => [m[1], m[2]]),
+    [...bridgesScript.matchAll(/-r\s+\/(\w*camera\w*):=(\S+)/g)].map((m) => [m[1], m[2]]),
   );
 
   // Models
@@ -666,7 +721,8 @@ async function main() {
       if (g.type === "mesh") {
         const repoPath = await resolveUri(g.uri, model.dir);
         const stlPath = await meshSource(repoPath);
-        const positions = transformPositions(parseStl(await source.binary(stlPath)), { scale: g.scale, pose });
+        const ext = path.posix.extname(stlPath).toLowerCase();
+        const positions = transformPositions(parseMesh(await source.binary(stlPath), ext), { scale: g.scale, pose });
         const fileName = `${path.posix.basename(model.dir)}-${collision.name}.f32`;
         await writeFile(path.join(OUT_MODELS_DIR, fileName), Buffer.from(positions.buffer));
         collisions.push({
@@ -695,8 +751,7 @@ async function main() {
     };
   }
 
-  async function describeModel(name, { isBoat }) {
-    const model = await loadModel(name);
+  async function describeParsedModel(model, name, { isBoat }) {
     const hydrodynamics = hydrodynamicsOf(model);
     const bodyLinks = isBoat
       ? model.links.filter((l) => (hydrodynamics?.links ?? [model.links[0].name]).includes(l.name))
@@ -720,6 +775,10 @@ async function main() {
         pressureDrag: hydrodynamics.pressureDrag,
       },
     };
+  }
+
+  async function describeModel(name, { isBoat }) {
+    return describeParsedModel(await loadModel(name), name, { isBoat });
   }
 
   function describeThrusters(model) {
@@ -790,6 +849,11 @@ async function main() {
     if (inc === wavesInclude || inc === boatInclude) continue;
     describedModels[inc.model] ??= await describeModel(inc.model, { isBoat: false });
     instances.push({ name: inc.name, model: inc.model, pose: inc.pose });
+  }
+  for (const m of inlineModels) {
+    if (m === wavesInline) continue;
+    describedModels[m.name] ??= await describeParsedModel(m.parsed, m.name, { isBoat: false });
+    instances.push({ name: m.name, model: m.name, pose: m.pose });
   }
 
   const course = {

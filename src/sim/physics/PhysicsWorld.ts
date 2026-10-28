@@ -6,6 +6,7 @@ import {
   boxMesh,
   coefficientsFor,
   createRigidState,
+  cylinderMesh,
   meshBounds,
   weldTriangles,
   type HydroCoefficients,
@@ -35,7 +36,10 @@ export interface BodyPose {
 
 type HydroModel =
   | { kind: "hull"; hull: HullHydrodynamics; patch: WaterPatch }
-  | { kind: "sphere"; radius: number; offset: Vec3 };
+  | { kind: "sphere"; radius: number; offset: Vec3 }
+  // Decoration with no collision geometry (e.g. the course's shoreline banks/trees): rendered,
+  // but neither buoyant nor collidable.
+  | { kind: "none" };
 
 const scratch = { x: 0, y: 0, z: 0 };
 
@@ -89,7 +93,7 @@ export class FloatingBody {
       this.force.set(hull.force);
       this.torque.set(hull.torque);
       this.wetFraction = hull.submergedArea / hull.area;
-    } else {
+    } else if (this.hydro.kind === "sphere") {
       const { radius, offset } = this.hydro;
       const r = s.rotation;
       const center = [
@@ -107,6 +111,10 @@ export class FloatingBody {
       this.torque[0] += ry * f[2] - rz * f[1];
       this.torque[1] += rz * f[0] - rx * f[2];
       this.torque[2] += rx * f[1] - ry * f[0];
+    } else {
+      this.force.fill(0);
+      this.torque.fill(0);
+      this.wetFraction = 0;
     }
   }
 
@@ -201,6 +209,13 @@ function rigidBodyDesc(model: ModelDef, spawn: BodyPose): Rapier.RigidBodyDesc {
     .setCanSleep(false);
 }
 
+/** For decoration with no collision geometry and so no mass properties to give Rapier. */
+function fixedBodyDesc(spawn: BodyPose): Rapier.RigidBodyDesc {
+  const [x, y, z] = spawn.position;
+  const [qx, qy, qz, qw] = spawn.rotation;
+  return RAPIER.RigidBodyDesc.fixed().setTranslation(x, y, z).setRotation({ x: qx, y: qy, z: qz, w: qw });
+}
+
 export interface PhysicsOptions {
   /** Fixed step in seconds. */
   step?: number;
@@ -249,6 +264,12 @@ export class PhysicsWorld {
     for (const instance of course.instances) {
       const model = course.models[instance.model];
       const spawn = poseToSpawn(instance.pose);
+      if (model.collisions.length === 0) {
+        // Decoration with nothing to collide or float on (e.g. the course's shoreline).
+        const body = this.world.createRigidBody(fixedBodyDesc(spawn));
+        this.bodies.push(new FloatingBody(instance.name, model, body, { kind: "none" }, coefficientsFor(model.hydrodynamics), spawn));
+        continue;
+      }
       const body = this.world.createRigidBody(rigidBodyDesc(model, spawn));
       for (const collision of model.collisions) {
         const desc = primitiveCollider(collision.geometry, collision.pose);
@@ -261,6 +282,9 @@ export class PhysicsWorld {
         hydro = { kind: "sphere", radius: collision.geometry.radius, offset: [collision.pose[0], collision.pose[1], collision.pose[2]] };
       } else if (collision.geometry.type === "box") {
         const mesh = transformMesh(boxMesh(collision.geometry.size), collision.pose);
+        hydro = { kind: "hull", hull: new HullHydrodynamics(mesh, coefficients), patch: new WaterPatch(patchSize(mesh)) };
+      } else if (collision.geometry.type === "cylinder") {
+        const mesh = transformMesh(cylinderMesh(collision.geometry.radius, collision.geometry.length), collision.pose);
         hydro = { kind: "hull", hull: new HullHydrodynamics(mesh, coefficients), patch: new WaterPatch(patchSize(mesh)) };
       } else {
         throw new Error(`Unsupported collision for ${instance.name}: ${collision.geometry.type}`);

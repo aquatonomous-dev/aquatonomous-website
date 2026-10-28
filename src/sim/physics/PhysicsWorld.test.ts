@@ -44,7 +44,10 @@ describe("PhysicsWorld", () => {
     console.info(`top speed ${speed.toFixed(3)} m/s, position x ${world.boat.state.position[0].toFixed(2)}`);
     expect(speed).toBeGreaterThan(1.5);
     expect(speed).toBeLessThan(4.5);
-    expect(v[0]).toBeGreaterThan(0);
+    // Velocity should point the way the boat's spawn heading faces, whatever that heading is.
+    const yaw = course.boat.pose[5];
+    const forwardSpeed = v[0] * Math.cos(yaw) + v[1] * Math.sin(yaw);
+    expect(forwardSpeed).toBeGreaterThan(0);
     world.dispose();
   });
 
