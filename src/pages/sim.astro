@@ -1,5 +1,7 @@
 ---
 import SimLayout from "@layouts/SimLayout.astro";
+import Button from "@components/ui/Button.astro";
+import Link from "@components/ui/Link.astro";
 ---
 
 <SimLayout
@@ -61,17 +63,17 @@ import SimLayout from "@layouts/SimLayout.astro";
 
     <!-- Controls -->
     <section
-      class="absolute right-2 top-2 flex max-w-[calc(100vw-12.5rem)] flex-col items-end gap-2 font-mono text-xs sm:right-3 sm:top-3 sm:max-w-[calc(100vw-17rem)]"
+      class="absolute right-2 top-2 flex max-w-[calc(100vw-12.5rem)] flex-col items-end gap-2 sm:right-3 sm:top-3 sm:max-w-[calc(100vw-17rem)]"
     >
       <div class="flex flex-wrap justify-end gap-1.5">
-        <button id="btn-reset" class="sim-btn" title="Reset (R)">Reset</button>
-        <button id="btn-pause" class="sim-btn" title="Pause (P)">Pause</button>
-        <button id="btn-camera" class="sim-btn" title="Camera (C)">Chase</button>
-        <button id="btn-pip" class="sim-btn hidden sm:inline-flex" title="Onboard cameras (V)">Cams</button>
-        <button id="btn-help" class="sim-btn" title="Help (H)">?</button>
+        <Button id="btn-reset" size="sm" style="cta" title="Reset (R)">Reset</Button>
+        <Button id="btn-pause" size="sm" style="cta" title="Pause (P)">Pause</Button>
+        <Button id="btn-camera" size="sm" style="cta" title="Camera (C)">Chase</Button>
+        <Button id="btn-pip" size="sm" style="cta" class="hidden aria-pressed:border-AquaNeon sm:inline-block" title="Onboard cameras (V)">Cams</Button>
+        <Button id="btn-help" size="sm" style="cta" title="Help (H)">?</Button>
       </div>
-      <label class="flex max-w-full items-center gap-2 rounded-lg border border-white/10 bg-AquaNavy/75 px-2 py-1 backdrop-blur">
-        <span class="text-white/60">Sea</span>
+      <label class="flex max-w-full items-center gap-2 rounded-md border-2 border-transparent bg-AquaNavy px-3 py-1.5 text-sm font-medium shadow-md ring-gray-200 ring-offset-2 transition focus-within:ring-2 hover:bg-AquaBlue/80">
+        <span class="text-white/70">Sea</span>
         <select id="hud-sea" class="min-w-0 max-w-full truncate bg-transparent text-white outline-none"></select>
       </label>
     </section>
@@ -103,7 +105,7 @@ import SimLayout from "@layouts/SimLayout.astro";
             <p class="font-mono text-[0.7rem] uppercase tracking-[0.25em] text-AquaNeon">aQuatonomous</p>
             <h1 class="mt-1 text-2xl font-bold">Boat simulator</h1>
           </div>
-          <button id="btn-help-close" class="sim-btn" aria-label="Close help">Close</button>
+          <Button id="btn-help-close" size="sm" style="inverted" aria-label="Close help">Close</Button>
         </div>
         <p class="mt-3 text-sm text-white/70">
           The team's Gazebo world rebuilt for the browser: the same course layout, wave model, hull buoyancy and
@@ -140,31 +142,13 @@ import SimLayout from "@layouts/SimLayout.astro";
       <div class="max-w-md text-center">
         <h1 class="text-xl font-bold">The simulator couldn't start</h1>
         <p id="sim-error-message" class="mt-2 font-mono text-xs text-white/70"></p>
-        <a href="/" class="mt-4 inline-block text-AquaNeon hover:text-white">Back to the aQuatonomous website</a>
+        <Link href="/" style="inverted" class="mt-4 inline-block">Back to the aQuatonomous website</Link>
       </div>
     </div>
   </main>
 </SimLayout>
 
 <style is:global>
-  .sim-btn {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 0.5rem;
-    border: 1px solid rgb(255 255 255 / 0.1);
-    background: rgb(16 41 43 / 0.75);
-    padding: 0.35rem 0.6rem;
-    color: white;
-    backdrop-filter: blur(8px);
-    transition: background 120ms;
-  }
-  .sim-btn:hover {
-    background: #195c5a;
-  }
-  .sim-btn[aria-pressed="true"] {
-    background: #195c5a;
-    border-color: #98cfd4;
-  }
   #hud-sea option {
     background: #10292b;
   }

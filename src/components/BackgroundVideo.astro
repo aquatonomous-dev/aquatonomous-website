@@ -1,17 +1,19 @@
 <div class="relative h-screen w-full overflow-hidden">
 
   <!-- Background Video (shown on medium and up) -->
-  <div class="absolute inset-0 z-0 pointer-events-none scale-[1.2] hidden sm:block">
-    <iframe
-      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
-             w-[325%] h-[125%] min-w-full min-h-full object-cover 
-             sm:w-full sm:h-full sm:min-w-0 sm:min-h-0"
-      src="https://www.youtube.com/embed/REPM_JiqIVo?autoplay=1&mute=1&controls=0&loop=1&modestbranding=1&showinfo=0&rel=0&playsinline=1&playlist=REPM_JiqIVo"
-      title="aQuatonomous background video"
-      frameborder="0"
-      allow="autoplay; fullscreen"
-      allowfullscreen
-    ></iframe>
+  <div class="absolute inset-0 z-0 pointer-events-none hidden sm:block">
+    <video
+      class="h-full w-full object-cover"
+      poster="/videos/hero-broll-poster.jpg"
+      autoplay
+      muted
+      loop
+      playsinline
+      aria-hidden="true"
+    >
+      <!-- media keeps phones, which show the image below, from downloading the video -->
+      <source src="/videos/hero-broll.mp4" type="video/mp4" media="(min-width: 640px)" />
+    </video>
   </div>
 
   <!-- Fallback Background Image (shown on small screens) -->

@@ -106,7 +106,8 @@ async function listLocalFiles(root, dir) {
 function createSource({ ref, local }) {
   if (local) {
     return {
-      label: `${local} (local clone)`,
+      // The label ships to the public site, so name the repo rather than the clone's path.
+      label: `${REPO} (local clone)`,
       ref: null,
       text: (p) => readFile(path.join(local, p), "utf8"),
       binary: async (p) => new Uint8Array(await readFile(path.join(local, p))),

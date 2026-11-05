@@ -2,7 +2,7 @@
   "source": {
     "repo": "aQuatonomous/autonomy-workspace-26-27",
     "ref": null,
-    "label": "/Users/spencerosborn/Desktop/Repos/autonomy-workspace-26-27 (local clone)",
+    "label": "aQuatonomous/autonomy-workspace-26-27 (local clone)",
     "world": "src/asv_wave_sim/gz-waves-models/worlds/roboboat2026_course.sdf",
     "generatedBy": "scripts/sim/sync-gazebo-assets.mjs"
   },
