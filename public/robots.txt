@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Allow: /logos/
+Disallow: /*?
+Disallow: /videos/
+Disallow: /models/
+Disallow: /draco/
+Disallow: /sim/models/
 
-Sitemap: https://aquatonomous.ca/sitemap.xml
+Sitemap: https://aquatonomous.vercel.app/sitemap-index.xml
