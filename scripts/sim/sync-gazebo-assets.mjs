@@ -4,9 +4,9 @@
  *
  *   node scripts/sim/sync-gazebo-assets.mjs [--ref <commit>] [--local <autonomy-ws path>] [--boat <model>]
  *
- * Reads roboboat2026_course.sdf (the RoboBoat 2026 course: gates, channel,
- * docking, speed challenge, plus the shoreline/dock/boundary-marker scenery
- * defined inline in the world) plus every model SDF and mesh it references,
+ * Reads roboboat2027_course.sdf (the RoboBoat 2027 course the sim runs by
+ * default, as generated for seed 0, plus the shoreline/dock/boundary-marker
+ * scenery defined inline in the world) plus every model SDF and mesh it references,
  * from aQuatonomous/autonomy-workspace-26-27 (the pinned commit below, another
  * --ref, or a local clone), then writes src/sim/data/course.json and
  * Draco-compressed GLBs in public/sim/models/. --boat swaps in another model
@@ -25,11 +25,11 @@ import { draco, weld } from "@gltf-transform/functions";
 import draco3d from "draco3dgltf";
 
 const REPO = "aQuatonomous/autonomy-workspace-26-27";
-const DEFAULT_REF = "99cd9a7724f170799a964c50b135002534518012";
+const DEFAULT_REF = "ba7a2e174dc7f74f33779aeba608a4e038387f6c";
 const SIM_DIR = "src/asv_wave_sim";
 const MODELS_ROOT = `${SIM_DIR}/gz-waves-models`;
-const WORLD_PATH = `${MODELS_ROOT}/worlds/roboboat2026_course.sdf`;
-const ANSWER_KEY_PATH = `${MODELS_ROOT}/worlds/roboboat2026_course.answer_key.json`;
+const WORLD_PATH = `${MODELS_ROOT}/worlds/roboboat2027_course.sdf`;
+const ANSWER_KEY_PATH = `${MODELS_ROOT}/worlds/roboboat2027_course.answer_key.json`;
 const BRIDGES_SCRIPT_PATH = `${SIM_DIR}/sim/2_bridges.sh`;
 const MODEL_SEARCH_DIRS = [`${MODELS_ROOT}/models`, `${MODELS_ROOT}/world_models`];
 

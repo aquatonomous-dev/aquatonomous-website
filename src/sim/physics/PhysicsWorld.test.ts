@@ -49,7 +49,7 @@ describe("PhysicsWorld", () => {
     const forwardSpeed = v[0] * Math.cos(yaw) + v[1] * Math.sin(yaw);
     expect(forwardSpeed).toBeGreaterThan(0);
     world.dispose();
-  });
+  }, 15_000); // 40 s of simulated driving takes about 5 s, right at vitest's default limit.
 
   it("keeps every course object afloat", () => {
     const world = calmWorld();

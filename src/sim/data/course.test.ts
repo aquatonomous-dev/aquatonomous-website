@@ -5,31 +5,36 @@ import { course } from "../testing";
 const publicFile = (url: string) => new URL(`../../../public${url}`, import.meta.url);
 
 describe("course.json", () => {
-  it("has the 49 course objects from roboboat2026_course.sdf", () => {
-    expect(course.instances).toHaveLength(49);
+  it("has the 37 course objects from roboboat2027_course.sdf", () => {
+    expect(course.instances).toHaveLength(37);
     const counts: Record<string, number> = {};
     for (const instance of course.instances) counts[instance.model] = (counts[instance.model] ?? 0) + 1;
     expect(counts).toEqual({
-      RedSurMark: 2,
-      GreenSurMark: 2,
-      RedRopehold: 4,
-      GreenRopehold: 4,
-      BlackRopehold: 6,
-      IndicatorBuoyRed: 2,
-      IndicatorBuoyGreen: 1,
-      StationaryVesselBlack: 2,
+      LightBuoyRed: 3,
+      LightBuoyGreen: 3,
+      LightBuoyBlue: 2,
+      LightBuoyBlack: 2,
+      LightBuoyRed1: 1,
+      LightBuoyRed2: 1,
+      LightBuoyGreen3: 1,
       PolyformA2Red: 1,
       PolyformA2Green: 1,
-      PolyformA2Black: 2,
+      PolyformA2Blue: 1,
+      PolyformA2White: 1,
+      PolyformA2Black: 1,
       PolyformA2Yellow: 1,
-      StationaryVesselYellow: 2,
-      DockIndicatorRed: 4,
-      DockIndicatorGreen: 2,
-      NumberBanner1: 2,
-      NumberBanner2: 2,
-      NumberBanner3: 2,
+      StationaryVesselBlack: 1,
+      StationaryVesselBlackCross: 1,
+      StationaryVesselBlackSquare: 1,
+      StationaryVesselBlackTriangle: 1,
+      StationaryVesselYellowCircle: 1,
+      StationaryVesselYellowTriangle: 1,
+      DockIndicatorRed: 2,
+      DockIndicatorGreen: 1,
+      NumberBanner1: 1,
+      NumberBanner2: 1,
+      NumberBanner3: 1,
       shoreline: 1,
-      marina_dock_S: 1,
       marina_dock_N: 1,
       boundary_marker_0: 1,
       boundary_marker_1: 1,
@@ -39,7 +44,7 @@ describe("course.json", () => {
   });
 
   it("spawns the boat where the world puts it", () => {
-    expect(course.boat.pose).toEqual([22.2, -23.9, 0, 0, 0, -3.14159]);
+    expect(course.boat.pose).toEqual([10.25, 3.3, 0, 0, 0, -3.14159]);
     expect(course.models[course.boat.model].mass.mass).toBeCloseTo(30.9, 6);
   });
 
